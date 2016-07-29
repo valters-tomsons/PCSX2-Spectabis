@@ -10,4 +10,4 @@ Spectabis is still in early development, and is barely working ATM.
 #Credits
 
 MaterialSkin - https://github.com/IgnaceMaes/MaterialSkin
-Awesome community at StackOverflow
+  Awesome community at StackOverflow
