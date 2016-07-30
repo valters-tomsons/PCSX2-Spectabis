@@ -135,9 +135,7 @@ namespace PCSX2_Spectabis
                 {
                     //Starts the game, if exists
                     string isoDir = (string)clickedPictureBox.Tag;
-                    //MessageBox.Show(emuDir + @"\pcsx2.exe """ + isoDir + @""" ");
-                    //Process.Start(emuDir + @"\pcsx2.exe """ + isoDir + @""" ");
-                    Process.Start(@"D:/PCSX2/pcsx2.exe ""D:/PCSX2/iso/godhand.iso"" ");
+                    Process.Start(emuDir + @"\pcsx2.exe ", "\"" + isoDir + "\"");
                 }
                 else
                 {
