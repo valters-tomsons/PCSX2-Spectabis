@@ -15,6 +15,6 @@ IgnaceMaes - https://github.com/IgnaceMaes/MaterialSkin
 
 Chainsawkitten - https://github.com/Chainsawkitten/gamesdb-csharp-api
 
-http://thegamesdb.net/
+The Games DB - http://thegamesdb.net/ & http://wiki.thegamesdb.net/index.php/API_Introduction
 
 The awesome community at StackOverflow
