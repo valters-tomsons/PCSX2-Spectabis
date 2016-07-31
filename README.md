@@ -11,6 +11,10 @@ Spectabis is still in early development, and is barely working ATM.
 
 #Credits
 
-MaterialSkin - https://github.com/IgnaceMaes/MaterialSkin
+IgnaceMaes - https://github.com/IgnaceMaes/MaterialSkin
 
-Awesome community at StackOverflow
+Chainsawkitten - https://github.com/Chainsawkitten/gamesdb-csharp-api
+
+http://thegamesdb.net/
+
+The awesome community at StackOverflow
