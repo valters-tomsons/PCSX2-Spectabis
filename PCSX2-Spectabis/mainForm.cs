@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using System.Diagnostics;
-using PCSX2_Spectabis.Properties;
+
 
 namespace PCSX2_Spectabis
 {
@@ -38,7 +38,14 @@ namespace PCSX2_Spectabis
             isoPanel.AutoScroll = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
 
+            if (Properties.Settings.Default.IsGameMode == false)
+            { configMode.Checked = true; }
+            else
+            { gameMode.Checked = true; }
+
         }
+
+
 
         //Save Settings function
         private static void saveSettings()
@@ -74,6 +81,16 @@ namespace PCSX2_Spectabis
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
+            //Saves game emulation settings
+            if(gameMode.Checked == true)
+            {
+                Properties.Settings.Default.IsGameMode = true;
+            }
+            else
+            {
+                Properties.Settings.Default.IsGameMode = false;
+            }
+
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
@@ -103,6 +120,7 @@ namespace PCSX2_Spectabis
         //Add Game Button
         private void addGameButton_Click(object sender, EventArgs e)
         {
+            //Creates a delegate addGameForm
             addGameForm addgame = new addGameForm();
             addgame.ControlCreator = UpdateUiEvent;
             addgame.Show();
@@ -111,12 +129,19 @@ namespace PCSX2_Spectabis
         //Add Iso function
         public void addIso(string _img, string _isoDir)
         {
+            //Item properties
             PictureBox gameBox = new PictureBox();
-            gameBox.ImageLocation = _img;
+
             gameBox.Height = 200;
             gameBox.Width = 150;
             gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            string selfPath = System.IO.Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+
+            //Path to iso from mainForm
+            string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+
+            gameBox.ImageLocation = _img;
+            //gameBox.Name = _title;
+
             isoPanel.Controls.Add(gameBox);
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
@@ -135,7 +160,15 @@ namespace PCSX2_Spectabis
                 {
                     //Starts the game, if exists
                     string isoDir = (string)clickedPictureBox.Tag;
-                    Process.Start(emuDir + @"\pcsx2.exe ", "\"" + isoDir + "\"");
+                    if (gameMode.Checked == true)
+                    {
+                        Process.Start(emuDir + @"\pcsx2.exe", "--fullscreen --nogui \"" + isoDir + "\"");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("not implemented");
+                    }
                 }
                 else
                 {
@@ -143,6 +176,5 @@ namespace PCSX2_Spectabis
                 }
             }
         }
-
     }
 }

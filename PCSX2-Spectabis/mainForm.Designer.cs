@@ -35,6 +35,8 @@
             this.SettingsButton = new System.Windows.Forms.PictureBox();
             this.addGameButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.gameMode = new MaterialSkin.Controls.MaterialRadioButton();
+            this.configMode = new MaterialSkin.Controls.MaterialRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,13 +78,48 @@
             // 
             // mainTimer
             // 
+            this.mainTimer.Enabled = true;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
+            // 
+            // gameMode
+            // 
+            this.gameMode.AutoSize = true;
+            this.gameMode.Depth = 0;
+            this.gameMode.Font = new System.Drawing.Font("Roboto", 10F);
+            this.gameMode.Location = new System.Drawing.Point(12, 71);
+            this.gameMode.Margin = new System.Windows.Forms.Padding(0);
+            this.gameMode.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.gameMode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.gameMode.Name = "gameMode";
+            this.gameMode.Ripple = true;
+            this.gameMode.Size = new System.Drawing.Size(103, 30);
+            this.gameMode.TabIndex = 3;
+            this.gameMode.Text = "Game Mode";
+            this.gameMode.UseVisualStyleBackColor = true;
+            // 
+            // configMode
+            // 
+            this.configMode.AutoSize = true;
+            this.configMode.Depth = 0;
+            this.configMode.Font = new System.Drawing.Font("Roboto", 10F);
+            this.configMode.Location = new System.Drawing.Point(156, 71);
+            this.configMode.Margin = new System.Windows.Forms.Padding(0);
+            this.configMode.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.configMode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.configMode.Name = "configMode";
+            this.configMode.Ripple = true;
+            this.configMode.Size = new System.Drawing.Size(151, 30);
+            this.configMode.TabIndex = 4;
+            this.configMode.Text = "Configuration Mode";
+            this.configMode.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 627);
+            this.Controls.Add(this.configMode);
+            this.Controls.Add(this.gameMode);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.isoPanel);
@@ -93,6 +130,7 @@
             this.Text = "Spectabis";
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,7 +139,8 @@
         private MaterialSkin.Controls.MaterialRaisedButton addGameButton;
         private System.Windows.Forms.Timer mainTimer;
         public System.Windows.Forms.FlowLayoutPanel isoPanel;
-
+        private MaterialSkin.Controls.MaterialRadioButton gameMode;
+        private MaterialSkin.Controls.MaterialRadioButton configMode;
     }
 }
 

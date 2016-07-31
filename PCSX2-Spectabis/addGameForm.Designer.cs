@@ -31,11 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addGameForm));
             this.addGameButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.gameName = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.artLabel = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.gamePath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.ImagePath = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.autoArt = new MaterialSkin.Controls.MaterialRadioButton();
+            this.customArt = new MaterialSkin.Controls.MaterialRadioButton();
             this.SuspendLayout();
             // 
             // addGameButton
@@ -58,7 +59,7 @@
             // 
             this.gameName.Depth = 0;
             this.gameName.Hint = "";
-            this.gameName.Location = new System.Drawing.Point(11, 100);
+            this.gameName.Location = new System.Drawing.Point(11, 166);
             this.gameName.MouseState = MaterialSkin.MouseState.HOVER;
             this.gameName.Name = "gameName";
             this.gameName.PasswordChar = '\0';
@@ -68,19 +69,20 @@
             this.gameName.Size = new System.Drawing.Size(376, 23);
             this.gameName.TabIndex = 2;
             this.gameName.UseSystemPasswordChar = false;
+            this.gameName.Click += new System.EventHandler(this.gameName_Click);
             // 
-            // materialLabel1
+            // artLabel
             // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(12, 79);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(92, 19);
-            this.materialLabel1.TabIndex = 3;
-            this.materialLabel1.Text = "Game Name";
+            this.artLabel.AutoSize = true;
+            this.artLabel.Depth = 0;
+            this.artLabel.Font = new System.Drawing.Font("Roboto", 11F);
+            this.artLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.artLabel.Location = new System.Drawing.Point(12, 141);
+            this.artLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.artLabel.Name = "artLabel";
+            this.artLabel.Size = new System.Drawing.Size(92, 19);
+            this.artLabel.TabIndex = 3;
+            this.artLabel.Text = "Game Name";
             // 
             // materialLabel2
             // 
@@ -88,7 +90,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(12, 141);
+            this.materialLabel2.Location = new System.Drawing.Point(12, 81);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(123, 19);
@@ -99,7 +101,7 @@
             // 
             this.gamePath.Depth = 0;
             this.gamePath.Hint = "";
-            this.gamePath.Location = new System.Drawing.Point(16, 166);
+            this.gamePath.Location = new System.Drawing.Point(16, 106);
             this.gamePath.MouseState = MaterialSkin.MouseState.HOVER;
             this.gamePath.Name = "gamePath";
             this.gamePath.PasswordChar = '\0';
@@ -113,7 +115,7 @@
             // materialRaisedButton1
             // 
             this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(300, 166);
+            this.materialRaisedButton1.Location = new System.Drawing.Point(300, 106);
             this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton1.Name = "materialRaisedButton1";
             this.materialRaisedButton1.Primary = true;
@@ -123,31 +125,52 @@
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
             this.materialRaisedButton1.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
-            // ImagePath
+            // autoArt
             // 
-            this.ImagePath.Depth = 0;
-            this.ImagePath.Hint = "";
-            this.ImagePath.Location = new System.Drawing.Point(11, 236);
-            this.ImagePath.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ImagePath.Name = "ImagePath";
-            this.ImagePath.PasswordChar = '\0';
-            this.ImagePath.SelectedText = "";
-            this.ImagePath.SelectionLength = 0;
-            this.ImagePath.SelectionStart = 0;
-            this.ImagePath.Size = new System.Drawing.Size(257, 23);
-            this.ImagePath.TabIndex = 7;
-            this.ImagePath.UseSystemPasswordChar = false;
+            this.autoArt.AutoSize = true;
+            this.autoArt.Checked = true;
+            this.autoArt.Depth = 0;
+            this.autoArt.Font = new System.Drawing.Font("Roboto", 10F);
+            this.autoArt.Location = new System.Drawing.Point(16, 215);
+            this.autoArt.Margin = new System.Windows.Forms.Padding(0);
+            this.autoArt.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.autoArt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.autoArt.Name = "autoArt";
+            this.autoArt.Ripple = true;
+            this.autoArt.Size = new System.Drawing.Size(107, 30);
+            this.autoArt.TabIndex = 8;
+            this.autoArt.TabStop = true;
+            this.autoArt.Text = "Auto Box Art";
+            this.autoArt.UseVisualStyleBackColor = true;
+            // 
+            // customArt
+            // 
+            this.customArt.AutoSize = true;
+            this.customArt.Depth = 0;
+            this.customArt.Font = new System.Drawing.Font("Roboto", 10F);
+            this.customArt.Location = new System.Drawing.Point(16, 245);
+            this.customArt.Margin = new System.Windows.Forms.Padding(0);
+            this.customArt.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.customArt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.customArt.Name = "customArt";
+            this.customArt.Ripple = true;
+            this.customArt.Size = new System.Drawing.Size(126, 30);
+            this.customArt.TabIndex = 9;
+            this.customArt.Text = "Custom Box Art";
+            this.customArt.UseVisualStyleBackColor = true;
+            this.customArt.CheckedChanged += new System.EventHandler(this.customArt_CheckedChanged);
             // 
             // addGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 287);
-            this.Controls.Add(this.ImagePath);
+            this.Controls.Add(this.customArt);
+            this.Controls.Add(this.autoArt);
             this.Controls.Add(this.materialRaisedButton1);
             this.Controls.Add(this.gamePath);
             this.Controls.Add(this.materialLabel2);
-            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.artLabel);
             this.Controls.Add(this.gameName);
             this.Controls.Add(this.addGameButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -165,10 +188,11 @@
 
         private MaterialSkin.Controls.MaterialFlatButton addGameButton;
         private MaterialSkin.Controls.MaterialSingleLineTextField gameName;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel artLabel;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialSingleLineTextField gamePath;
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
-        private MaterialSkin.Controls.MaterialSingleLineTextField ImagePath;
+        private MaterialSkin.Controls.MaterialRadioButton autoArt;
+        private MaterialSkin.Controls.MaterialRadioButton customArt;
     }
 }

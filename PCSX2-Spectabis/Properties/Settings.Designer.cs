@@ -34,5 +34,17 @@ namespace PCSX2_Spectabis.Properties {
                 this["EmuDir"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsGameMode {
+            get {
+                return ((bool)(this["IsGameMode"]));
+            }
+            set {
+                this["IsGameMode"] = value;
+            }
+        }
     }
 }
