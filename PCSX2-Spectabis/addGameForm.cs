@@ -28,8 +28,8 @@ namespace PCSX2_Spectabis
 
             if(autoArt.Checked == true)
             {
-                //Searches DB for inputed game name
-                foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text))
+                //Searches DB for inputed game name, only on playstation 2
+                foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
                 {
                     //Gets game's database ID
                     Game newGame = GamesDB.GetGame(game.ID);
