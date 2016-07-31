@@ -12,6 +12,7 @@ namespace PCSX2_Spectabis
         public Delegate ControlCreator;
 
         public string ImgPath;
+        public string realTitle;
 
         public addGameForm()
         {
@@ -33,6 +34,8 @@ namespace PCSX2_Spectabis
                 {
                     //Gets game's database ID
                     Game newGame = GamesDB.GetGame(game.ID);
+                    //Trim title
+                    realTitle = game.Title.Replace(":", "");
                     //Sets image
                     ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
                     //Stops at the first game
@@ -45,7 +48,8 @@ namespace PCSX2_Spectabis
                 ImgPath = gameName.Text;
             }
 
-            ControlCreator.DynamicInvoke(ImgPath, isoPath, gameName.Text);
+            //Adds game to mainform list
+            ControlCreator.DynamicInvoke(ImgPath, isoPath, realTitle);
 
             this.Close();
         }
@@ -65,11 +69,6 @@ namespace PCSX2_Spectabis
                 //Sets path into textbox
                 gamePath.Text = browseIso.FileName;
             }
-        }
-
-        private void gameName_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void customArt_CheckedChanged(object sender, EventArgs e)

@@ -85,9 +85,9 @@
             this.materialCheckBox1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCheckBox1.Name = "materialCheckBox1";
             this.materialCheckBox1.Ripple = true;
-            this.materialCheckBox1.Size = new System.Drawing.Size(102, 30);
+            this.materialCheckBox1.Size = new System.Drawing.Size(153, 30);
             this.materialCheckBox1.TabIndex = 4;
-            this.materialCheckBox1.Text = "Night Mode";
+            this.materialCheckBox1.Text = "Night Mode (Buggy)";
             this.materialCheckBox1.UseVisualStyleBackColor = true;
             this.materialCheckBox1.CheckedChanged += new System.EventHandler(this.materialCheckBox1_CheckedChanged);
             // 

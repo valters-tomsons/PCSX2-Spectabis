@@ -20,6 +20,11 @@ namespace PCSX2_Spectabis
             InitializeComponent();
             emuDir = Properties.Settings.Default.EmuDir;
 
+            if(Properties.Settings.Default.nightMode == true)
+            {
+                materialCheckBox1.Checked = true;
+            }
+
         }
 
         //On form closing
@@ -70,11 +75,15 @@ namespace PCSX2_Spectabis
             {
                 var materialSkinManager = MaterialSkinManager.Instance;
                 materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                Properties.Settings.Default.nightMode = true;
+                Properties.Settings.Default.Save();
             }
             else
             {
                 var materialSkinManager = MaterialSkinManager.Instance;
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                Properties.Settings.Default.nightMode = false;
+                Properties.Settings.Default.Save();
             }
         }
     }

@@ -69,7 +69,6 @@
             this.gameName.Size = new System.Drawing.Size(376, 23);
             this.gameName.TabIndex = 2;
             this.gameName.UseSystemPasswordChar = false;
-            this.gameName.Click += new System.EventHandler(this.gameName_Click);
             // 
             // artLabel
             // 

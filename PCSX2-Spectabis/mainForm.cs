@@ -25,7 +25,14 @@ namespace PCSX2_Spectabis
             //Initialize The Colorscheme
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            if (Properties.Settings.Default.nightMode == true)
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            else
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 
             //Loads saved settings
@@ -142,6 +149,7 @@ namespace PCSX2_Spectabis
 
             gameBox.ImageLocation = _img;
             gameBox.Name = _title;
+            //gameBox.ErrorImage = _img;
 
             //Add gamebox and controls
             isoPanel.Controls.Add(gameBox);
