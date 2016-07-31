@@ -28,19 +28,24 @@ namespace PCSX2_Spectabis
 
             if(autoArt.Checked == true)
             {
+                //Searches DB for inputed game name
                 foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text))
                 {
+                    //Gets game's database ID
                     Game newGame = GamesDB.GetGame(game.ID);
+                    //Sets image
                     ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
+                    //Stops at the first game
                     break;
                 }
             }
             else
             {
+                //Sets image to set path
                 ImgPath = gameName.Text;
             }
 
-            ControlCreator.DynamicInvoke(ImgPath, isoPath);
+            ControlCreator.DynamicInvoke(ImgPath, isoPath, gameName.Text);
 
             this.Close();
         }

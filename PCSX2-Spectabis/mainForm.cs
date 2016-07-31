@@ -14,7 +14,7 @@ namespace PCSX2_Spectabis
         private static string emuDir;
 
         //Delegate setup for addGameForm
-        public delegate void UpdateUiDelegate(string _img, string _isoDir);
+        public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
 
 
@@ -124,10 +124,11 @@ namespace PCSX2_Spectabis
             addGameForm addgame = new addGameForm();
             addgame.ControlCreator = UpdateUiEvent;
             addgame.Show();
+            
         }
 
         //Add Iso function
-        public void addIso(string _img, string _isoDir)
+        public void addIso(string _img, string _isoDir, string _title)
         {
             //Item properties
             PictureBox gameBox = new PictureBox();
@@ -140,11 +141,16 @@ namespace PCSX2_Spectabis
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
             gameBox.ImageLocation = _img;
-            //gameBox.Name = _title;
+            gameBox.Name = _title;
 
+            //Add gamebox and controls
             isoPanel.Controls.Add(gameBox);
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
+
+            MessageBox.Show("Please, configure the game");
+            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;
+            Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
 
         //Clicking on game
@@ -162,12 +168,14 @@ namespace PCSX2_Spectabis
                     string isoDir = (string)clickedPictureBox.Tag;
                     if (gameMode.Checked == true)
                     {
-                        Process.Start(emuDir + @"\pcsx2.exe", "--fullscreen --nogui \"" + isoDir + "\"");
+                        string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
+                        Process.Start(emuDir + @"\pcsx2.exe", "--fullscreen --nogui \"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
                         return;
                     }
                     else
                     {
-                        MessageBox.Show("not implemented");
+                        string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
+                        Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
                     }
                 }
                 else
