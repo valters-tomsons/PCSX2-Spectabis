@@ -37,7 +37,10 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.gameMode = new MaterialSkin.Controls.MaterialRadioButton();
             this.configMode = new MaterialSkin.Controls.MaterialRadioButton();
+            this.contextMenu = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // isoPanel
@@ -113,6 +116,23 @@
             this.configMode.Text = "Configuration Mode";
             this.configMode.UseVisualStyleBackColor = true;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.contextMenu.Depth = 0;
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem});
+            this.contextMenu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.contextMenu.Name = "materialContextMenuStrip1";
+            this.contextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +149,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Spectabis";
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,6 +162,8 @@
         public System.Windows.Forms.FlowLayoutPanel isoPanel;
         private MaterialSkin.Controls.MaterialRadioButton gameMode;
         private MaterialSkin.Controls.MaterialRadioButton configMode;
+        private MaterialSkin.Controls.MaterialContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
 

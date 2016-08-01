@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin;
 using MaterialSkin.Controls;
-
+using System.Drawing;
 
 namespace PCSX2_Spectabis
 {
@@ -16,6 +16,7 @@ namespace PCSX2_Spectabis
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
+        public PictureBox lastGame;
 
 
         public MainWindow()
@@ -25,6 +26,8 @@ namespace PCSX2_Spectabis
             //Initialize The Colorscheme
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
+
+            //Loads colorscheme
             if (Properties.Settings.Default.nightMode == true)
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
@@ -33,6 +36,7 @@ namespace PCSX2_Spectabis
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             }
+
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 
             //Loads saved settings
@@ -164,11 +168,15 @@ namespace PCSX2_Spectabis
         //Clicking on game
         private void gameBox_Click(object sender, MouseEventArgs e)
         {
+
+            PictureBox clickedPictureBox = (PictureBox)sender;
+
+            //Saves last picturebox to a variable
+            lastGame = (PictureBox)sender;
+
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)
             {
-                PictureBox clickedPictureBox = (PictureBox)sender;
-
                 //Checks, if game file still exists
                 if(File.Exists((string)clickedPictureBox.Tag))
                 {
@@ -191,6 +199,20 @@ namespace PCSX2_Spectabis
                     MessageBox.Show("Huh, the game doesn't exist", ":(");
                 }
             }
+
+            //Check, if click was right mouse
+            if (e.Button == MouseButtons.Right)
+            {
+                //Displays context menu
+                contextMenu.Show(this, new Point(e.X, e.Y));
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Deletes last picturebox in isoPanel
+            isoPanel.Controls.Remove(lastGame);
+            lastGame = null;
         }
     }
 }
