@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using System.Drawing;
 
 namespace PCSX2_Spectabis
 {
@@ -204,7 +203,7 @@ namespace PCSX2_Spectabis
             if (e.Button == MouseButtons.Right)
             {
                 //Displays context menu
-                contextMenu.Show(this, new Point(e.X, e.Y));
+                contextMenu.Show(Cursor.Position.X, Cursor.Position.Y);
             }
         }
 
