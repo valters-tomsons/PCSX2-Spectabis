@@ -37,6 +37,8 @@
             this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.autoArt = new MaterialSkin.Controls.MaterialRadioButton();
             this.customArt = new MaterialSkin.Controls.MaterialRadioButton();
+            this.titleLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.titleName = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.SuspendLayout();
             // 
             // addGameButton
@@ -59,7 +61,7 @@
             // 
             this.gameName.Depth = 0;
             this.gameName.Hint = "";
-            this.gameName.Location = new System.Drawing.Point(11, 166);
+            this.gameName.Location = new System.Drawing.Point(11, 157);
             this.gameName.MouseState = MaterialSkin.MouseState.HOVER;
             this.gameName.Name = "gameName";
             this.gameName.PasswordChar = '\0';
@@ -76,7 +78,7 @@
             this.artLabel.Depth = 0;
             this.artLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.artLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.artLabel.Location = new System.Drawing.Point(12, 141);
+            this.artLabel.Location = new System.Drawing.Point(12, 136);
             this.artLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.artLabel.Name = "artLabel";
             this.artLabel.Size = new System.Drawing.Size(92, 19);
@@ -159,11 +161,43 @@
             this.customArt.UseVisualStyleBackColor = true;
             this.customArt.CheckedChanged += new System.EventHandler(this.customArt_CheckedChanged);
             // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Depth = 0;
+            this.titleLabel.Font = new System.Drawing.Font("Roboto", 11F);
+            this.titleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.titleLabel.Location = new System.Drawing.Point(12, 188);
+            this.titleLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(92, 19);
+            this.titleLabel.TabIndex = 10;
+            this.titleLabel.Text = "Game Name";
+            this.titleLabel.Visible = false;
+            // 
+            // titleName
+            // 
+            this.titleName.Depth = 0;
+            this.titleName.Hint = "";
+            this.titleName.Location = new System.Drawing.Point(110, 188);
+            this.titleName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.titleName.Name = "titleName";
+            this.titleName.PasswordChar = '\0';
+            this.titleName.SelectedText = "";
+            this.titleName.SelectionLength = 0;
+            this.titleName.SelectionStart = 0;
+            this.titleName.Size = new System.Drawing.Size(277, 23);
+            this.titleName.TabIndex = 11;
+            this.titleName.UseSystemPasswordChar = false;
+            this.titleName.Visible = false;
+            // 
             // addGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 287);
+            this.Controls.Add(this.titleName);
+            this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.customArt);
             this.Controls.Add(this.autoArt);
             this.Controls.Add(this.materialRaisedButton1);
@@ -193,5 +227,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton materialRaisedButton1;
         private MaterialSkin.Controls.MaterialRadioButton autoArt;
         private MaterialSkin.Controls.MaterialRadioButton customArt;
+        private MaterialSkin.Controls.MaterialLabel titleLabel;
+        private MaterialSkin.Controls.MaterialSingleLineTextField titleName;
     }
 }

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System.Net;
 
 namespace PCSX2_Spectabis
 {
@@ -150,14 +151,28 @@ namespace PCSX2_Spectabis
             //Path to iso from mainForm
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
-            gameBox.ImageLocation = _img;
+
+            //If boxart exists in folder, then set it in isoPanel
+            if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg"))
+            {
+                gameBox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg";
+            }
+            else
+            {
+                gameBox.ImageLocation = _img;
+            }
+
             gameBox.Name = _title;
-            //gameBox.ErrorImage = _img;
 
             //Add gamebox and controls
             isoPanel.Controls.Add(gameBox);
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
+
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile( _img ,AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg");
+            }
 
             MessageBox.Show("Please, configure the game");
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;

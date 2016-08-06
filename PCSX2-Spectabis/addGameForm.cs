@@ -3,6 +3,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Windows.Forms;
 using TheGamesDBAPI;
+using System.Net;
 
 namespace PCSX2_Spectabis
 {
@@ -46,6 +47,7 @@ namespace PCSX2_Spectabis
             {
                 //Sets image to set path
                 ImgPath = gameName.Text;
+                realTitle = titleName.Text;
             }
 
             //Adds game to mainform list
@@ -76,10 +78,15 @@ namespace PCSX2_Spectabis
             if (autoArt.Checked == true)
             {
                 artLabel.Text = "Game Name";
+                titleLabel.Visible = false;
+                titleName.Visible = false;
             }
             else
             {
                 artLabel.Text = "Path to image";
+                titleLabel.Visible = true;
+                titleName.Visible = true;
+
             }
         }
     }
