@@ -17,6 +17,7 @@ namespace PCSX2_Spectabis
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
         public PictureBox lastGame;
+        
 
 
         public MainWindow()
@@ -53,6 +54,32 @@ namespace PCSX2_Spectabis
             { configMode.Checked = true; }
             else
             { gameMode.Checked = true; }
+
+
+            //Searches game folders in resources directory
+            string[] gamesDir = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
+            foreach (string dir in gamesDir)
+            {
+
+                string _title = dir;
+
+                if (File.Exists( _title + @"\art.jpg"))
+                {
+                    var gameIni = new IniFile(_title + @"\spectabis.ini");
+                    var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
+
+                    PictureBox gameBox = new PictureBox();
+                    
+                    gameBox.Height = 200;
+                    gameBox.Width = 150;
+                    gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    gameBox.ImageLocation = _title + @"\art.jpg";
+                    isoPanel.Controls.Add(gameBox);
+                    gameBox.MouseDown += gameBox_Click;
+                    gameBox.Tag = _isoDir;
+                }
+
+            }
 
         }
 
@@ -169,10 +196,22 @@ namespace PCSX2_Spectabis
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
 
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
+
             using (WebClient client = new WebClient())
             {
-                client.DownloadFile( _img ,AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg");
+                try
+                {
+                    client.DownloadFile(_img, AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg");
+                }
+                catch
+                {
+                    throw;
+                }
             }
+
+            var gameIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\spectabis.ini");
+            gameIni.Write("isoDirectory", _isoDir, "Spectabis");
 
             MessageBox.Show("Please, configure the game");
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;

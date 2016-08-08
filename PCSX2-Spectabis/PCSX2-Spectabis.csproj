@@ -61,6 +61,7 @@
     <Compile Include="addGameForm.Designer.cs">
       <DependentUpon>addGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IniFile.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
