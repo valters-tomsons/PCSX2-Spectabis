@@ -213,9 +213,9 @@ namespace PCSX2_Spectabis
             var gameIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\spectabis.ini");
             gameIni.Write("isoDirectory", _isoDir, "Spectabis");
 
-            MessageBox.Show("Please, configure the game");
-            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;
-            Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
+            //MessageBox.Show("Please, configure the game");
+            //string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;
+            //Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
 
         //Clicking on game
