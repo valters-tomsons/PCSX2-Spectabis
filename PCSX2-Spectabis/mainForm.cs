@@ -66,6 +66,7 @@ namespace PCSX2_Spectabis
             {
 
                 string _title = dir;
+                string _name = dir.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
 
                 if (File.Exists( _title + @"\art.jpg"))
                 {
@@ -81,6 +82,7 @@ namespace PCSX2_Spectabis
                     isoPanel.Controls.Add(gameBox);
                     gameBox.MouseDown += gameBox_Click;
                     gameBox.Tag = _isoDir;
+                    gameBox.Name = _name;
                 }
 
             }
@@ -233,6 +235,10 @@ namespace PCSX2_Spectabis
 
             //Saves last picturebox to a variable
             lastGame = (PictureBox)sender;
+
+            MessageBox.Show(lastGame.Name);
+            MessageBox.Show(clickedPictureBox.Name);
+
 
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)

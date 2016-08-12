@@ -21,7 +21,6 @@ namespace PCSX2_Spectabis
         {
             string currentGame = Properties.Settings.Default.lastGameEdit;
             ActiveForm.Text = "Editing - " + currentGame;
-
             boxArt.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\art.jpg";
 
             InitializeComponent();
