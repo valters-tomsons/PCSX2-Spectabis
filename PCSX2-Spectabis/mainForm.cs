@@ -212,6 +212,9 @@ namespace PCSX2_Spectabis
 
             var gameIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\spectabis.ini");
             gameIni.Write("isoDirectory", _isoDir, "Spectabis");
+            gameIni.Write("nogui", "0", "Spectabis");
+            gameIni.Write("fullscreen", "0", "Spectabis");
+            gameIni.Write("fullboot", "0", "Spectabis");
 
             //MessageBox.Show("Please, configure the game");
             //string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;
@@ -238,7 +241,31 @@ namespace PCSX2_Spectabis
                     if (gameMode.Checked == true)
                     {
                         string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
-                        Process.Start(emuDir + @"\pcsx2.exe", "--fullscreen --nogui \"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
+
+                        var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
+                        var _nogui = gameIni.Read("nogui", "Spectabis");
+                        var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
+                        var _fullboot = gameIni.Read("fullboot", "Spectabis");
+
+                        string _launchargs = "";
+
+                        if (_nogui == "1")
+                        {
+                            _launchargs = "--nogui";
+                        }
+
+                        if (_fullscreen == "1")
+                        {
+                            _launchargs = _launchargs + "--fullscreen";
+                        }
+
+                        if (_fullboot == "1")
+                        {
+                            _launchargs = _launchargs + "--fullboot";
+                        }
+
+
+                        Process.Start(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
                         return;
                     }
                     else
