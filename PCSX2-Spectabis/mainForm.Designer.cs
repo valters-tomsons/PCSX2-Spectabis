@@ -39,6 +39,7 @@
             this.configMode = new MaterialSkin.Controls.MaterialRadioButton();
             this.contextMenu = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -121,17 +122,24 @@
             this.contextMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.contextMenu.Depth = 0;
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configureToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.contextMenu.MouseState = MaterialSkin.MouseState.HOVER;
             this.contextMenu.Name = "materialContextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(118, 26);
+            this.contextMenu.Size = new System.Drawing.Size(153, 70);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
+            // configureToolStripMenuItem
+            // 
+            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.configureToolStripMenuItem.Text = "Configure";
             // 
             // MainWindow
             // 
@@ -164,6 +172,7 @@
         private MaterialSkin.Controls.MaterialRadioButton configMode;
         private MaterialSkin.Controls.MaterialContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
     }
 }
 

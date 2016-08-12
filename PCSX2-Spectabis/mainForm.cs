@@ -264,6 +264,7 @@ namespace PCSX2_Spectabis
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Deletes last picturebox in isoPanel
+            Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name, true);
             isoPanel.Controls.Remove(lastGame);
             lastGame = null;
         }
