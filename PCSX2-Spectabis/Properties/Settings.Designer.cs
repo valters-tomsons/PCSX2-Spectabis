@@ -58,5 +58,17 @@ namespace PCSX2_Spectabis.Properties {
                 this["nightMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string lastGameEdit {
+            get {
+                return ((string)(this["lastGameEdit"]));
+            }
+            set {
+                this["lastGameEdit"] = value;
+            }
+        }
     }
 }

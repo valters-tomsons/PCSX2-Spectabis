@@ -16,6 +16,10 @@ namespace PCSX2_Spectabis
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
+
+        //Delegate setup for gameSettings form
+        
+
         public PictureBox lastGame;
         
 
@@ -294,6 +298,23 @@ namespace PCSX2_Spectabis
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name, true);
             isoPanel.Controls.Remove(lastGame);
             lastGame = null;
+        }
+
+        private void configureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.lastGameEdit = lastGame.Name;
+            Properties.Settings.Default.Save();
+
+            //Opens game settings form
+            gameSettings gameSettings = new gameSettings();
+            gameSettings.RefToForm2 = this;
+
+            //Hides this form
+            this.Visible = false;
+
+            //Shows game settings form
+            gameSettings.Show();
+
         }
     }
 }

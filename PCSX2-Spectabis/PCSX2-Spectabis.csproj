@@ -76,6 +76,12 @@
     <Compile Include="addGameForm.Designer.cs">
       <DependentUpon>addGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="gameSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gameSettings.Designer.cs">
+      <DependentUpon>gameSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="IniFile.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
@@ -94,6 +100,9 @@
     </Compile>
     <EmbeddedResource Include="addGameForm.resx">
       <DependentUpon>addGameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gameSettings.resx">
+      <DependentUpon>gameSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>
