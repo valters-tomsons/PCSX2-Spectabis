@@ -37,6 +37,8 @@ namespace PCSX2_Spectabis
                     Game newGame = GamesDB.GetGame(game.ID);
                     //Trim title
                     realTitle = game.Title.Replace(":", "");
+                    realTitle = game.Title.Replace(@"/", "");
+                    realTitle = game.Title.Replace(@".", "");
                     //Sets image
                     ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
                     //Stops at the first game
