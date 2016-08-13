@@ -5,6 +5,7 @@ using System.Diagnostics;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Net;
+using System.Drawing;
 
 namespace PCSX2_Spectabis
 {
@@ -16,10 +17,6 @@ namespace PCSX2_Spectabis
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
-
-        //Delegate setup for gameSettings form
-        
-
         public PictureBox lastGame;
         
 
@@ -47,9 +44,6 @@ namespace PCSX2_Spectabis
             //Loads saved settings
             emuDir = Properties.Settings.Default.EmuDir;
 
-            //Integrity Checks
-            if (emuDir == "null") { FirstTimeSetup(); } //First Time Setup
-
             //Initilization
             isoPanel.AutoScroll = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
@@ -59,34 +53,41 @@ namespace PCSX2_Spectabis
             else
             { gameMode.Checked = true; }
 
-
-            //Searches game folders in resources directory
-            string[] gamesDir = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
-            foreach (string dir in gamesDir)
+            //Integrity Checks
+            if (emuDir == "null")
             {
-
-                string _title = dir;
-                string _name = dir.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
-
-                if (File.Exists( _title + @"\art.jpg"))
+                FirstTimeSetup();
+            } 
+            else
+            {
+                //Searches game folders in resources directory
+                string[] gamesDir = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
+                foreach (string dir in gamesDir)
                 {
-                    var gameIni = new IniFile(_title + @"\spectabis.ini");
-                    var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
 
-                    PictureBox gameBox = new PictureBox();
-                    
-                    gameBox.Height = 200;
-                    gameBox.Width = 150;
-                    gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    gameBox.ImageLocation = _title + @"\art.jpg";
-                    isoPanel.Controls.Add(gameBox);
-                    gameBox.MouseDown += gameBox_Click;
-                    gameBox.Tag = _isoDir;
-                    gameBox.Name = _name;
+                    string _title = dir;
+                    string _name = dir.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
+
+                    if (File.Exists(_title + @"\art.jpg"))
+                    {
+                        var gameIni = new IniFile(_title + @"\spectabis.ini");
+                        var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
+
+                        PictureBox gameBox = new PictureBox();
+
+                        gameBox.Height = 200;
+                        gameBox.Width = 150;
+                        gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                        gameBox.ImageLocation = _title + @"\art.jpg";
+                        isoPanel.Controls.Add(gameBox);
+                        gameBox.MouseDown += gameBox_Click;
+                        gameBox.Tag = _isoDir;
+                        gameBox.Name = _name;
+                    }
+
                 }
 
             }
-
         }
 
 
@@ -140,10 +141,23 @@ namespace PCSX2_Spectabis
         }
 
         //First Time Setup, should be called only once
-        private static void FirstTimeSetup()
+        private void FirstTimeSetup()
         {
-            MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
-            SelectDir();
+            Color bgCol = ColorTranslator.FromHtml("#0277BD");
+
+            //Welcome Screen Background
+            welcomeBackground.Visible = true;
+            welcomeBackground.BackColor = bgCol;
+            welcomeBackground.Height = Form.ActiveForm.Height + 500;
+            welcomeBackground.Width = Form.ActiveForm.Width + 1000;
+
+            //Label
+            welcomeLabel.BackColor = bgCol;
+            //welcomeLabel.Location = ;
+            welcomeLabel.Text = "Welcome to Spectabis!";
+
+            //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
+            //SelectDir();
         }
 
 
@@ -235,10 +249,6 @@ namespace PCSX2_Spectabis
 
             //Saves last picturebox to a variable
             lastGame = (PictureBox)sender;
-
-            MessageBox.Show(lastGame.Name);
-            MessageBox.Show(clickedPictureBox.Name);
-
 
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)
