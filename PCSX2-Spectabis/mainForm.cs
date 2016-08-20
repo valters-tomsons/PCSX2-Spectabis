@@ -146,18 +146,33 @@ namespace PCSX2_Spectabis
             Color bgCol = ColorTranslator.FromHtml("#0277BD");
 
             //Welcome Screen Background
-            welcomeBackground.Visible = true;
-            welcomeBackground.BackColor = bgCol;
-            welcomeBackground.Height = Form.ActiveForm.Height + 500;
-            welcomeBackground.Width = Form.ActiveForm.Width + 1000;
+            PictureBox welcomeBg = new PictureBox();
+            welcomeBg.Visible = true;
+            //welcomeBg.BackColor = bgCol;
+            welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
+            welcomeBg.Height = this.ClientSize.Height;
+            welcomeBg.Width = this.ClientSize.Width;
+            Controls.Add(welcomeBg);
+            welcomeBg.BringToFront();
 
-            //Label
-            welcomeLabel.BackColor = bgCol;
-            //welcomeLabel.Location = ;
-            welcomeLabel.Text = "Welcome to Spectabis!";
+            //Welcome Screen selectdir button
+            MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
+            welcomedirbtn.Visible = true;
+            welcomedirbtn.Height = 50;
+            welcomedirbtn.Width = 140;
+            welcomedirbtn.Anchor = AnchorStyles.None;
+            welcomedirbtn.Text = "Browse";
+            Controls.Add(welcomedirbtn);
+            welcomedirbtn.BringToFront();
+            welcomedirbtn.MouseDown += welcomedirbtn_click;
 
             //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
             //SelectDir();
+        }
+
+        private void welcomedirbtn_click (object sender, EventArgs e)
+        {
+            SelectDir();
         }
 
 

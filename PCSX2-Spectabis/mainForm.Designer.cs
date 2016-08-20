@@ -40,11 +40,8 @@
             this.contextMenu = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.welcomeBackground = new System.Windows.Forms.PictureBox();
-            this.welcomeLabel = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.welcomeBackground)).BeginInit();
             this.SuspendLayout();
             // 
             // isoPanel
@@ -145,36 +142,11 @@
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
-            // welcomeBackground
-            // 
-            this.welcomeBackground.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.welcomeBackground.Location = new System.Drawing.Point(0, 0);
-            this.welcomeBackground.Name = "welcomeBackground";
-            this.welcomeBackground.Size = new System.Drawing.Size(10, 11);
-            this.welcomeBackground.TabIndex = 5;
-            this.welcomeBackground.TabStop = false;
-            this.welcomeBackground.Visible = false;
-            // 
-            // welcomeLabel
-            // 
-            this.welcomeLabel.AutoSize = true;
-            this.welcomeLabel.Depth = 0;
-            this.welcomeLabel.Font = new System.Drawing.Font("Roboto", 11F);
-            this.welcomeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.welcomeLabel.Location = new System.Drawing.Point(353, 13);
-            this.welcomeLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.welcomeLabel.Name = "welcomeLabel";
-            this.welcomeLabel.Size = new System.Drawing.Size(108, 19);
-            this.welcomeLabel.TabIndex = 7;
-            this.welcomeLabel.Text = "materialLabel1";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 627);
-            this.Controls.Add(this.welcomeLabel);
-            this.Controls.Add(this.welcomeBackground);
             this.Controls.Add(this.configMode);
             this.Controls.Add(this.gameMode);
             this.Controls.Add(this.addGameButton);
@@ -187,7 +159,6 @@
             this.Text = "Spectabis";
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
             this.contextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.welcomeBackground)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,8 +174,6 @@
         private MaterialSkin.Controls.MaterialContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
-        private System.Windows.Forms.PictureBox welcomeBackground;
-        private MaterialSkin.Controls.MaterialLabel welcomeLabel;
     }
 }
 
