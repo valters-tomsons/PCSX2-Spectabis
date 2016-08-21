@@ -17,8 +17,13 @@ namespace PCSX2_Spectabis
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
+
         public PictureBox lastGame;
-        
+
+        //First Time Setup
+        public PictureBox welcomeBg = new PictureBox();
+        public MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
+
 
 
         public MainWindow()
@@ -56,7 +61,7 @@ namespace PCSX2_Spectabis
             //Integrity Checks
             if (emuDir == "null")
             {
-                FirstTimeSetup();
+                FirstTimeSetup(true);
             } 
             else
             {
@@ -65,6 +70,7 @@ namespace PCSX2_Spectabis
                 foreach (string dir in gamesDir)
                 {
 
+                    //Removes symbols from game title
                     string _title = dir;
                     string _name = dir.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
 
@@ -120,6 +126,10 @@ namespace PCSX2_Spectabis
                         goto SelectDir; //retries FolderBrowserDialog
                     }
                 }
+                else
+                {
+                    Application.Exit();
+                }
             }
         }
 
@@ -141,38 +151,48 @@ namespace PCSX2_Spectabis
         }
 
         //First Time Setup, should be called only once
-        private void FirstTimeSetup()
+        public void FirstTimeSetup(bool _show)
         {
-            Color bgCol = ColorTranslator.FromHtml("#0277BD");
 
-            //Welcome Screen Background
-            PictureBox welcomeBg = new PictureBox();
-            welcomeBg.Visible = true;
-            //welcomeBg.BackColor = bgCol;
-            welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
-            welcomeBg.Height = this.ClientSize.Height;
-            welcomeBg.Width = this.ClientSize.Width;
-            Controls.Add(welcomeBg);
-            welcomeBg.BringToFront();
+            if (_show == true)
+            {
+                Color bgCol = ColorTranslator.FromHtml("#0277BD");
 
-            //Welcome Screen selectdir button
-            MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
-            welcomedirbtn.Visible = true;
-            welcomedirbtn.Height = 50;
-            welcomedirbtn.Width = 140;
-            welcomedirbtn.Anchor = AnchorStyles.None;
-            welcomedirbtn.Text = "Browse";
-            Controls.Add(welcomedirbtn);
-            welcomedirbtn.BringToFront();
-            welcomedirbtn.MouseDown += welcomedirbtn_click;
+                //Welcome Screen Background
+                welcomeBg.Visible = true;
+                //welcomeBg.BackColor = bgCol;
+                welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
+                welcomeBg.Height = this.ClientSize.Height;
+                welcomeBg.Width = this.ClientSize.Width;
+                Controls.Add(welcomeBg);
+                welcomeBg.BringToFront();
 
-            //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
-            //SelectDir();
-        }
+                //Welcome Screen selectdir button
+                welcomedirbtn.Visible = true;
+                welcomedirbtn.Height = 50;
+                welcomedirbtn.Width = 140;
+                welcomedirbtn.Anchor = AnchorStyles.None;
+                welcomedirbtn.Text = "Browse";
+                Controls.Add(welcomedirbtn);
+                welcomedirbtn.BringToFront();
+                welcomedirbtn.MouseDown += welcomedirbtn_click;
+            }
+            else
+            {
+                welcomeBg.Visible = false;
+                welcomedirbtn.Visible = false;
+            }
+
+
+
+        //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
+        //SelectDir();
+    }
 
         private void welcomedirbtn_click (object sender, EventArgs e)
         {
             SelectDir();
+            FirstTimeSetup(false);
         }
 
 
