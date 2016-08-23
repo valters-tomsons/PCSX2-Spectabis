@@ -176,6 +176,9 @@ namespace PCSX2_Spectabis
                 Controls.Add(welcomedirbtn);
                 welcomedirbtn.BringToFront();
                 welcomedirbtn.MouseDown += welcomedirbtn_click;
+
+                //Centers the button
+                welcomedirbtn.Location = new Point((this.ClientSize.Width / 2) - (welcomedirbtn.Width / 2), (this.ClientSize.Height / 2) + (welcomedirbtn.Height / 2));
             }
             else
             {
