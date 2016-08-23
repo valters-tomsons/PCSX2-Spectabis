@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(gameSettings));
             this.boxArt = new System.Windows.Forms.PictureBox();
             this.fullscreen = new MaterialSkin.Controls.MaterialCheckBox();
             this.nogui = new MaterialSkin.Controls.MaterialCheckBox();
@@ -115,6 +116,7 @@
             this.Controls.Add(this.nogui);
             this.Controls.Add(this.fullscreen);
             this.Controls.Add(this.boxArt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "gameSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "null";
