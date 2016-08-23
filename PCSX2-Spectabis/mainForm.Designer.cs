@@ -35,11 +35,10 @@
             this.SettingsButton = new System.Windows.Forms.PictureBox();
             this.addGameButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
-            this.gameMode = new MaterialSkin.Controls.MaterialRadioButton();
-            this.configMode = new MaterialSkin.Controls.MaterialRadioButton();
             this.contextMenu = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -85,70 +84,44 @@
             this.mainTimer.Enabled = true;
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
-            // gameMode
-            // 
-            this.gameMode.AutoSize = true;
-            this.gameMode.Depth = 0;
-            this.gameMode.Font = new System.Drawing.Font("Roboto", 10F);
-            this.gameMode.Location = new System.Drawing.Point(12, 71);
-            this.gameMode.Margin = new System.Windows.Forms.Padding(0);
-            this.gameMode.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.gameMode.MouseState = MaterialSkin.MouseState.HOVER;
-            this.gameMode.Name = "gameMode";
-            this.gameMode.Ripple = true;
-            this.gameMode.Size = new System.Drawing.Size(103, 30);
-            this.gameMode.TabIndex = 3;
-            this.gameMode.Text = "Game Mode";
-            this.gameMode.UseVisualStyleBackColor = true;
-            // 
-            // configMode
-            // 
-            this.configMode.AutoSize = true;
-            this.configMode.Depth = 0;
-            this.configMode.Font = new System.Drawing.Font("Roboto", 10F);
-            this.configMode.Location = new System.Drawing.Point(156, 71);
-            this.configMode.Margin = new System.Windows.Forms.Padding(0);
-            this.configMode.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.configMode.MouseState = MaterialSkin.MouseState.HOVER;
-            this.configMode.Name = "configMode";
-            this.configMode.Ripple = true;
-            this.configMode.Size = new System.Drawing.Size(151, 30);
-            this.configMode.TabIndex = 4;
-            this.configMode.Text = "Configuration Mode";
-            this.configMode.UseVisualStyleBackColor = true;
-            // 
             // contextMenu
             // 
             this.contextMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.contextMenu.Depth = 0;
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.emulatorToolStripMenuItem,
             this.configureToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.contextMenu.MouseState = MaterialSkin.MouseState.HOVER;
             this.contextMenu.Name = "materialContextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(128, 48);
+            this.contextMenu.Size = new System.Drawing.Size(201, 70);
             // 
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.configureToolStripMenuItem.Text = "Configure";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.configureToolStripMenuItem.Text = "Launcher Configuration";
             this.configureToolStripMenuItem.Click += new System.EventHandler(this.configureToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
+            // emulatorToolStripMenuItem
+            // 
+            this.emulatorToolStripMenuItem.Name = "emulatorToolStripMenuItem";
+            this.emulatorToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.emulatorToolStripMenuItem.Text = "Emulator Settings";
+            this.emulatorToolStripMenuItem.Click += new System.EventHandler(this.emulatorToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 627);
-            this.Controls.Add(this.configMode);
-            this.Controls.Add(this.gameMode);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.isoPanel);
@@ -160,7 +133,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
             this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -169,11 +141,10 @@
         private MaterialSkin.Controls.MaterialRaisedButton addGameButton;
         private System.Windows.Forms.Timer mainTimer;
         public System.Windows.Forms.FlowLayoutPanel isoPanel;
-        private MaterialSkin.Controls.MaterialRadioButton gameMode;
-        private MaterialSkin.Controls.MaterialRadioButton configMode;
         private MaterialSkin.Controls.MaterialContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem emulatorToolStripMenuItem;
     }
 }
 

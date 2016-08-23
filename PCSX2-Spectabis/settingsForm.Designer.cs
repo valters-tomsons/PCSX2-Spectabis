@@ -44,9 +44,9 @@
             this.materialLabel1.Location = new System.Drawing.Point(12, 97);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(123, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(135, 19);
             this.materialLabel1.TabIndex = 0;
-            this.materialLabel1.Text = "Current Directory";
+            this.materialLabel1.Text = "Emulator Directory";
             // 
             // emulatordir
             // 
@@ -57,9 +57,9 @@
             this.emulatordir.Location = new System.Drawing.Point(13, 122);
             this.emulatordir.MouseState = MaterialSkin.MouseState.HOVER;
             this.emulatordir.Name = "emulatordir";
-            this.emulatordir.Size = new System.Drawing.Size(140, 19);
+            this.emulatordir.Size = new System.Drawing.Size(160, 19);
             this.emulatordir.TabIndex = 2;
-            this.emulatordir.Text = "c:/emulators/pcsx2";
+            this.emulatordir.Text = "C:/shouldnt/show/this";
             // 
             // dirButton
             // 

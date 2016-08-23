@@ -53,11 +53,6 @@ namespace PCSX2_Spectabis
             isoPanel.AutoScroll = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
 
-            if (Properties.Settings.Default.IsGameMode == false)
-            { configMode.Checked = true; }
-            else
-            { gameMode.Checked = true; }
-
             //Integrity Checks
             if (emuDir == "null")
             {
@@ -136,16 +131,6 @@ namespace PCSX2_Spectabis
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            //Saves game emulation settings
-            if(gameMode.Checked == true)
-            {
-                Properties.Settings.Default.IsGameMode = true;
-            }
-            else
-            {
-                Properties.Settings.Default.IsGameMode = false;
-            }
-
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
@@ -297,41 +282,32 @@ namespace PCSX2_Spectabis
                 {
                     //Starts the game, if exists
                     string isoDir = (string)clickedPictureBox.Tag;
-                    if (gameMode.Checked == true)
-                    {
-                        string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
+                    string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
 
-                        var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
-                        var _nogui = gameIni.Read("nogui", "Spectabis");
-                        var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
-                        var _fullboot = gameIni.Read("fullboot", "Spectabis");
+                    var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
+                    var _nogui = gameIni.Read("nogui", "Spectabis");
+                    var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
+                    var _fullboot = gameIni.Read("fullboot", "Spectabis");
 
-                        string _launchargs = "";
+                    string _launchargs = "";
 
-                        if (_nogui == "1")
-                        {
-                            _launchargs = "--nogui";
-                        }
+                    if (_nogui == "1")
+                     {
+                        _launchargs = "--nogui";
+                     }
 
-                        if (_fullscreen == "1")
-                        {
-                            _launchargs = _launchargs + "--fullscreen";
-                        }
+                    if (_fullscreen == "1")
+                     {
+                        _launchargs = _launchargs + "--fullscreen";
+                     }
 
-                        if (_fullboot == "1")
-                        {
-                            _launchargs = _launchargs + "--fullboot";
-                        }
+                    if (_fullboot == "1")
+                     {
+                        _launchargs = _launchargs + "--fullboot";
+                     }
 
-
-                        Process.Start(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
-                        return;
-                    }
-                    else
-                    {
-                        string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
-                        Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
-                    }
+                    Process.Start(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
+                    return;
                 }
                 else
                 {
@@ -369,6 +345,12 @@ namespace PCSX2_Spectabis
 
             //Shows game settings form
             gameSettings.Show();
+        }
+
+        private void emulatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name;
+            Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
     }
 }
