@@ -26,6 +26,8 @@ namespace PCSX2_Spectabis
         {
             InitializeComponent();
 
+            boxArt.SizeMode = PictureBoxSizeMode.StretchImage;
+
             Text = "Editing - " + currentGame;
             if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\art.jpg"))
             {
