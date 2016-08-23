@@ -264,7 +264,8 @@ namespace PCSX2_Spectabis
                 }
                 catch
                 {
-                    throw;
+                    //throw;
+                    MessageBox.Show("Image not available, none set.");
                 }
             }
 
@@ -368,7 +369,6 @@ namespace PCSX2_Spectabis
 
             //Shows game settings form
             gameSettings.Show();
-
         }
     }
 }
