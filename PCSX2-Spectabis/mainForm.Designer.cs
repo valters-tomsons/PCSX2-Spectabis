@@ -36,9 +36,9 @@
             this.addGameButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.contextMenu = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.emulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.emulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +96,13 @@
             this.contextMenu.Name = "materialContextMenuStrip1";
             this.contextMenu.Size = new System.Drawing.Size(201, 70);
             // 
+            // emulatorToolStripMenuItem
+            // 
+            this.emulatorToolStripMenuItem.Name = "emulatorToolStripMenuItem";
+            this.emulatorToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.emulatorToolStripMenuItem.Text = "Emulator Settings";
+            this.emulatorToolStripMenuItem.Click += new System.EventHandler(this.emulatorToolStripMenuItem_Click);
+            // 
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
@@ -106,16 +113,9 @@
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
-            // 
-            // emulatorToolStripMenuItem
-            // 
-            this.emulatorToolStripMenuItem.Name = "emulatorToolStripMenuItem";
-            this.emulatorToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.emulatorToolStripMenuItem.Text = "Emulator Settings";
-            this.emulatorToolStripMenuItem.Click += new System.EventHandler(this.emulatorToolStripMenuItem_Click);
             // 
             // MainWindow
             // 

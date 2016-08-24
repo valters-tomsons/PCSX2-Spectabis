@@ -274,6 +274,9 @@ namespace PCSX2_Spectabis
             //Saves last picturebox to a variable
             lastGame = (PictureBox)sender;
 
+            //Refresh the image
+            clickedPictureBox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name + @"\art.jpg";
+
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)
             {
