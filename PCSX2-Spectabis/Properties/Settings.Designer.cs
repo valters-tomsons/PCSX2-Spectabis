@@ -70,5 +70,17 @@ namespace PCSX2_Spectabis.Properties {
                 this["lastGameEdit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string gamesDir {
+            get {
+                return ((string)(this["gamesDir"]));
+            }
+            set {
+                this["gamesDir"] = value;
+            }
+        }
     }
 }

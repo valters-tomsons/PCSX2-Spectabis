@@ -13,6 +13,8 @@ namespace PCSX2_Spectabis
     {
 
         private static string emuDir;
+        private static string gamesDir;
+        
 
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
@@ -23,6 +25,7 @@ namespace PCSX2_Spectabis
         //First Time Setup
         public PictureBox welcomeBg = new PictureBox();
         public MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
+
 
 
 
@@ -48,6 +51,7 @@ namespace PCSX2_Spectabis
 
             //Loads saved settings
             emuDir = Properties.Settings.Default.EmuDir;
+            gamesDir = Properties.Settings.Default.gamesDir;
 
             //Initilization
             isoPanel.AutoScroll = true;
@@ -97,10 +101,11 @@ namespace PCSX2_Spectabis
         private static void saveSettings()
         {
             Properties.Settings.Default.EmuDir = emuDir;
+            Properties.Settings.Default.gamesDir = gamesDir;
             Properties.Settings.Default.Save();
         }
 
-        //Opens directory selection dialog
+        //Opens emulator directory selection dialog
         public static void SelectDir()
         {
         SelectDir:
@@ -354,6 +359,22 @@ namespace PCSX2_Spectabis
         {
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name;
             Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
+        }
+
+        private void AddDirectoryButton_Click(object sender, EventArgs e)
+        {
+            if(gamesDir != "null")
+            {
+                MessageBox.Show("Proceeding will overwrite your current active directory.");
+            }
+
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select where your game files are located." })
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    gamesDir = fbd.SelectedPath;
+                }
+            }
         }
     }
 }
