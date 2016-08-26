@@ -105,6 +105,7 @@ namespace PCSX2_Spectabis
             Properties.Settings.Default.Save();
         }
 
+
         //Opens emulator directory selection dialog
         public static void SelectDir()
         {
@@ -133,12 +134,14 @@ namespace PCSX2_Spectabis
             }
         }
 
+
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
+
 
         //First Time Setup, should be called only once
         public void FirstTimeSetup(bool _show)
@@ -180,7 +183,8 @@ namespace PCSX2_Spectabis
 
         //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
         //SelectDir();
-    }
+        }
+
 
         private void welcomedirbtn_click (object sender, EventArgs e)
         {
@@ -203,6 +207,7 @@ namespace PCSX2_Spectabis
             obj2.Show();
         }
 
+
         //Add Game Button
         private void addGameButton_Click(object sender, EventArgs e)
         {
@@ -212,6 +217,7 @@ namespace PCSX2_Spectabis
             addgame.Show();
             
         }
+
 
         //Add Iso function
         public void addIso(string _img, string _isoDir, string _title)
@@ -269,6 +275,7 @@ namespace PCSX2_Spectabis
             //string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title;
             //Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
+
 
         //Clicking on game
         private void gameBox_Click(object sender, MouseEventArgs e)
@@ -331,6 +338,7 @@ namespace PCSX2_Spectabis
             }
         }
 
+
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Deletes last picturebox in isoPanel
@@ -338,6 +346,7 @@ namespace PCSX2_Spectabis
             isoPanel.Controls.Remove(lastGame);
             lastGame = null;
         }
+
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -355,11 +364,13 @@ namespace PCSX2_Spectabis
             gameSettings.Show();
         }
 
+
         private void emulatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name;
             Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
+
 
         private void AddDirectoryButton_Click(object sender, EventArgs e)
         {
@@ -376,5 +387,7 @@ namespace PCSX2_Spectabis
                 }
             }
         }
+
+
     }
 }
