@@ -6,6 +6,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Net;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace PCSX2_Spectabis
 {
@@ -13,7 +14,8 @@ namespace PCSX2_Spectabis
     {
 
         private static string emuDir;
-        private static string gamesDir;
+        private static string addgamesDir;
+        public static List<string> gamelist = new List<string>();
         
 
         //Delegate setup for addGameForm
@@ -51,7 +53,7 @@ namespace PCSX2_Spectabis
 
             //Loads saved settings
             emuDir = Properties.Settings.Default.EmuDir;
-            gamesDir = Properties.Settings.Default.gamesDir;
+            addgamesDir = Properties.Settings.Default.gamesDir;
 
             //Initilization
             isoPanel.AutoScroll = true;
@@ -77,6 +79,7 @@ namespace PCSX2_Spectabis
                     {
                         var gameIni = new IniFile(_title + @"\spectabis.ini");
                         var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
+                        gamelist.Add(_isoDir);
 
                         PictureBox gameBox = new PictureBox();
 
@@ -93,15 +96,40 @@ namespace PCSX2_Spectabis
                 }
 
             }
+
+            if(addgamesDir != "null")
+            {
+                scanDir();
+            }
+
         }
 
+        //scan directory for new isos function
+        private static void scanDir()
+        {
+            foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
+            {
+                foreach (string existingiso in gamelist)
+                {
+                    if(iso != existingiso)
+                    {
+                        string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
+                        if(_isoname.Contains(".iso"))
+                        {
+                            MessageBox.Show("New iso found! " + _isoname);
+                        }
+                        MessageBox.Show("New file found! " + _isoname);
+                    }
+                }                   
+            }
+        }
 
 
         //Save Settings function
         private static void saveSettings()
         {
             Properties.Settings.Default.EmuDir = emuDir;
-            Properties.Settings.Default.gamesDir = gamesDir;
+            Properties.Settings.Default.gamesDir = addgamesDir;
             Properties.Settings.Default.Save();
         }
 
@@ -178,11 +206,6 @@ namespace PCSX2_Spectabis
                 welcomeBg.Visible = false;
                 welcomedirbtn.Visible = false;
             }
-
-
-
-        //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
-        //SelectDir();
         }
 
 
@@ -374,16 +397,17 @@ namespace PCSX2_Spectabis
 
         private void AddDirectoryButton_Click(object sender, EventArgs e)
         {
-            if(gamesDir != "null")
+            if(addgamesDir != "null")
             {
-                MessageBox.Show("Proceeding will overwrite your current active directory.");
+                MessageBox.Show("Proceeding will overwrite your current active game directory.");
             }
 
             using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select where your game files are located." })
             {
                 if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    gamesDir = fbd.SelectedPath;
+                    addgamesDir = fbd.SelectedPath;
+                    scanDir();
                 }
             }
         }
