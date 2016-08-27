@@ -121,7 +121,7 @@ namespace PCSX2_Spectabis
                         Debug.WriteLine( _isoname + " is not in game list");
                         if(_isoname.Contains(".iso"))
                         {
-                            MessageBox.Show("New iso found! " + _isoname);
+                            MessageBox.Show("Do you want to add " + _isoname + " ?");
                         }
                     }
                 }                   
