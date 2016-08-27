@@ -51,6 +51,7 @@ namespace PCSX2_Spectabis
                 else
                 {
                     MessageBox.Show("Cannot reach thegamesdb.net");
+                    return;
                 } 
             }
             else
