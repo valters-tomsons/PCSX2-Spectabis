@@ -79,18 +79,22 @@ namespace PCSX2_Spectabis
                     {
                         var gameIni = new IniFile(_title + @"\spectabis.ini");
                         var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
-                        gamelist.Add(_isoDir);
 
-                        PictureBox gameBox = new PictureBox();
+                        if(File.Exists(_isoDir))
+                        {
+                            gamelist.Add(_isoDir);
 
-                        gameBox.Height = 200;
-                        gameBox.Width = 150;
-                        gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                        gameBox.ImageLocation = _title + @"\art.jpg";
-                        isoPanel.Controls.Add(gameBox);
-                        gameBox.MouseDown += gameBox_Click;
-                        gameBox.Tag = _isoDir;
-                        gameBox.Name = _name;
+                            PictureBox gameBox = new PictureBox();
+
+                            gameBox.Height = 200;
+                            gameBox.Width = 150;
+                            gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                            gameBox.ImageLocation = _title + @"\art.jpg";
+                            isoPanel.Controls.Add(gameBox);
+                            gameBox.MouseDown += gameBox_Click;
+                            gameBox.Tag = _isoDir;
+                            gameBox.Name = _name;
+                        }  
                     }
 
                 }
