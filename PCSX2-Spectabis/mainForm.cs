@@ -97,6 +97,10 @@ namespace PCSX2_Spectabis
 
             }
 
+            //Empty list cannot be foreached
+            gamelist.Add("null");
+
+            //Every startup look for new .iso files
             if(addgamesDir != "null")
             {
                 scanDir();
@@ -107,18 +111,31 @@ namespace PCSX2_Spectabis
         //scan directory for new isos function
         private static void scanDir()
         {
+            Debug.WriteLine("scanDir started!");
             foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
             {
+                string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
+                Debug.WriteLine(" ");
+                Debug.WriteLine("found " + _isoname + " inside " + addgamesDir);
                 foreach (string existingiso in gamelist)
                 {
+                    Debug.WriteLine("looping through gamelist");
                     if(iso != existingiso)
                     {
-                        string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
+                        Debug.WriteLine( _isoname + " is not in game list");
                         if(_isoname.Contains(".iso"))
                         {
+                            Debug.WriteLine(_isoname + "is an .iso");
                             MessageBox.Show("New iso found! " + _isoname);
                         }
-                        MessageBox.Show("New file found! " + _isoname);
+                        else
+                        {
+                            Debug.WriteLine(_isoname + "is not an iso");
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine(_isoname + " is already in library");
                     }
                 }                   
             }
