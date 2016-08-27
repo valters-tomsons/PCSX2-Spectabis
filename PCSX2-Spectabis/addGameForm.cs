@@ -4,6 +4,7 @@ using MaterialSkin.Controls;
 using System.Windows.Forms;
 using TheGamesDBAPI;
 using System.Net;
+using System.IO;
 
 namespace PCSX2_Spectabis
 {
@@ -30,20 +31,27 @@ namespace PCSX2_Spectabis
 
             if(autoArt.Checked == true)
             {
-                //Searches DB for inputed game name, only on playstation 2
-                foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
+                if(File.Exists("http://thegamesdb.net"))
                 {
-                    //Gets game's database ID
-                    Game newGame = GamesDB.GetGame(game.ID);
-                    //Trim title
-                    realTitle = game.Title.Replace(":", "");
-                    realTitle = game.Title.Replace(@"/", "");
-                    realTitle = game.Title.Replace(@".", "");
-                    //Sets image
-                    ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
-                    //Stops at the first game
-                    break;
+                    //Searches DB for inputed game name, only on playstation 2
+                    foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
+                    {
+                        //Gets game's database ID
+                        Game newGame = GamesDB.GetGame(game.ID);
+                        //Trim title
+                        realTitle = game.Title.Replace(":", "");
+                        realTitle = game.Title.Replace(@"/", "");
+                        realTitle = game.Title.Replace(@".", "");
+                        //Sets image
+                        ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
+                        //Stops at the first game
+                        break;
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Cannot reach thegamesdb.net");
+                } 
             }
             else
             {
