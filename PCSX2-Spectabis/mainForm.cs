@@ -111,31 +111,18 @@ namespace PCSX2_Spectabis
         //scan directory for new isos function
         private static void scanDir()
         {
-            Debug.WriteLine("scanDir started!");
             foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
             {
                 string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
-                Debug.WriteLine(" ");
-                Debug.WriteLine("found " + _isoname + " inside " + addgamesDir);
                 foreach (string existingiso in gamelist)
                 {
-                    Debug.WriteLine("looping through gamelist");
                     if(iso != existingiso)
                     {
                         Debug.WriteLine( _isoname + " is not in game list");
                         if(_isoname.Contains(".iso"))
                         {
-                            Debug.WriteLine(_isoname + "is an .iso");
                             MessageBox.Show("New iso found! " + _isoname);
                         }
-                        else
-                        {
-                            Debug.WriteLine(_isoname + "is not an iso");
-                        }
-                    }
-                    else
-                    {
-                        Debug.WriteLine(_isoname + " is already in library");
                     }
                 }                   
             }
@@ -194,11 +181,11 @@ namespace PCSX2_Spectabis
 
             if (_show == true)
             {
-                Color bgCol = ColorTranslator.FromHtml("#0277BD");
+                //Color bgCol = ColorTranslator.FromHtml("#0277BD");
+                //welcomeBg.BackColor = bgCol;
 
                 //Welcome Screen Background
                 welcomeBg.Visible = true;
-                //welcomeBg.BackColor = bgCol;
                 welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
                 welcomeBg.Height = this.ClientSize.Height;
                 welcomeBg.Width = this.ClientSize.Width;
