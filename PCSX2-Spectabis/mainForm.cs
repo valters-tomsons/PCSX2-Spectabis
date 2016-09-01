@@ -218,8 +218,8 @@ namespace PCSX2_Spectabis
             gameBox.Width = 150;
             gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            _title = _title.Replace(@"/", String.Empty);
-            _title = _title.Replace(@"\", String.Empty);
+            _title = _title.Replace(@"/", string.Empty);
+            _title = _title.Replace(@"\", string.Empty);
 
             //Path to iso from mainForm
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
