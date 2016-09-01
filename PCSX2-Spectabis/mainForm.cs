@@ -64,10 +64,10 @@ namespace PCSX2_Spectabis
                 string[] gamesDir = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
                 foreach (string dir in gamesDir)
                 {
-
                     //Removes symbols from game title
                     string _title = dir;
-                    string _name = dir.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
+                    string _name = dir.Trim(new Char[] { ' ', '*', '.', '\\', '/' });
+                    //_name = _name.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
 
                     if (File.Exists(_title + @"\art.jpg"))
                     {
@@ -218,6 +218,9 @@ namespace PCSX2_Spectabis
             gameBox.Width = 150;
             gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            _title = _title.Replace(@"/", String.Empty);
+            _title = _title.Replace(@"\", String.Empty);
+
             //Path to iso from mainForm
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
@@ -232,7 +235,10 @@ namespace PCSX2_Spectabis
                 gameBox.ImageLocation = _img;
             }
 
+            
             gameBox.Name = _title;
+            
+            //string _name = dir.Trim(new Char[] { ' ', '*', '.', '\\', '/' });
 
             //Add gamebox and controls
             isoPanel.Controls.Add(gameBox);
