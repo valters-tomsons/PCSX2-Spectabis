@@ -6,6 +6,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Net;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace PCSX2_Spectabis
 {
@@ -13,6 +14,9 @@ namespace PCSX2_Spectabis
     {
 
         private static string emuDir;
+        private static string addgamesDir;
+        public static List<string> gamelist = new List<string>();
+        
 
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
@@ -23,6 +27,7 @@ namespace PCSX2_Spectabis
         //First Time Setup
         public PictureBox welcomeBg = new PictureBox();
         public MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
+
 
 
 
@@ -48,6 +53,7 @@ namespace PCSX2_Spectabis
 
             //Loads saved settings
             emuDir = Properties.Settings.Default.EmuDir;
+            addgamesDir = Properties.Settings.Default.gamesDir;
 
             //Initilization
             isoPanel.AutoScroll = true;
@@ -74,33 +80,69 @@ namespace PCSX2_Spectabis
                         var gameIni = new IniFile(_title + @"\spectabis.ini");
                         var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
 
-                        PictureBox gameBox = new PictureBox();
+                        if(File.Exists(_isoDir))
+                        {
+                            gamelist.Add(_isoDir);
 
-                        gameBox.Height = 200;
-                        gameBox.Width = 150;
-                        gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                        gameBox.ImageLocation = _title + @"\art.jpg";
-                        isoPanel.Controls.Add(gameBox);
-                        gameBox.MouseDown += gameBox_Click;
-                        gameBox.Tag = _isoDir;
-                        gameBox.Name = _name;
+                            PictureBox gameBox = new PictureBox();
+
+                            gameBox.Height = 200;
+                            gameBox.Width = 150;
+                            gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                            gameBox.ImageLocation = _title + @"\art.jpg";
+                            isoPanel.Controls.Add(gameBox);
+                            gameBox.MouseDown += gameBox_Click;
+                            gameBox.Tag = _isoDir;
+                            gameBox.Name = _name;
+                        }  
                     }
 
                 }
 
             }
+
+            //Empty list cannot be foreached
+            gamelist.Add("null");
+
+            //Every startup look for new .iso files
+            if(addgamesDir != "null")
+            {
+                scanDir();
+            }
+
         }
 
+        //scan directory for new isos function
+        private static void scanDir()
+        {
+            foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
+            {
+                string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
+                foreach (string existingiso in gamelist)
+                {
+                    if(iso != existingiso)
+                    {
+                        Debug.WriteLine( _isoname + " is not in game list");
+                        if(_isoname.Contains(".iso"))
+                        {
+                            MessageBox.Show("Do you want to add " + _isoname + " ?");
+                        }
+                    }
+                }                   
+            }
+        }
 
 
         //Save Settings function
         private static void saveSettings()
         {
             Properties.Settings.Default.EmuDir = emuDir;
+            Properties.Settings.Default.gamesDir = addgamesDir;
             Properties.Settings.Default.Save();
         }
 
-        //Opens directory selection dialog
+
+        //Opens emulator directory selection dialog
         public static void SelectDir()
         {
         SelectDir:
@@ -128,6 +170,7 @@ namespace PCSX2_Spectabis
             }
         }
 
+
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
@@ -135,17 +178,18 @@ namespace PCSX2_Spectabis
             saveSettings();
         }
 
+
         //First Time Setup, should be called only once
         public void FirstTimeSetup(bool _show)
         {
 
             if (_show == true)
             {
-                Color bgCol = ColorTranslator.FromHtml("#0277BD");
+                //Color bgCol = ColorTranslator.FromHtml("#0277BD");
+                //welcomeBg.BackColor = bgCol;
 
                 //Welcome Screen Background
                 welcomeBg.Visible = true;
-                //welcomeBg.BackColor = bgCol;
                 welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
                 welcomeBg.Height = this.ClientSize.Height;
                 welcomeBg.Width = this.ClientSize.Width;
@@ -170,12 +214,8 @@ namespace PCSX2_Spectabis
                 welcomeBg.Visible = false;
                 welcomedirbtn.Visible = false;
             }
+        }
 
-
-
-        //MessageBox.Show("PCSX2 directory not set, please navigate me to it.", "Warning");
-        //SelectDir();
-    }
 
         private void welcomedirbtn_click (object sender, EventArgs e)
         {
@@ -198,6 +238,7 @@ namespace PCSX2_Spectabis
             obj2.Show();
         }
 
+
         //Add Game Button
         private void addGameButton_Click(object sender, EventArgs e)
         {
@@ -207,6 +248,7 @@ namespace PCSX2_Spectabis
             addgame.Show();
             
         }
+
 
         //Add Iso function
         public void addIso(string _img, string _isoDir, string _title)
@@ -271,6 +313,7 @@ namespace PCSX2_Spectabis
             //Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
 
+
         //Clicking on game
         private void gameBox_Click(object sender, MouseEventArgs e)
         {
@@ -332,6 +375,7 @@ namespace PCSX2_Spectabis
             }
         }
 
+
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Deletes last picturebox in isoPanel
@@ -339,6 +383,7 @@ namespace PCSX2_Spectabis
             isoPanel.Controls.Remove(lastGame);
             lastGame = null;
         }
+
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -356,10 +401,31 @@ namespace PCSX2_Spectabis
             gameSettings.Show();
         }
 
+
         private void emulatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name;
             Process.Start(emuDir + @"\pcsx2.exe", "--cfgpath \"" + cfgDir + "\"");
         }
+
+
+        private void AddDirectoryButton_Click(object sender, EventArgs e)
+        {
+            if(addgamesDir != "null")
+            {
+                MessageBox.Show("Proceeding will overwrite your current active game directory.");
+            }
+
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select where your game files are located." })
+            {
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    addgamesDir = fbd.SelectedPath;
+                    scanDir();
+                }
+            }
+        }
+
+
     }
 }

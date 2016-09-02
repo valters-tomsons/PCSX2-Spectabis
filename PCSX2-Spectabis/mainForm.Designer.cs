@@ -39,6 +39,7 @@
             this.emulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddDirectoryButton = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -117,11 +118,26 @@
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
+            // AddDirectoryButton
+            // 
+            this.AddDirectoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddDirectoryButton.Depth = 0;
+            this.AddDirectoryButton.Location = new System.Drawing.Point(690, 65);
+            this.AddDirectoryButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AddDirectoryButton.Name = "AddDirectoryButton";
+            this.AddDirectoryButton.Primary = true;
+            this.AddDirectoryButton.Size = new System.Drawing.Size(140, 43);
+            this.AddDirectoryButton.TabIndex = 3;
+            this.AddDirectoryButton.Text = "Add Directory";
+            this.AddDirectoryButton.UseVisualStyleBackColor = true;
+            this.AddDirectoryButton.Click += new System.EventHandler(this.AddDirectoryButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 627);
+            this.Controls.Add(this.AddDirectoryButton);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.isoPanel);
@@ -145,6 +161,7 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem emulatorToolStripMenuItem;
+        private MaterialSkin.Controls.MaterialRaisedButton AddDirectoryButton;
     }
 }
 
