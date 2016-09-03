@@ -29,8 +29,6 @@ namespace PCSX2_Spectabis
         public MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
 
 
-
-
         public MainWindow()
         {
             InitializeComponent();

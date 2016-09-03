@@ -130,6 +130,7 @@
             this.AddDirectoryButton.TabIndex = 3;
             this.AddDirectoryButton.Text = "Add Directory";
             this.AddDirectoryButton.UseVisualStyleBackColor = true;
+            this.AddDirectoryButton.Visible = false;
             this.AddDirectoryButton.Click += new System.EventHandler(this.AddDirectoryButton_Click);
             // 
             // MainWindow
