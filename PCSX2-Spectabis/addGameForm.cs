@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using TheGamesDBAPI;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
 
 namespace PCSX2_Spectabis
 {
@@ -31,20 +32,34 @@ namespace PCSX2_Spectabis
 
             if(autoArt.Checked == true)
             {
+                string _databaseurl = "http://thegamesdb.net/";
 
-                foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
+                //pings thegamesdb, if not reachable - stop
+                try
                 {
-                    //Gets game's database ID
-                    Game newGame = GamesDB.GetGame(game.ID);
-                    //Trim title
-                    realTitle = game.Title.Replace(":", "");
-                    realTitle = game.Title.Replace(@"/", "");
-                    realTitle = game.Title.Replace(@".", "");
-                    //Sets image
-                    ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
-                    //Stops at the first game
-                    break;
+                    WebRequest.Create(_databaseurl).GetResponse();
+
+                    foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
+                    {
+                        //Gets game's database ID
+                        Game newGame = GamesDB.GetGame(game.ID);
+                        //Trim title
+                        realTitle = game.Title.Replace(":", "");
+                        realTitle = game.Title.Replace(@"/", "");
+                        realTitle = game.Title.Replace(@".", "");
+                        //Sets image
+                        ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
+                        Debug.WriteLine(realTitle + " found!");
+                        //Stops at the first game
+                        break;
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Cannot connect to game database. Please try later!");
+                    return;
+                }
+
             }
             else
             {
@@ -54,6 +69,12 @@ namespace PCSX2_Spectabis
             }
 
             //Adds game to mainform list
+            if(realTitle == null)
+            {
+                MessageBox.Show("Game not found, try different name.");
+                return;
+            }
+
             ControlCreator.DynamicInvoke(ImgPath, isoPath, realTitle);
 
             this.Close();
