@@ -72,7 +72,8 @@ namespace PCSX2_Spectabis
                 {
                     //Removes symbols from game title
                     string _title = dir;
-                    string _name = dir.Trim(new Char[] { ' ', '*', '.', '\\', '/' });
+                    string _name = dir.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
+                    _name = _name.Trim(new Char[] { ' ', '*', '.', '\\', '/' });
                     //_name = _name.Remove(0, dir.LastIndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
 
                     if (File.Exists(_title + @"\art.jpg"))
@@ -94,6 +95,7 @@ namespace PCSX2_Spectabis
                             gameBox.MouseDown += gameBox_Click;
                             gameBox.Tag = _isoDir;
                             gameBox.Name = _name;
+                            Debug.WriteLine(_name + " has been added");
                         }  
                     }
 
@@ -319,12 +321,13 @@ namespace PCSX2_Spectabis
         {
 
             PictureBox clickedPictureBox = (PictureBox)sender;
+            Debug.WriteLine(clickedPictureBox.Name + " - clicked");
 
             //Saves last picturebox to a variable
             lastGame = (PictureBox)sender;
 
             //Refresh the image
-            clickedPictureBox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name + @"\art.jpg";
+            clickedPictureBox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"resources\configs\" + clickedPictureBox.Name + @"\art.jpg";
 
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)
@@ -334,7 +337,7 @@ namespace PCSX2_Spectabis
                 {
                     //Starts the game, if exists
                     string isoDir = (string)clickedPictureBox.Tag;
-                    string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + clickedPictureBox.Name;
+                    string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"resources\configs\" + clickedPictureBox.Name;
 
                     var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
                     var _nogui = gameIni.Read("nogui", "Spectabis");
