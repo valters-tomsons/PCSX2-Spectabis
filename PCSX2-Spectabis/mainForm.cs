@@ -278,6 +278,20 @@ namespace PCSX2_Spectabis
                 gameBox.ImageLocation = _img;
             }
 
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
+
+            //copies pcsx2 inis to added game
+            string[] inisDir = Directory.GetFiles(emuDir + @"\inis\");
+            foreach (string inifile in inisDir)
+            {
+                Debug.WriteLine(inifile + " found!");
+                if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\" +  Path.GetFileName(inifile)) == false)
+                {
+                    string _destinationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\" + Path.GetFileName(inifile));
+                    File.Copy(inifile, _destinationPath);
+                }
+            }
+
             
             gameBox.Name = _title;
             
@@ -291,7 +305,6 @@ namespace PCSX2_Spectabis
 
             Debug.WriteLine("creating a folder at - " + AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
 
-            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
 
             using (WebClient client = new WebClient())
             {
