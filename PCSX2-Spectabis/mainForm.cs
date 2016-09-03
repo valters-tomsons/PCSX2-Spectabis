@@ -348,18 +348,21 @@ namespace PCSX2_Spectabis
 
                     if (_nogui == "1")
                      {
-                        _launchargs = "--nogui";
+                        _launchargs = "--nogui ";
                      }
 
                     if (_fullscreen == "1")
                      {
-                        _launchargs = _launchargs + "--fullscreen";
+                        _launchargs = _launchargs + "--fullscreen ";
                      }
 
                     if (_fullboot == "1")
                      {
-                        _launchargs = _launchargs + "--fullboot";
+                        _launchargs = _launchargs + "--fullboot ";
                      }
+
+                    Debug.WriteLine(clickedPictureBox.Name + " launched with commandlines:  " + _launchargs);
+                    Debug.WriteLine(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
 
                     Process.Start(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
                     return;
