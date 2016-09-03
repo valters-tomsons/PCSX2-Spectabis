@@ -264,6 +264,7 @@ namespace PCSX2_Spectabis
 
             _title = _title.Replace(@"/", string.Empty);
             _title = _title.Replace(@"\", string.Empty);
+            _title = _title.Replace(@":", string.Empty);
 
             //Path to iso from mainForm
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
@@ -288,6 +289,9 @@ namespace PCSX2_Spectabis
             isoPanel.Controls.Add(gameBox);
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
+
+
+            Debug.WriteLine("creating a folder at - " + AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
 
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
 

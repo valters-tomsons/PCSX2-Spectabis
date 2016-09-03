@@ -31,28 +31,20 @@ namespace PCSX2_Spectabis
 
             if(autoArt.Checked == true)
             {
-                if(File.Exists("http://thegamesdb.net"))
+
+                foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
                 {
-                    //Searches DB for inputed game name, only on playstation 2
-                    foreach (GameSearchResult game in GamesDB.GetGames(gameName.Text, "Sony Playstation 2"))
-                    {
-                        //Gets game's database ID
-                        Game newGame = GamesDB.GetGame(game.ID);
-                        //Trim title
-                        realTitle = game.Title.Replace(":", "");
-                        realTitle = game.Title.Replace(@"/", "");
-                        realTitle = game.Title.Replace(@".", "");
-                        //Sets image
-                        ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
-                        //Stops at the first game
-                        break;
-                    }
+                    //Gets game's database ID
+                    Game newGame = GamesDB.GetGame(game.ID);
+                    //Trim title
+                    realTitle = game.Title.Replace(":", "");
+                    realTitle = game.Title.Replace(@"/", "");
+                    realTitle = game.Title.Replace(@".", "");
+                    //Sets image
+                    ImgPath = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
+                    //Stops at the first game
+                    break;
                 }
-                else
-                {
-                    MessageBox.Show("Cannot reach thegamesdb.net");
-                    return;
-                } 
             }
             else
             {
