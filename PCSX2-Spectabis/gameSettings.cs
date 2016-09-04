@@ -18,7 +18,9 @@ namespace PCSX2_Spectabis
     {
 
         public string currentGame = Properties.Settings.Default.lastGameEdit;
+        public string emuDir = Properties.Settings.Default.EmuDir;
         OpenFileDialog browseImg = new OpenFileDialog();
+        
 
         //Form Reference
         public Form RefToForm2 { get; set; }
@@ -27,40 +29,33 @@ namespace PCSX2_Spectabis
         {
             InitializeComponent();
 
+            //Visual stuff
             boxArt.SizeMode = PictureBoxSizeMode.StretchImage;
-
             Text = "Editing - " + currentGame;
             if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\art.jpg"))
             {
                 boxArt.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\art.jpg";
             }
 
-            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame;
 
+            //Reads the game ini file 
+            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame;
             var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
             var _nogui = gameIni.Read("nogui", "Spectabis");
             var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
             var _fullboot = gameIni.Read("fullboot", "Spectabis");
             var _nohacks = gameIni.Read("nohacks", "Spectabis");
 
-            if (_nogui == "1")
-            {
-                nogui.Checked = true;
-            }
 
-            if (_fullscreen == "1")
-            {
-                fullscreen.Checked = true;
-            }
+            //Sets the checkboxes from ini variables
+            if (_nogui == "1") {nogui.Checked = true;}
+            if (_fullscreen == "1") {fullscreen.Checked = true;}
+            if (_fullboot == "1") {fullboot.Checked = true;}
+            if (_nohacks == "1") {nohacks.Checked = true;}
 
-            if (_fullboot == "1")
-            {
-                fullboot.Checked = true;
-            }
-            if (_nohacks == "1")
-            {
-                nohacks.Checked = true;
-            }
+            //Copies the .DLL files from PCSX2 directory
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\plugins\");
+            File.Copy(emuDir + @"\plugins\LilyPad.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\LilyPad.dll", true);
         }
 
         //On form closing
@@ -139,11 +134,12 @@ namespace PCSX2_Spectabis
 
         }
 
-        //Calls the LilyPad.dll file in pcsx2/plugins
-        //It has no inputs, but writes/reads the ini files where .exe is located at folder /inis/
-        [DllImport(@"D:\PCSX2\plugins\LilyPad.dll")]
-        static public extern IntPtr PADconfigure();
 
+        //Calls the LilyPad.dll copied from PCSX2 directory
+        //It has no inputs, but writes/reads the ini files where .exe is located at folder /inis/
+        //Calls the PADconfigure when controller_btn is clicked
+        [DllImport(@"\plugins\LilyPad.dll")]
+        static public extern void PADconfigure();
         private void controller_btn_Click(object sender, EventArgs e)
         {
             //Copy the existing .ini file for editing if it exists
@@ -155,12 +151,14 @@ namespace PCSX2_Spectabis
             }
 
             //Calls the DLL function
-            IntPtr pClassName = PADconfigure();
+            PADconfigure();
 
             //Copies the modified file into the game profile & deletes the created folder
             File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\LilyPad.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\LilyPad.ini", true);
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
         }
+
+
 
     }
 }
