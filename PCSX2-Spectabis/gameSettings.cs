@@ -39,7 +39,7 @@ namespace PCSX2_Spectabis
             }
 
 
-            //Reads the game ini file 
+            //Reads the spectabis ini file 
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame;
             var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
             var _nogui = gameIni.Read("nogui", "Spectabis");
@@ -47,12 +47,33 @@ namespace PCSX2_Spectabis
             var _fullboot = gameIni.Read("fullboot", "Spectabis");
             var _nohacks = gameIni.Read("nohacks", "Spectabis");
 
-
             //Sets the checkboxes from ini variables
             if (_nogui == "1") {nogui.Checked = true;}
             if (_fullscreen == "1") {fullscreen.Checked = true;}
             if (_fullboot == "1") {fullboot.Checked = true;}
             if (_nohacks == "1") {nohacks.Checked = true;}
+
+            //Reads the PCSX2_ui ini file
+            var uiIni = new IniFile(cfgDir + @"\PCSX2_ui.ini");
+            var _zoom = uiIni.Read("Zoom", "GSWindow");
+            var _aspectratio = uiIni.Read("AspectRatio", "GSWindow");
+
+
+
+            //Sets the values from PCSX2_ui ini
+            zoom.Text = _zoom;
+            if (_aspectratio == "4:3")
+            {
+                aspectratio.Text = "Letterbox";
+            }
+            else if (_aspectratio == "16:9")
+            {
+                aspectratio.Text = "Widescreen";
+            }
+            else
+            {
+                aspectratio.Text = "Stretched";
+            }
 
             // Initialize MaterialSkinManager
             materialSkinManager = MaterialSkinManager.Instance;
@@ -64,7 +85,25 @@ namespace PCSX2_Spectabis
         {
 
             var gameIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\spectabis.ini");
+            var uiIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\PCSX2_ui.ini");
 
+            uiIni.Write("Zoom", zoom.Text, "GSWindow");
+
+            //Aspect Ratio
+            if (aspectratio.Text == "Letterbox")
+            {
+                uiIni.Write("AspectRatio","4:3","GSWindow");
+            }
+            else if (aspectratio.Text == "Widescreen")
+            {
+                uiIni.Write("AspectRatio", "16:9", "GSWindow");
+            }
+            else
+            {
+                uiIni.Write("AspectRatio", "Stretch", "GSWindow");
+            }
+
+            //Emulation Settings
             if (nogui.Checked == true)
             {
                 gameIni.Write("nogui", "1", "Spectabis");

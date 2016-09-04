@@ -184,6 +184,9 @@ namespace PCSX2_Spectabis
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
+            isoPanel.Width = this.ClientSize.Width;
+            isoPanel.Height = this.ClientSize.Height;
+            isoPanel.Location = new Point(this.ClientSize.Width / 100, this.ClientSize.Height / 8);
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
@@ -449,11 +452,13 @@ namespace PCSX2_Spectabis
 
         private void AddDirectoryButton_Click(object sender, EventArgs e)
         {
-            if(addgamesDir != "null")
+            //Shows the notice, if another directory is already set
+            if (addgamesDir != "null")
             {
                 MessageBox.Show("Proceeding will overwrite your current active game directory.");
             }
 
+            //Shows the folder browser dialog
             using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Select where your game files are located." })
             {
                 if (fbd.ShowDialog() == DialogResult.OK)

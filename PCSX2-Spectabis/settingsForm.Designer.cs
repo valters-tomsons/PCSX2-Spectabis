@@ -67,7 +67,7 @@
             this.dirButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.dirButton.Depth = 0;
             this.dirButton.Icon = null;
-            this.dirButton.Location = new System.Drawing.Point(243, 97);
+            this.dirButton.Location = new System.Drawing.Point(277, 105);
             this.dirButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.dirButton.Name = "dirButton";
             this.dirButton.Primary = true;

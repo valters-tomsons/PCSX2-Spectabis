@@ -46,12 +46,13 @@
             this.addGameButton.AutoSize = true;
             this.addGameButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addGameButton.Depth = 0;
+            this.addGameButton.Icon = null;
             this.addGameButton.Location = new System.Drawing.Point(306, 236);
             this.addGameButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.addGameButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.addGameButton.Name = "addGameButton";
             this.addGameButton.Primary = false;
-            this.addGameButton.Size = new System.Drawing.Size(81, 36);
+            this.addGameButton.Size = new System.Drawing.Size(90, 36);
             this.addGameButton.TabIndex = 1;
             this.addGameButton.Text = "Add Game";
             this.addGameButton.UseVisualStyleBackColor = true;
@@ -62,6 +63,7 @@
             this.gameName.Depth = 0;
             this.gameName.Hint = "";
             this.gameName.Location = new System.Drawing.Point(11, 157);
+            this.gameName.MaxLength = 32767;
             this.gameName.MouseState = MaterialSkin.MouseState.HOVER;
             this.gameName.Name = "gameName";
             this.gameName.PasswordChar = '\0';
@@ -70,6 +72,7 @@
             this.gameName.SelectionStart = 0;
             this.gameName.Size = new System.Drawing.Size(376, 23);
             this.gameName.TabIndex = 2;
+            this.gameName.TabStop = false;
             this.gameName.UseSystemPasswordChar = false;
             // 
             // artLabel
@@ -103,6 +106,7 @@
             this.gamePath.Depth = 0;
             this.gamePath.Hint = "";
             this.gamePath.Location = new System.Drawing.Point(16, 106);
+            this.gamePath.MaxLength = 32767;
             this.gamePath.MouseState = MaterialSkin.MouseState.HOVER;
             this.gamePath.Name = "gamePath";
             this.gamePath.PasswordChar = '\0';
@@ -111,16 +115,20 @@
             this.gamePath.SelectionStart = 0;
             this.gamePath.Size = new System.Drawing.Size(273, 23);
             this.gamePath.TabIndex = 5;
+            this.gamePath.TabStop = false;
             this.gamePath.UseSystemPasswordChar = false;
             // 
             // materialRaisedButton1
             // 
+            this.materialRaisedButton1.AutoSize = true;
+            this.materialRaisedButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialRaisedButton1.Depth = 0;
+            this.materialRaisedButton1.Icon = null;
             this.materialRaisedButton1.Location = new System.Drawing.Point(300, 106);
             this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialRaisedButton1.Name = "materialRaisedButton1";
             this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(87, 23);
+            this.materialRaisedButton1.Size = new System.Drawing.Size(76, 36);
             this.materialRaisedButton1.TabIndex = 6;
             this.materialRaisedButton1.Text = "Browse";
             this.materialRaisedButton1.UseVisualStyleBackColor = true;
@@ -180,6 +188,7 @@
             this.titleName.Depth = 0;
             this.titleName.Hint = "";
             this.titleName.Location = new System.Drawing.Point(110, 188);
+            this.titleName.MaxLength = 32767;
             this.titleName.MouseState = MaterialSkin.MouseState.HOVER;
             this.titleName.Name = "titleName";
             this.titleName.PasswordChar = '\0';
@@ -188,6 +197,7 @@
             this.titleName.SelectionStart = 0;
             this.titleName.Size = new System.Drawing.Size(277, 23);
             this.titleName.TabIndex = 11;
+            this.titleName.TabStop = false;
             this.titleName.UseSystemPasswordChar = false;
             this.titleName.Visible = false;
             // 
@@ -210,6 +220,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "addGameForm";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add a Game";
             this.ResumeLayout(false);
