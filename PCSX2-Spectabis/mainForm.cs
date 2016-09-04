@@ -109,7 +109,6 @@ namespace PCSX2_Spectabis
             {
                 scanDir();
             }
-
         }
 
         //scan directory for new isos function
@@ -358,6 +357,7 @@ namespace PCSX2_Spectabis
                     var _nogui = gameIni.Read("nogui", "Spectabis");
                     var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
                     var _fullboot = gameIni.Read("fullboot", "Spectabis");
+                    var _nohacks = gameIni.Read("nohacks", "Spectabis");
 
                     string _launchargs = "";
 
@@ -375,6 +375,11 @@ namespace PCSX2_Spectabis
                      {
                         _launchargs = _launchargs + "--fullboot ";
                      }
+
+                    if(_nohacks == "1")
+                    {
+                        _launchargs = _launchargs + "--nohacks ";
+                    }
 
                     Debug.WriteLine(clickedPictureBox.Name + " launched with commandlines:  " + _launchargs);
                     Debug.WriteLine(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");

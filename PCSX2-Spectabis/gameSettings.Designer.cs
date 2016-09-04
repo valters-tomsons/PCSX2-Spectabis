@@ -34,6 +34,8 @@
             this.nogui = new MaterialSkin.Controls.MaterialCheckBox();
             this.fullboot = new MaterialSkin.Controls.MaterialCheckBox();
             this.chgimg = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.nohacks = new MaterialSkin.Controls.MaterialCheckBox();
+            this.controller_btn = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,11 +108,45 @@
             this.chgimg.UseVisualStyleBackColor = true;
             this.chgimg.Click += new System.EventHandler(this.chgimg_Click);
             // 
+            // nohacks
+            // 
+            this.nohacks.AutoSize = true;
+            this.nohacks.Depth = 0;
+            this.nohacks.Font = new System.Drawing.Font("Roboto", 10F);
+            this.nohacks.Location = new System.Drawing.Point(175, 168);
+            this.nohacks.Margin = new System.Windows.Forms.Padding(0);
+            this.nohacks.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.nohacks.MouseState = MaterialSkin.MouseState.HOVER;
+            this.nohacks.Name = "nohacks";
+            this.nohacks.Ripple = true;
+            this.nohacks.Size = new System.Drawing.Size(154, 30);
+            this.nohacks.TabIndex = 5;
+            this.nohacks.Text = "Disable Speedhacks";
+            this.nohacks.UseVisualStyleBackColor = true;
+            // 
+            // controller_btn
+            // 
+            this.controller_btn.AutoSize = true;
+            this.controller_btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.controller_btn.Depth = 0;
+            this.controller_btn.Location = new System.Drawing.Point(612, 369);
+            this.controller_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.controller_btn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.controller_btn.Name = "controller_btn";
+            this.controller_btn.Primary = false;
+            this.controller_btn.Size = new System.Drawing.Size(175, 36);
+            this.controller_btn.TabIndex = 6;
+            this.controller_btn.Text = "Configure Controller";
+            this.controller_btn.UseVisualStyleBackColor = true;
+            this.controller_btn.Click += new System.EventHandler(this.controller_btn_Click);
+            // 
             // gameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 420);
+            this.Controls.Add(this.controller_btn);
+            this.Controls.Add(this.nohacks);
             this.Controls.Add(this.chgimg);
             this.Controls.Add(this.fullboot);
             this.Controls.Add(this.nogui);
@@ -133,5 +169,7 @@
         private MaterialSkin.Controls.MaterialCheckBox nogui;
         private MaterialSkin.Controls.MaterialCheckBox fullboot;
         private MaterialSkin.Controls.MaterialRaisedButton chgimg;
+        private MaterialSkin.Controls.MaterialCheckBox nohacks;
+        private MaterialSkin.Controls.MaterialFlatButton controller_btn;
     }
 }
