@@ -63,12 +63,15 @@
             // 
             // dirButton
             // 
+            this.dirButton.AutoSize = true;
+            this.dirButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.dirButton.Depth = 0;
+            this.dirButton.Icon = null;
             this.dirButton.Location = new System.Drawing.Point(243, 97);
             this.dirButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.dirButton.Name = "dirButton";
             this.dirButton.Primary = true;
-            this.dirButton.Size = new System.Drawing.Size(100, 50);
+            this.dirButton.Size = new System.Drawing.Size(76, 36);
             this.dirButton.TabIndex = 3;
             this.dirButton.Text = "Change";
             this.dirButton.UseVisualStyleBackColor = true;
@@ -79,15 +82,15 @@
             this.materialCheckBox1.AutoSize = true;
             this.materialCheckBox1.Depth = 0;
             this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox1.Location = new System.Drawing.Point(9, 566);
+            this.materialCheckBox1.Location = new System.Drawing.Point(9, 165);
             this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCheckBox1.Name = "materialCheckBox1";
             this.materialCheckBox1.Ripple = true;
-            this.materialCheckBox1.Size = new System.Drawing.Size(153, 30);
+            this.materialCheckBox1.Size = new System.Drawing.Size(102, 30);
             this.materialCheckBox1.TabIndex = 4;
-            this.materialCheckBox1.Text = "Night Mode (Buggy)";
+            this.materialCheckBox1.Text = "Night Mode";
             this.materialCheckBox1.UseVisualStyleBackColor = true;
             this.materialCheckBox1.CheckedChanged += new System.EventHandler(this.materialCheckBox1_CheckedChanged);
             // 

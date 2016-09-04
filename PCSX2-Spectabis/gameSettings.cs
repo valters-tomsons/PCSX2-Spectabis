@@ -1,4 +1,5 @@
-﻿using MaterialSkin.Controls;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,7 @@ namespace PCSX2_Spectabis
 {
     public partial class gameSettings : MaterialForm
     {
-
+        private readonly MaterialSkinManager materialSkinManager;
         public string currentGame = Properties.Settings.Default.lastGameEdit;
         public string emuDir = Properties.Settings.Default.EmuDir;
         OpenFileDialog browseImg = new OpenFileDialog();
@@ -52,6 +53,10 @@ namespace PCSX2_Spectabis
             if (_fullscreen == "1") {fullscreen.Checked = true;}
             if (_fullboot == "1") {fullboot.Checked = true;}
             if (_nohacks == "1") {nohacks.Checked = true;}
+
+            // Initialize MaterialSkinManager
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
         }
 
         //On form closing

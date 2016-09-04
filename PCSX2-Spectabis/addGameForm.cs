@@ -13,13 +13,17 @@ namespace PCSX2_Spectabis
     {
 
         public Delegate ControlCreator;
-
         public string ImgPath;
         public string realTitle;
+        private readonly MaterialSkinManager materialSkinManager;
 
         public addGameForm()
         {
             InitializeComponent();
+
+            // Initialize MaterialSkinManager
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
         }
 
         //Add Game Button
