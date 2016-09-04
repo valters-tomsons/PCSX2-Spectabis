@@ -64,6 +64,8 @@ namespace PCSX2_Spectabis
             } 
             else
             {
+                copyDLL();
+
                 //Searches game folders in resources directory
                 string[] gamesDir = Directory.GetDirectories(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
                 foreach (string dir in gamesDir)
@@ -110,12 +112,14 @@ namespace PCSX2_Spectabis
                 scanDir();
             }
 
-            //Copies the plugin .DLL files from PCSX2 directory
+        }
+
+        private static void copyDLL()
+        {
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\plugins\");
             File.Copy(emuDir + @"\plugins\LilyPad.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\LilyPad.dll", true);
             File.Copy(emuDir + @"\plugins\GSdx32-SSE2.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\GSdx32-SSE2.dll", true);
             File.Copy(emuDir + @"\plugins\Spu2-X.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\Spu2-X.dll", true);
-
         }
 
         //scan directory for new isos function
@@ -227,6 +231,7 @@ namespace PCSX2_Spectabis
         {
             SelectDir();
             FirstTimeSetup(false);
+            copyDLL();
         }
 
 
