@@ -186,5 +186,28 @@ namespace PCSX2_Spectabis
             File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\GSdx.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini", true);
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
         }
+
+
+        [DllImport(@"\plugins\Spu2-X.dll")]
+        static public extern void SPU2configure();
+
+        [DllImport(@"\plugins\Spu2-X.dll")]
+        static public extern void SPU2close();
+
+        private void audio_btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\SPU2-X.ini"))
+            {
+                //Creates inis folder and copies it from game profile folder
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"inis");
+                File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\SPU2-X.ini", AppDomain.CurrentDomain.BaseDirectory + @"inis\SPU2-X.ini", true);
+            }
+
+            SPU2configure();
+            SPU2close();
+
+            File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\SPU2-X.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\SPU2-X.ini", true);
+            Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
+        }
     }
 }

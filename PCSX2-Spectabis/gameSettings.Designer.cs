@@ -37,6 +37,7 @@
             this.nohacks = new MaterialSkin.Controls.MaterialCheckBox();
             this.controller_btn = new MaterialSkin.Controls.MaterialFlatButton();
             this.video_btn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.audio_btn = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,7 +131,7 @@
             this.controller_btn.AutoSize = true;
             this.controller_btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.controller_btn.Depth = 0;
-            this.controller_btn.Location = new System.Drawing.Point(612, 132);
+            this.controller_btn.Location = new System.Drawing.Point(612, 179);
             this.controller_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.controller_btn.MouseState = MaterialSkin.MouseState.HOVER;
             this.controller_btn.Name = "controller_btn";
@@ -157,11 +158,28 @@
             this.video_btn.UseVisualStyleBackColor = true;
             this.video_btn.Click += new System.EventHandler(this.video_btn_Click);
             // 
+            // audio_btn
+            // 
+            this.audio_btn.AutoSize = true;
+            this.audio_btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.audio_btn.Depth = 0;
+            this.audio_btn.Location = new System.Drawing.Point(657, 131);
+            this.audio_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.audio_btn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.audio_btn.Name = "audio_btn";
+            this.audio_btn.Primary = false;
+            this.audio_btn.Size = new System.Drawing.Size(130, 36);
+            this.audio_btn.TabIndex = 8;
+            this.audio_btn.Text = "Configure Audio";
+            this.audio_btn.UseVisualStyleBackColor = true;
+            this.audio_btn.Click += new System.EventHandler(this.audio_btn_Click);
+            // 
             // gameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 420);
+            this.Controls.Add(this.audio_btn);
             this.Controls.Add(this.video_btn);
             this.Controls.Add(this.controller_btn);
             this.Controls.Add(this.nohacks);
@@ -190,5 +208,6 @@
         private MaterialSkin.Controls.MaterialCheckBox nohacks;
         private MaterialSkin.Controls.MaterialFlatButton controller_btn;
         private MaterialSkin.Controls.MaterialFlatButton video_btn;
+        private MaterialSkin.Controls.MaterialFlatButton audio_btn;
     }
 }
