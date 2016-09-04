@@ -69,12 +69,15 @@
             // addGameButton
             // 
             this.addGameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addGameButton.AutoSize = true;
+            this.addGameButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addGameButton.Depth = 0;
-            this.addGameButton.Location = new System.Drawing.Point(836, 65);
+            this.addGameButton.Icon = null;
+            this.addGameButton.Location = new System.Drawing.Point(874, 72);
             this.addGameButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.addGameButton.Name = "addGameButton";
             this.addGameButton.Primary = true;
-            this.addGameButton.Size = new System.Drawing.Size(140, 43);
+            this.addGameButton.Size = new System.Drawing.Size(90, 36);
             this.addGameButton.TabIndex = 2;
             this.addGameButton.Text = "Add Game";
             this.addGameButton.UseVisualStyleBackColor = true;
@@ -121,12 +124,15 @@
             // AddDirectoryButton
             // 
             this.AddDirectoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddDirectoryButton.AutoSize = true;
+            this.AddDirectoryButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AddDirectoryButton.Depth = 0;
-            this.AddDirectoryButton.Location = new System.Drawing.Point(690, 65);
+            this.AddDirectoryButton.Icon = null;
+            this.AddDirectoryButton.Location = new System.Drawing.Point(744, 72);
             this.AddDirectoryButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddDirectoryButton.Name = "AddDirectoryButton";
             this.AddDirectoryButton.Primary = true;
-            this.AddDirectoryButton.Size = new System.Drawing.Size(140, 43);
+            this.AddDirectoryButton.Size = new System.Drawing.Size(124, 36);
             this.AddDirectoryButton.TabIndex = 3;
             this.AddDirectoryButton.Text = "Add Directory";
             this.AddDirectoryButton.UseVisualStyleBackColor = true;
@@ -149,6 +155,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
             this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
