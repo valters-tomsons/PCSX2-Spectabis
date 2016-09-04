@@ -136,6 +136,11 @@ namespace PCSX2_Spectabis
         //Calls the PADconfigure when controller_btn is clicked
         [DllImport(@"\plugins\LilyPad.dll")]
         static public extern void PADconfigure();
+
+        //Configuration must be closed so .dll is not in use
+        [DllImport(@"\plugins\LilyPad.dll")]
+        static public extern void PADclose();
+
         private void controller_btn_Click(object sender, EventArgs e)
         {
             //Copy the existing .ini file for editing if it exists
@@ -146,8 +151,11 @@ namespace PCSX2_Spectabis
                 File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\LilyPad.ini", AppDomain.CurrentDomain.BaseDirectory + @"inis\LilyPad.ini", true);
             }
 
-            //Calls the DLL function
+            //Calls the DLL configuration function
             PADconfigure();
+
+            //Calls the configration close function
+            PADclose();
 
             //Copies the modified file into the game profile & deletes the created folder
             File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\LilyPad.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\LilyPad.ini", true);
@@ -158,6 +166,10 @@ namespace PCSX2_Spectabis
         //All GSdx plugins have same settings, by the looks of it
         [DllImport(@"\plugins\GSdx32-SSE2.dll")]
         static public extern void GSconfigure();
+
+        [DllImport(@"\plugins\GSdx32-SSE2.dll")]
+        static public extern void GSclose();
+
         private void video_btn_Click(object sender, EventArgs e)
         {
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini"))
@@ -167,7 +179,9 @@ namespace PCSX2_Spectabis
                 File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini", AppDomain.CurrentDomain.BaseDirectory + @"inis\GSdx.ini", true);
             }
 
+            //GPUConfigure(); - Only software mode was available
             GSconfigure();
+            GSclose();
 
             File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\GSdx.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini", true);
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
