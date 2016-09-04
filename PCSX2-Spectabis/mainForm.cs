@@ -109,6 +109,12 @@ namespace PCSX2_Spectabis
             {
                 scanDir();
             }
+
+            //Copies the plugin .DLL files from PCSX2 directory
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\plugins\");
+            File.Copy(emuDir + @"\plugins\LilyPad.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\LilyPad.dll", true);
+            File.Copy(emuDir + @"\plugins\GSdx32-SSE2.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\GSdx32-SSE2.dll", true);
+
         }
 
         //scan directory for new isos function

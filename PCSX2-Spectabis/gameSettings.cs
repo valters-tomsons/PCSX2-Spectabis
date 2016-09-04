@@ -52,10 +52,6 @@ namespace PCSX2_Spectabis
             if (_fullscreen == "1") {fullscreen.Checked = true;}
             if (_fullboot == "1") {fullboot.Checked = true;}
             if (_nohacks == "1") {nohacks.Checked = true;}
-
-            //Copies the .DLL files from PCSX2 directory
-            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\plugins\");
-            File.Copy(emuDir + @"\plugins\LilyPad.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\LilyPad.dll", true);
         }
 
         //On form closing
@@ -158,7 +154,23 @@ namespace PCSX2_Spectabis
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
         }
 
+        //Imports GPUconfigure from GSdx plugin
+        //All GSdx plugins have same settings, by the looks of it
+        [DllImport(@"\plugins\GSdx32-SSE2.dll")]
+        static public extern void GSconfigure();
+        private void video_btn_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini"))
+            {
+                //Creates inis folder and copies it from game profile folder
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"inis");
+                File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini", AppDomain.CurrentDomain.BaseDirectory + @"inis\GSdx.ini", true);
+            }
 
+            GSconfigure();
 
+            File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\GSdx.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini", true);
+            Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
+        }
     }
 }

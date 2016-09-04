@@ -36,7 +36,7 @@
             this.chgimg = new MaterialSkin.Controls.MaterialRaisedButton();
             this.nohacks = new MaterialSkin.Controls.MaterialCheckBox();
             this.controller_btn = new MaterialSkin.Controls.MaterialFlatButton();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.video_btn = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,27 +141,28 @@
             this.controller_btn.UseVisualStyleBackColor = true;
             this.controller_btn.Click += new System.EventHandler(this.controller_btn_Click);
             // 
-            // materialFlatButton1
+            // video_btn
             // 
-            this.materialFlatButton1.AutoSize = true;
-            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(658, 84);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(129, 36);
-            this.materialFlatButton1.TabIndex = 7;
-            this.materialFlatButton1.Text = "Configure Video";
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            this.video_btn.AutoSize = true;
+            this.video_btn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.video_btn.Depth = 0;
+            this.video_btn.Location = new System.Drawing.Point(658, 84);
+            this.video_btn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.video_btn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.video_btn.Name = "video_btn";
+            this.video_btn.Primary = false;
+            this.video_btn.Size = new System.Drawing.Size(129, 36);
+            this.video_btn.TabIndex = 7;
+            this.video_btn.Text = "Configure Video";
+            this.video_btn.UseVisualStyleBackColor = true;
+            this.video_btn.Click += new System.EventHandler(this.video_btn_Click);
             // 
             // gameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 420);
-            this.Controls.Add(this.materialFlatButton1);
+            this.Controls.Add(this.video_btn);
             this.Controls.Add(this.controller_btn);
             this.Controls.Add(this.nohacks);
             this.Controls.Add(this.chgimg);
@@ -188,6 +189,6 @@
         private MaterialSkin.Controls.MaterialRaisedButton chgimg;
         private MaterialSkin.Controls.MaterialCheckBox nohacks;
         private MaterialSkin.Controls.MaterialFlatButton controller_btn;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialFlatButton video_btn;
     }
 }
