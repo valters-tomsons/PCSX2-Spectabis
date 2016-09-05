@@ -361,8 +361,28 @@ namespace PCSX2_Spectabis
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)
             {
+                //Checks, if double click
+                if (e.Clicks == 2)
+                {
+                    //If doubleclick setting is false, then stop
+                    //This prevents launching multiple instances of game
+                    if (Properties.Settings.Default.doubleclick == false)
+                    {
+                        return;
+                    }
+                }
+
+                //If single click, with doubleclick setting, then stop
+                if (e.Clicks == 1)
+                {
+                    if (Properties.Settings.Default.doubleclick == true)
+                    {
+                        return;
+                    }
+                }
+
                 //Checks, if game file still exists
-                if(File.Exists((string)clickedPictureBox.Tag))
+                if (File.Exists((string)clickedPictureBox.Tag))
                 {
                     //Starts the game, if exists
                     string isoDir = (string)clickedPictureBox.Tag;

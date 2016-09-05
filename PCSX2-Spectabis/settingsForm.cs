@@ -30,6 +30,11 @@ namespace PCSX2_Spectabis
                 materialCheckBox1.Checked = true;
             }
 
+            if (Properties.Settings.Default.doubleclick == true)
+            {
+                materialCheckBox2.Checked = true;
+            }
+
         }
 
         //On form closing
@@ -37,6 +42,7 @@ namespace PCSX2_Spectabis
         {
             //Saves Settings
             Properties.Settings.Default.EmuDir = emuDir;
+            Properties.Settings.Default.doubleclick = materialCheckBox2.Checked;
             Properties.Settings.Default.Save();
 
             //Show mainForm

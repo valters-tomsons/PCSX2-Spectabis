@@ -38,18 +38,6 @@ namespace PCSX2_Spectabis.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsGameMode {
-            get {
-                return ((bool)(this["IsGameMode"]));
-            }
-            set {
-                this["IsGameMode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool nightMode {
             get {
                 return ((bool)(this["nightMode"]));
@@ -80,6 +68,18 @@ namespace PCSX2_Spectabis.Properties {
             }
             set {
                 this["gamesDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool doubleclick {
+            get {
+                return ((bool)(this["doubleclick"]));
+            }
+            set {
+                this["doubleclick"] = value;
             }
         }
     }

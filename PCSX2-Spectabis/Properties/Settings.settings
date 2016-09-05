@@ -5,9 +5,6 @@
     <Setting Name="EmuDir" Type="System.String" Scope="User">
       <Value Profile="(Default)">null</Value>
     </Setting>
-    <Setting Name="IsGameMode" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="nightMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -16,6 +13,9 @@
     </Setting>
     <Setting Name="gamesDir" Type="System.String" Scope="User">
       <Value Profile="(Default)">null</Value>
+    </Setting>
+    <Setting Name="doubleclick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

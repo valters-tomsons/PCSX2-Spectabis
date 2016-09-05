@@ -33,6 +33,7 @@
             this.emulatordir = new MaterialSkin.Controls.MaterialLabel();
             this.dirButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialCheckBox1 = new MaterialSkin.Controls.MaterialCheckBox();
+            this.materialCheckBox2 = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -94,11 +95,28 @@
             this.materialCheckBox1.UseVisualStyleBackColor = true;
             this.materialCheckBox1.CheckedChanged += new System.EventHandler(this.materialCheckBox1_CheckedChanged);
             // 
+            // materialCheckBox2
+            // 
+            this.materialCheckBox2.AutoSize = true;
+            this.materialCheckBox2.Depth = 0;
+            this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
+            this.materialCheckBox2.Location = new System.Drawing.Point(9, 206);
+            this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckBox2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckBox2.Name = "materialCheckBox2";
+            this.materialCheckBox2.Ripple = true;
+            this.materialCheckBox2.Size = new System.Drawing.Size(172, 30);
+            this.materialCheckBox2.TabIndex = 5;
+            this.materialCheckBox2.Text = "Double-Click to Launch";
+            this.materialCheckBox2.UseVisualStyleBackColor = true;
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 605);
+            this.Controls.Add(this.materialCheckBox2);
             this.Controls.Add(this.materialCheckBox1);
             this.Controls.Add(this.dirButton);
             this.Controls.Add(this.emulatordir);
@@ -122,5 +140,6 @@
         private MaterialSkin.Controls.MaterialLabel emulatordir;
         private MaterialSkin.Controls.MaterialRaisedButton dirButton;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox1;
+        private MaterialSkin.Controls.MaterialCheckBox materialCheckBox2;
     }
 }
