@@ -42,6 +42,9 @@
             this.zoom = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.aspectratio = new System.Windows.Forms.ComboBox();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.isoDirBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.browseIso = new MaterialSkin.Controls.MaterialRaisedButton();
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,11 +244,62 @@
             this.aspectratio.Size = new System.Drawing.Size(104, 21);
             this.aspectratio.TabIndex = 12;
             // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel3.Location = new System.Drawing.Point(13, 343);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(141, 19);
+            this.materialLabel3.TabIndex = 13;
+            this.materialLabel3.Text = "Game File Directory";
+            // 
+            // isoDirBox
+            // 
+            this.isoDirBox.Depth = 0;
+            this.isoDirBox.Enabled = false;
+            this.isoDirBox.Hint = "";
+            this.isoDirBox.Location = new System.Drawing.Point(17, 369);
+            this.isoDirBox.MaxLength = 32767;
+            this.isoDirBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.isoDirBox.Name = "isoDirBox";
+            this.isoDirBox.PasswordChar = '\0';
+            this.isoDirBox.SelectedText = "";
+            this.isoDirBox.SelectionLength = 0;
+            this.isoDirBox.SelectionStart = 0;
+            this.isoDirBox.Size = new System.Drawing.Size(312, 23);
+            this.isoDirBox.TabIndex = 14;
+            this.isoDirBox.TabStop = false;
+            this.isoDirBox.Text = "null";
+            this.isoDirBox.UseSystemPasswordChar = false;
+            // 
+            // browseIso
+            // 
+            this.browseIso.AutoSize = true;
+            this.browseIso.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.browseIso.Depth = 0;
+            this.browseIso.Icon = null;
+            this.browseIso.Location = new System.Drawing.Point(335, 362);
+            this.browseIso.MouseState = MaterialSkin.MouseState.HOVER;
+            this.browseIso.Name = "browseIso";
+            this.browseIso.Primary = true;
+            this.browseIso.Size = new System.Drawing.Size(76, 36);
+            this.browseIso.TabIndex = 15;
+            this.browseIso.Text = "Browse";
+            this.browseIso.UseVisualStyleBackColor = true;
+            this.browseIso.Click += new System.EventHandler(this.browseIso_Click);
+            // 
             // gameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 420);
+            this.Controls.Add(this.browseIso);
+            this.Controls.Add(this.isoDirBox);
+            this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.aspectratio);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.zoom);
@@ -284,5 +338,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField zoom;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.ComboBox aspectratio;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialSingleLineTextField isoDirBox;
+        private MaterialSkin.Controls.MaterialRaisedButton browseIso;
     }
 }

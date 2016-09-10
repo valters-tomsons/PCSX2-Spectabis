@@ -217,6 +217,7 @@
             this.Controls.Add(this.gameName);
             this.Controls.Add(this.addGameButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "addGameForm";

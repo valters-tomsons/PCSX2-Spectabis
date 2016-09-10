@@ -52,6 +52,7 @@
             this.isoPanel.Name = "isoPanel";
             this.isoPanel.Size = new System.Drawing.Size(952, 501);
             this.isoPanel.TabIndex = 0;
+            this.isoPanel.TabStop = true;
             // 
             // SettingsButton
             // 

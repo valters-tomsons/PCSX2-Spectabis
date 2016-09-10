@@ -46,12 +46,15 @@ namespace PCSX2_Spectabis
             var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
             var _fullboot = gameIni.Read("fullboot", "Spectabis");
             var _nohacks = gameIni.Read("nohacks", "Spectabis");
+            var _isodir = gameIni.Read("isoDirectory", "Spectabis");
 
             //Sets the checkboxes from ini variables
             if (_nogui == "1") {nogui.Checked = true;}
             if (_fullscreen == "1") {fullscreen.Checked = true;}
             if (_fullboot == "1") {fullboot.Checked = true;}
             if (_nohacks == "1") {nohacks.Checked = true;}
+
+            isoDirBox.Text = _isodir;
 
             //Reads the PCSX2_ui ini file
             var uiIni = new IniFile(cfgDir + @"\PCSX2_ui.ini");
@@ -139,6 +142,8 @@ namespace PCSX2_Spectabis
             {
                 gameIni.Write("nohacks", "0", "Spectabis");
             }
+
+            gameIni.Write("isoDirectory", isoDirBox.Text , "Spectabis");
             
             
 
@@ -252,6 +257,21 @@ namespace PCSX2_Spectabis
 
             File.Copy(AppDomain.CurrentDomain.BaseDirectory + @"inis\SPU2-X.ini", AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\SPU2-X.ini", true);
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"inis", true);
+        }
+
+        OpenFileDialog browseIsoDialog = new OpenFileDialog();
+
+        //Browse Iso button
+        private void browseIso_Click(object sender, EventArgs e)
+        {
+            //File Filter
+            browseIsoDialog.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img";
+
+            if (browseIsoDialog.ShowDialog() == DialogResult.OK)
+            {
+                //Sets path into textbox
+                isoDirBox.Text = browseIsoDialog.FileName;
+            }
         }
     }
 }
