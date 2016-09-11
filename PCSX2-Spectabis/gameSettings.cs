@@ -265,7 +265,7 @@ namespace PCSX2_Spectabis
         private void browseIso_Click(object sender, EventArgs e)
         {
             //File Filter
-            browseIsoDialog.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img";
+            browseIsoDialog.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img|Compressed ISO (.cso)|*.cso|gzip archive (.gz)|*.gz";
 
             if (browseIsoDialog.ShowDialog() == DialogResult.OK)
             {

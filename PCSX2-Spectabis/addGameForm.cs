@@ -92,7 +92,7 @@ namespace PCSX2_Spectabis
         {
 
             //File Filter
-            browseIso.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img";
+            browseIso.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img|Compressed ISO (.cso)|*.cso|gzip archive (.gz)|*.gz";
 
             if (browseIso.ShowDialog() == DialogResult.OK)
             {
