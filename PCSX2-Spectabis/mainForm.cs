@@ -296,15 +296,23 @@ namespace PCSX2_Spectabis
 
             //copies pcsx2 inis to added game
             string[] inisDir = Directory.GetFiles(emuDir + @"\inis\");
-            foreach (string inifile in inisDir)
+            if(Directory.Exists(emuDir + @"\inis\"))
             {
-                Debug.WriteLine(inifile + " found!");
-                if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\" +  Path.GetFileName(inifile)) == false)
+                foreach (string inifile in inisDir)
                 {
-                    string _destinationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\" + Path.GetFileName(inifile));
-                    File.Copy(inifile, _destinationPath);
+                    Debug.WriteLine(inifile + " found!");
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\" + Path.GetFileName(inifile)) == false)
+                    {
+                        string _destinationPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\" + Path.GetFileName(inifile));
+                        File.Copy(inifile, _destinationPath);
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Cannot find default PCSX2 configuration at " + emuDir + @"\inis\");
+            }
+            
 
             
             gameBox.Name = _title;
