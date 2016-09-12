@@ -128,30 +128,23 @@ namespace PCSX2_Spectabis
         private static void scanDir()
         {
             //logs directory files
-            StreamWriter scanLog = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"logs\log.txt", true);
-            scanLog.WriteLine("");
 
             foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
             {
-                scanLog.WriteLine("");
-                scanLog.WriteLine(iso + " has been found!");
 
+                //iso file name
                 string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
 
-                scanLog.WriteLine("File name: " + _isoname);
-
+                //Checks if found file is already in game library
                 if(gamelist.Contains(iso) == false)
                 {
-                    if (_isoname.Contains(".iso"))
+                    //Checks if apropriate file
+                    if (_isoname.EndsWith(".iso") || _isoname.EndsWith(".gz") || _isoname.EndsWith(".cso"))
                     {
                         MessageBox.Show("Do you want to add " + _isoname + " ?");
                     }
                 }                  
             }
-
-            //Stops logging
-            scanLog.Close();
-
         }
 
 
