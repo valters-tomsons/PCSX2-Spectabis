@@ -83,8 +83,10 @@ namespace PCSX2_Spectabis
 
                         if(File.Exists(_isoDir))
                         {
+                            //Adds file to game file list
                             gamelist.Add(_isoDir);
 
+                            //Creates a game tile
                             PictureBox gameBox = new PictureBox();
 
                             gameBox.Height = 200;
@@ -125,21 +127,31 @@ namespace PCSX2_Spectabis
         //scan directory for new isos function
         private static void scanDir()
         {
+            //logs directory files
+            StreamWriter scanLog = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"logs\log.txt", true);
+            scanLog.WriteLine("");
+
             foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
             {
+                scanLog.WriteLine("");
+                scanLog.WriteLine(iso + " has been found!");
+
                 string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
-                foreach (string existingiso in gamelist)
+
+                scanLog.WriteLine("File name: " + _isoname);
+
+                if(gamelist.Contains(iso) == false)
                 {
-                    if(iso != existingiso)
+                    if (_isoname.Contains(".iso"))
                     {
-                        Debug.WriteLine( _isoname + " is not in game list");
-                        if(_isoname.Contains(".iso"))
-                        {
-                            MessageBox.Show("Do you want to add " + _isoname + " ?");
-                        }
+                        MessageBox.Show("Do you want to add " + _isoname + " ?");
                     }
-                }                   
+                }                  
             }
+
+            //Stops logging
+            scanLog.Close();
+
         }
 
 
@@ -496,6 +508,7 @@ namespace PCSX2_Spectabis
                 }
             }
         }
+
 
 
     }
