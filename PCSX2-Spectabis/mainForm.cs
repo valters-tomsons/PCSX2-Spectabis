@@ -56,9 +56,19 @@ namespace PCSX2_Spectabis
             //Initilization
             isoPanel.AutoScroll = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
+
+            //Creates required directories
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\");
 
+            //If blacklist file doesn't exist, create one
+            if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt") == false)
+            {
+                FileStream newblacklist = null;
+                newblacklist = File.Create(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt");
+                newblacklist.Close();
+            }
+            
             //Integrity Checks
             if (emuDir == "null")
             {
@@ -145,25 +155,23 @@ namespace PCSX2_Spectabis
                     //Checks if apropriate file
                     if (_isoname.EndsWith(".iso") || _isoname.EndsWith(".gz") || _isoname.EndsWith(".cso"))
                     {
-                        using (StreamWriter checkbl = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"logs\blacklist.txt"))
+                        //if found iso exists in blacklist
+                        if (File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt").Contains(iso) == false)
                         {
+                            //Add game dialog box
+                            DialogResult addGame = MessageBox.Show("Do you want to add " + _isoname + "?", "New game found!", MessageBoxButtons.YesNo);
+                            if (addGame == DialogResult.Yes)
+                            {
 
+                            }
+                            else
+                            {
+                                //Adds iso path to blacklist
+                                System.IO.StreamWriter blacklist = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt", true);
+                                blacklist.WriteLine(iso);
+                                blacklist.Close();
+                            }
                         }
-
-                        //Add game dialog box
-                        DialogResult addGame = MessageBox.Show("Do you want to add " + _isoname + "?","New game found!", MessageBoxButtons.YesNo);
-                        if(addGame == DialogResult.Yes)
-                        {
-                            
-                        }
-                        else
-                        {
-                            //Adds iso path to blacklist
-                            System.IO.StreamWriter blacklist = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"logs\blacklist.txt", true);
-                            blacklist.WriteLine(iso);
-                            blacklist.Close();
-                        }
-
                     }
                 }                  
             }
@@ -229,8 +237,18 @@ namespace PCSX2_Spectabis
                 //welcomeBg.BackColor = bgCol;
 
                 //Welcome Screen Background
+
                 welcomeBg.Visible = true;
-                welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
+
+                if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png"))
+                {
+                    welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
+                }
+                else
+                {
+                    MessageBox.Show(@"Cannot find \resources\welcomescreen\bg1.png");
+                }
+                
                 welcomeBg.Height = this.ClientSize.Height;
                 welcomeBg.Width = this.ClientSize.Width;
                 Controls.Add(welcomeBg);
