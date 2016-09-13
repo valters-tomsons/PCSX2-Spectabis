@@ -56,6 +56,8 @@ namespace PCSX2_Spectabis
             //Initilization
             isoPanel.AutoScroll = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\");
 
             //Integrity Checks
             if (emuDir == "null")
@@ -127,8 +129,10 @@ namespace PCSX2_Spectabis
         //scan directory for new isos function
         private static void scanDir()
         {
-            //logs directory files
-
+            if(Directory.Exists(addgamesDir) == false)
+            {
+                return;
+            }
             foreach (string iso in Directory.GetFiles(addgamesDir + @"\"))
             {
 
@@ -141,7 +145,25 @@ namespace PCSX2_Spectabis
                     //Checks if apropriate file
                     if (_isoname.EndsWith(".iso") || _isoname.EndsWith(".gz") || _isoname.EndsWith(".cso"))
                     {
-                        MessageBox.Show("Do you want to add " + _isoname + " ?");
+                        using (StreamWriter checkbl = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"logs\blacklist.txt"))
+                        {
+
+                        }
+
+                        //Add game dialog box
+                        DialogResult addGame = MessageBox.Show("Do you want to add " + _isoname + "?","New game found!", MessageBoxButtons.YesNo);
+                        if(addGame == DialogResult.Yes)
+                        {
+                            
+                        }
+                        else
+                        {
+                            //Adds iso path to blacklist
+                            System.IO.StreamWriter blacklist = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"logs\blacklist.txt", true);
+                            blacklist.WriteLine(iso);
+                            blacklist.Close();
+                        }
+
                     }
                 }                  
             }
