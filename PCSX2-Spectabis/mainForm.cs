@@ -341,6 +341,7 @@ namespace PCSX2_Spectabis
 
             //copies pcsx2 inis to added game
             
+            //looks for inis in pcsx2 directory
             if(Directory.Exists(emuDir + @"\inis\"))
             {
                 string[] inisDir = Directory.GetFiles(emuDir + @"\inis\");
@@ -357,6 +358,7 @@ namespace PCSX2_Spectabis
             else
             {
                 
+                //looks for pcsx2 inis in documents folder
                 if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PCSX2\inis"))
                 {
                     string[] inisDirDoc = Directory.GetFiles((Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PCSX2\inis"));
@@ -369,9 +371,12 @@ namespace PCSX2_Spectabis
                         }
                     }
                 }
+
+                //if no inis are found, warning is shown
                 else
                 {
                     MessageBox.Show("Cannot find default PCSX2 configuration at " + emuDir + @"\inis\");
+                    MessageBox.Show("Neither in " + Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PCSX2\inis");
                 }
                 
             }
