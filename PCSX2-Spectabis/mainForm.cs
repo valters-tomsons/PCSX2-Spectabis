@@ -224,7 +224,7 @@ namespace PCSX2_Spectabis
         {
             isoPanel.Width = this.ClientSize.Width;
             isoPanel.Height = this.ClientSize.Height;
-            isoPanel.Location = new Point(this.ClientSize.Width / 100, this.ClientSize.Height / 8);
+            isoPanel.Location = new Point(this.ClientSize.Width / 100, (this.ClientSize.Height / 8 ) + addGameButton.Height);
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
