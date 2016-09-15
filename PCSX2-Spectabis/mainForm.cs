@@ -137,7 +137,7 @@ namespace PCSX2_Spectabis
         }
 
         //scan directory for new isos function
-        private static void scanDir()
+        private void scanDir()
         {
             if(Directory.Exists(addgamesDir) == false)
             {
@@ -162,6 +162,8 @@ namespace PCSX2_Spectabis
                             DialogResult addGame = MessageBox.Show("Do you want to add " + _isoname + "?", "New game found!", MessageBoxButtons.YesNo);
                             if (addGame == DialogResult.Yes)
                             {
+                                //adding a game code here
+                                addIso("dasdas", iso, "God Hand");
 
                             }
                             else
@@ -240,13 +242,13 @@ namespace PCSX2_Spectabis
 
                 welcomeBg.Visible = true;
 
-                if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png"))
+                if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\bg1.png"))
                 {
-                    welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\welcomescreen\bg1.png";
+                    welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\bg1.png";
                 }
                 else
                 {
-                    MessageBox.Show(@"Cannot find \resources\welcomescreen\bg1.png");
+                    MessageBox.Show(@"Cannot find \resources\images\bg1.png");
                 }
                 
                 welcomeBg.Height = this.ClientSize.Height;
