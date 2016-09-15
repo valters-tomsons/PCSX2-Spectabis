@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System.IO;
+using System.Diagnostics;
 
 namespace PCSX2_Spectabis
 {
@@ -95,5 +96,12 @@ namespace PCSX2_Spectabis
                 Properties.Settings.Default.Save();
             }
         }
+
+        //Manage game blacklist button
+        private void blacklistBtn_Click(object sender, EventArgs e)
+        {
+            Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt");
+        }
+
     }
 }

@@ -34,6 +34,8 @@
             this.dirButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialCheckBox1 = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialCheckBox2 = new MaterialSkin.Controls.MaterialCheckBox();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.blacklistBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -83,7 +85,7 @@
             this.materialCheckBox1.AutoSize = true;
             this.materialCheckBox1.Depth = 0;
             this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox1.Location = new System.Drawing.Point(9, 165);
+            this.materialCheckBox1.Location = new System.Drawing.Point(16, 244);
             this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -100,7 +102,7 @@
             this.materialCheckBox2.AutoSize = true;
             this.materialCheckBox2.Depth = 0;
             this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox2.Location = new System.Drawing.Point(9, 206);
+            this.materialCheckBox2.Location = new System.Drawing.Point(16, 285);
             this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -111,11 +113,42 @@
             this.materialCheckBox2.Text = "Double-Click to Launch";
             this.materialCheckBox2.UseVisualStyleBackColor = true;
             // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.Location = new System.Drawing.Point(13, 185);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(206, 19);
+            this.materialLabel2.TabIndex = 7;
+            this.materialLabel2.Text = "Auto directory game blacklist";
+            // 
+            // blacklistBtn
+            // 
+            this.blacklistBtn.AutoSize = true;
+            this.blacklistBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.blacklistBtn.Depth = 0;
+            this.blacklistBtn.Icon = null;
+            this.blacklistBtn.Location = new System.Drawing.Point(277, 177);
+            this.blacklistBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.blacklistBtn.Name = "blacklistBtn";
+            this.blacklistBtn.Primary = true;
+            this.blacklistBtn.Size = new System.Drawing.Size(78, 36);
+            this.blacklistBtn.TabIndex = 8;
+            this.blacklistBtn.Text = "Manage";
+            this.blacklistBtn.UseVisualStyleBackColor = true;
+            this.blacklistBtn.Click += new System.EventHandler(this.blacklistBtn_Click);
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 605);
+            this.Controls.Add(this.blacklistBtn);
+            this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialCheckBox2);
             this.Controls.Add(this.materialCheckBox1);
             this.Controls.Add(this.dirButton);
@@ -141,5 +174,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton dirButton;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox1;
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialRaisedButton blacklistBtn;
     }
 }

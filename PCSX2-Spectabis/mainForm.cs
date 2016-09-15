@@ -163,7 +163,8 @@ namespace PCSX2_Spectabis
                             if (addGame == DialogResult.Yes)
                             {
                                 //adding a game code here
-                                addIso("dasdas", iso, "God Hand");
+                                string _imgsdir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\defbox.gif";
+                                addIso(_imgsdir, iso, _isoname);
 
                             }
                             else
@@ -567,7 +568,10 @@ namespace PCSX2_Spectabis
             }
         }
 
-
-
+        //refresh game list button
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            scanDir();
+        }
     }
 }

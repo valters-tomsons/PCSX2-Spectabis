@@ -40,6 +40,7 @@
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddDirectoryButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.refreshBtn = new MaterialSkin.Controls.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -139,11 +140,29 @@
             this.AddDirectoryButton.UseVisualStyleBackColor = true;
             this.AddDirectoryButton.Click += new System.EventHandler(this.AddDirectoryButton_Click);
             // 
+            // refreshBtn
+            // 
+            this.refreshBtn.AutoSize = true;
+            this.refreshBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.refreshBtn.Depth = 0;
+            this.refreshBtn.Icon = null;
+            this.refreshBtn.Location = new System.Drawing.Point(706, 72);
+            this.refreshBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.refreshBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Primary = false;
+            this.refreshBtn.Size = new System.Drawing.Size(31, 36);
+            this.refreshBtn.TabIndex = 4;
+            this.refreshBtn.Text = "↺";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 627);
+            this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.AddDirectoryButton);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.SettingsButton);
@@ -169,6 +188,7 @@
         private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem emulatorToolStripMenuItem;
         private MaterialSkin.Controls.MaterialRaisedButton AddDirectoryButton;
+        private MaterialSkin.Controls.MaterialFlatButton refreshBtn;
     }
 }
 
