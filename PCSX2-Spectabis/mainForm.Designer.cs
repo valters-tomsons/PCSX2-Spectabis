@@ -142,6 +142,7 @@
             // 
             // refreshBtn
             // 
+            this.refreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.refreshBtn.AutoSize = true;
             this.refreshBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.refreshBtn.Depth = 0;
