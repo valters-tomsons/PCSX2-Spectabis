@@ -521,6 +521,13 @@ namespace PCSX2_Spectabis
             //Deletes last picturebox in isoPanel
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name, true);
             isoPanel.Controls.Remove(lastGame);
+
+            //Removes the game front gamelist
+            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name;
+            var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
+            var _gamedir = gameIni.Read("IsoDirectory", "Spectabis");
+            gamelist.Remove(_gamedir);
+
             lastGame = null;
         }
 
