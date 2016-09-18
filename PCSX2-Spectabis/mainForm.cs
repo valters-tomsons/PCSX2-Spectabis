@@ -394,6 +394,7 @@ namespace PCSX2_Spectabis
             isoPanel.Controls.Add(gameBox);
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
+            gamelist.Add(_isoDir);
 
 
             Debug.WriteLine("creating a folder at - " + AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
