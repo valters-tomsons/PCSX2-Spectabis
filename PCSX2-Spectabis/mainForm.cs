@@ -438,6 +438,15 @@ namespace PCSX2_Spectabis
             //Refresh the image
             clickedPictureBox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"resources\configs\" + clickedPictureBox.Name + @"\art.jpg";
 
+            //Refresh isoDirectory
+            string _cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"resources\configs\" + clickedPictureBox.Name;
+            var _gameIni = new IniFile(_cfgDir + @"\spectabis.ini");
+            var _isoDir = _gameIni.Read("isoDirectory", "Spectabis");
+            clickedPictureBox.Tag = _isoDir;
+
+
+
+
             //Check, if click was left mouse
             if (e.Button == MouseButtons.Left)
             {
@@ -473,6 +482,7 @@ namespace PCSX2_Spectabis
                     var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
                     var _fullboot = gameIni.Read("fullboot", "Spectabis");
                     var _nohacks = gameIni.Read("nohacks", "Spectabis");
+                    
 
                     string _launchargs = "";
 
@@ -497,6 +507,7 @@ namespace PCSX2_Spectabis
                     }
 
                     Debug.WriteLine(clickedPictureBox.Name + " launched with commandlines:  " + _launchargs);
+                    Debug.WriteLine(clickedPictureBox.Name + " launched from: " + isoDir);
                     Debug.WriteLine(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
 
                     Process.Start(emuDir + @"\pcsx2.exe", "" + _launchargs + "\"" + isoDir + "\" --cfgpath \"" + cfgDir + "\"");
