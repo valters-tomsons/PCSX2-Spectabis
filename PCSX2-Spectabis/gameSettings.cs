@@ -38,9 +38,11 @@ namespace PCSX2_Spectabis
                 boxArt.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\art.jpg";
             }
 
+            //Defines configration file location
+            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame;
+
 
             //Reads the spectabis ini file 
-            string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame;
             var gameIni = new IniFile(cfgDir + @"\spectabis.ini");
             var _nogui = gameIni.Read("nogui", "Spectabis");
             var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
@@ -48,35 +50,39 @@ namespace PCSX2_Spectabis
             var _nohacks = gameIni.Read("nohacks", "Spectabis");
             var _isodir = gameIni.Read("isoDirectory", "Spectabis");
 
-            //Sets the checkboxes from ini variables
+            //Sets the values from spectabis ini
             if (_nogui == "1") {nogui.Checked = true;}
             if (_fullscreen == "1") {fullscreen.Checked = true;}
             if (_fullboot == "1") {fullboot.Checked = true;}
             if (_nohacks == "1") {nohacks.Checked = true;}
-
             isoDirBox.Text = _isodir;
+
 
             //Reads the PCSX2_ui ini file
             var uiIni = new IniFile(cfgDir + @"\PCSX2_ui.ini");
             var _zoom = uiIni.Read("Zoom", "GSWindow");
             var _aspectratio = uiIni.Read("AspectRatio", "GSWindow");
 
-
-
             //Sets the values from PCSX2_ui ini
             zoom.Text = _zoom;
-            if (_aspectratio == "4:3")
-            {
+            if (_aspectratio == "4:3"){
                 aspectratio.Text = "Letterbox";
             }
-            else if (_aspectratio == "16:9")
-            {
+            else if (_aspectratio == "16:9"){
                 aspectratio.Text = "Widescreen";
             }
-            else
-            {
+            else{
                 aspectratio.Text = "Stretched";
             }
+
+
+            //Reads RCSX2_vm file
+            var vmIni = new IniFile(cfgDir + @"\PCSX2_vm.ini");
+            var _widescreen = vmIni.Read("EnableWideScreenPatches", "EmuCore");
+
+            //Sets the values from PCSX2_vm ini
+            if (_widescreen == "enabled") { widescreen.Checked = true;}
+
 
             // Initialize MaterialSkinManager
             materialSkinManager = MaterialSkinManager.Instance;
@@ -87,12 +93,15 @@ namespace PCSX2_Spectabis
         protected override void OnClosing(CancelEventArgs e)
         {
 
+            //Defines ini files
             var gameIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\spectabis.ini");
             var uiIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\PCSX2_ui.ini");
+            var vmIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\PCSX2_vm.ini");
 
+            //Writes zoom level to pcsx2_ui
             uiIni.Write("Zoom", zoom.Text, "GSWindow");
 
-            //Aspect Ratio
+            //Aspect Ratio - written to pcsx2_ui
             if (aspectratio.Text == "Letterbox")
             {
                 uiIni.Write("AspectRatio","4:3","GSWindow");
@@ -106,7 +115,7 @@ namespace PCSX2_Spectabis
                 uiIni.Write("AspectRatio", "Stretch", "GSWindow");
             }
 
-            //Emulation Settings
+            //Emulation Settings - written to spectabis ini
             if (nogui.Checked == true)
             {
                 gameIni.Write("nogui", "1", "Spectabis");
@@ -143,9 +152,17 @@ namespace PCSX2_Spectabis
                 gameIni.Write("nohacks", "0", "Spectabis");
             }
 
-            gameIni.Write("isoDirectory", isoDirBox.Text , "Spectabis");
-            
-            
+            gameIni.Write("isoDirectory", isoDirBox.Text, "Spectabis");
+
+            //Widescreen patch - written to pcsx2_vm
+            if (widescreen.Checked == true)
+            {
+                vmIni.Write("EnableWideScreenPatches", "enabled", "EmuCore");
+            }
+            else
+            {
+                vmIni.Write("EnableWideScreenPatches", "disabled", "EmuCore");
+            }
 
             //Show mainForm
             this.RefToForm2.Show();

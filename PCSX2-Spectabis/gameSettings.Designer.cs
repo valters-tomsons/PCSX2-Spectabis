@@ -45,6 +45,7 @@
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.isoDirBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.browseIso = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.widescreen = new MaterialSkin.Controls.MaterialCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -292,11 +293,28 @@
             this.browseIso.UseVisualStyleBackColor = true;
             this.browseIso.Click += new System.EventHandler(this.browseIso_Click);
             // 
+            // widescreen
+            // 
+            this.widescreen.AutoSize = true;
+            this.widescreen.Depth = 0;
+            this.widescreen.Font = new System.Drawing.Font("Roboto", 10F);
+            this.widescreen.Location = new System.Drawing.Point(175, 198);
+            this.widescreen.Margin = new System.Windows.Forms.Padding(0);
+            this.widescreen.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.widescreen.MouseState = MaterialSkin.MouseState.HOVER;
+            this.widescreen.Name = "widescreen";
+            this.widescreen.Ripple = true;
+            this.widescreen.Size = new System.Drawing.Size(156, 30);
+            this.widescreen.TabIndex = 16;
+            this.widescreen.Text = "Widescreen Patches";
+            this.widescreen.UseVisualStyleBackColor = true;
+            // 
             // gameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 420);
+            this.Controls.Add(this.widescreen);
             this.Controls.Add(this.browseIso);
             this.Controls.Add(this.isoDirBox);
             this.Controls.Add(this.materialLabel3);
@@ -341,5 +359,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialSingleLineTextField isoDirBox;
         private MaterialSkin.Controls.MaterialRaisedButton browseIso;
+        private MaterialSkin.Controls.MaterialCheckBox widescreen;
     }
 }
