@@ -41,6 +41,10 @@ namespace PCSX2_Spectabis
             regionList.Add("SCPS");
             regionList.Add("SLPS");
             regionList.Add("SLPM");
+            regionList.Add("PSRM");
+            regionList.Add("SCED");
+            regionList.Add("SLPM");
+            regionList.Add("SIPS");
         }
 
         //Add Game Button
