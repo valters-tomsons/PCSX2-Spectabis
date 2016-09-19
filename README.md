@@ -17,6 +17,8 @@ Chainsawkitten - https://github.com/Chainsawkitten/gamesdb-csharp-api
 
 The Games DB - http://thegamesdb.net/ & http://wiki.thegamesdb.net/index.php/API_Introduction
 
+adoconnection - https://github.com/adoconnection/SevenZipExtractor
+
 The awesome community at StackOverflow
 
 
