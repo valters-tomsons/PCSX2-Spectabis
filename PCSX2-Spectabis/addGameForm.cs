@@ -6,6 +6,9 @@ using TheGamesDBAPI;
 using System.Net;
 using System.IO;
 using System.Diagnostics;
+using SevenZipExtractor;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace PCSX2_Spectabis
 {
@@ -16,6 +19,10 @@ namespace PCSX2_Spectabis
         public string ImgPath;
         public string realTitle;
         private readonly MaterialSkinManager materialSkinManager;
+        public static string gameloc;
+        public static string gameserial;
+        public static string filename;
+        public List<string> regionList = new List<string>();
 
         public addGameForm()
         {
@@ -24,6 +31,16 @@ namespace PCSX2_Spectabis
             // Initialize MaterialSkinManager
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
+
+            
+            //Adds items to region list
+            regionList.Add("SLUS");
+            regionList.Add("SCUS");
+            regionList.Add("SCES");
+            regionList.Add("SLES");
+            regionList.Add("SCPS");
+            regionList.Add("SLPS");
+            regionList.Add("SLPM");
         }
 
         //Add Game Button
@@ -98,6 +115,49 @@ namespace PCSX2_Spectabis
             {
                 //Sets path into textbox
                 gamePath.Text = browseIso.FileName;
+
+                //skips, if cso file
+
+                if(browseIso.FileName.EndsWith(".cso") == false)
+                {
+
+                    //Gets the game serial number from file
+                    using (ArchiveFile archiveFile = new ArchiveFile(browseIso.FileName))
+                    {
+                        foreach (Entry entry in archiveFile.Entries)
+                        {
+                            //If any file in archive starts with a regional number, save it in variable
+                            filename = new string(entry.FileName.Take(4).ToArray());
+                            if (regionList.Contains(filename))
+                            {
+                                gameserial = entry.FileName.Replace(".", String.Empty);
+                                gameserial = gameserial.Replace("_", "-");
+
+                                Console.WriteLine("Serial = " + gameserial);
+                            }
+                        }
+                    }
+
+                    //Gets game name from pcsx2 game db
+                    using (var reader = new StreamReader(Properties.Settings.Default.EmuDir + @"\GameIndex.dbf"))
+                    {
+                        bool serialFound = false;
+                        while (!reader.EndOfStream)
+                        {
+                            var line = reader.ReadLine();
+                            if (line.Contains("Serial = " + gameserial))
+                            {
+                                serialFound = true;
+                            }
+                            else if (serialFound == true)
+                            {
+                                Debug.WriteLine(line);
+                                gameName.Text = line.Replace("Name   = ",String.Empty);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -117,5 +177,6 @@ namespace PCSX2_Spectabis
 
             }
         }
+
     }
 }
