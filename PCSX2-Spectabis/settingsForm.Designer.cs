@@ -36,6 +36,7 @@
             this.materialCheckBox2 = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.blacklistBtn = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.askBeforeDwnl = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -85,7 +86,7 @@
             this.materialCheckBox1.AutoSize = true;
             this.materialCheckBox1.Depth = 0;
             this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox1.Location = new System.Drawing.Point(16, 244);
+            this.materialCheckBox1.Location = new System.Drawing.Point(9, 266);
             this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -102,7 +103,7 @@
             this.materialCheckBox2.AutoSize = true;
             this.materialCheckBox2.Depth = 0;
             this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox2.Location = new System.Drawing.Point(16, 285);
+            this.materialCheckBox2.Location = new System.Drawing.Point(9, 296);
             this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -142,11 +143,30 @@
             this.blacklistBtn.UseVisualStyleBackColor = true;
             this.blacklistBtn.Click += new System.EventHandler(this.blacklistBtn_Click);
             // 
+            // askBeforeDwnl
+            // 
+            this.askBeforeDwnl.AutoSize = true;
+            this.askBeforeDwnl.Depth = 0;
+            this.askBeforeDwnl.Enabled = false;
+            this.askBeforeDwnl.Font = new System.Drawing.Font("Roboto", 10F);
+            this.askBeforeDwnl.Location = new System.Drawing.Point(9, 326);
+            this.askBeforeDwnl.Margin = new System.Windows.Forms.Padding(0);
+            this.askBeforeDwnl.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.askBeforeDwnl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.askBeforeDwnl.Name = "askBeforeDwnl";
+            this.askBeforeDwnl.Ripple = true;
+            this.askBeforeDwnl.Size = new System.Drawing.Size(226, 30);
+            this.askBeforeDwnl.TabIndex = 9;
+            this.askBeforeDwnl.Text = "Ask before downloading box-art";
+            this.askBeforeDwnl.UseVisualStyleBackColor = true;
+            this.askBeforeDwnl.CheckedChanged += new System.EventHandler(this.askBeforeDwnl_CheckedChanged);
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 605);
+            this.Controls.Add(this.askBeforeDwnl);
             this.Controls.Add(this.blacklistBtn);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialCheckBox2);
@@ -176,5 +196,6 @@
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox2;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialRaisedButton blacklistBtn;
+        private MaterialSkin.Controls.MaterialCheckBox askBeforeDwnl;
     }
 }

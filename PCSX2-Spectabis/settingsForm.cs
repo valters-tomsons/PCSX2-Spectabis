@@ -103,5 +103,9 @@ namespace PCSX2_Spectabis
             Process.Start(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt");
         }
 
+        private void askBeforeDwnl_CheckedChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }

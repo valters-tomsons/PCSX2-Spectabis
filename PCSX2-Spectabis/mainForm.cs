@@ -7,6 +7,11 @@ using MaterialSkin.Controls;
 using System.Net;
 using System.Drawing;
 using System.Collections.Generic;
+using SevenZipExtractor;
+using System.Linq;
+using System.ComponentModel;
+using System.Threading;
+using TheGamesDBAPI;
 
 namespace PCSX2_Spectabis
 {
@@ -15,8 +20,12 @@ namespace PCSX2_Spectabis
 
         private static string emuDir;
         private static string addgamesDir;
+        private static string gameserial;
         public static List<string> gamelist = new List<string>();
-        
+        public List<string> regionList = new List<string>();
+        public BackgroundWorker artScrapper = new BackgroundWorker();
+        private AutoResetEvent _resetEvent = new AutoResetEvent(false);
+
 
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
@@ -56,6 +65,7 @@ namespace PCSX2_Spectabis
             //Initilization
             isoPanel.AutoScroll = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
+            artScrapper.WorkerSupportsCancellation = true;
 
             //Creates required directories
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
@@ -68,7 +78,20 @@ namespace PCSX2_Spectabis
                 newblacklist = File.Create(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt");
                 newblacklist.Close();
             }
-            
+
+            //Adds items to region list
+            regionList.Add("SLUS");
+            regionList.Add("SCUS");
+            regionList.Add("SCES");
+            regionList.Add("SLES");
+            regionList.Add("SCPS");
+            regionList.Add("SLPS");
+            regionList.Add("SLPM");
+            regionList.Add("PSRM");
+            regionList.Add("SCED");
+            regionList.Add("SLPM");
+            regionList.Add("SIPS");
+
             //Integrity Checks
             if (emuDir == "null")
             {
@@ -164,6 +187,64 @@ namespace PCSX2_Spectabis
                             {
                                 //adding a game code here
                                 string _imgsdir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\defbox.gif";
+
+                                //Automatic Game Name for image files, except .cso
+                                if (iso.EndsWith(".cso") == false)
+                                {
+                                    string _filename;
+                                    
+
+                                    //Gets the game serial number from file
+                                    using (ArchiveFile archiveFile = new ArchiveFile(iso))
+                                    {
+                                        foreach (Entry entry in archiveFile.Entries)
+                                        {
+                                            //If any file in archive starts with a regional number, save it in variable
+                                            
+                                            _filename = new string(entry.FileName.Take(4).ToArray());
+                                            if (regionList.Contains(_filename))
+                                            {
+                                                gameserial = entry.FileName.Replace(".", String.Empty);
+                                                gameserial = gameserial.Replace("_", "-");
+
+                                                Console.WriteLine("Serial = " + gameserial);
+                                            }
+                                        }
+                                    }
+
+                                    //Gets game name from pcsx2 game db
+                                    using (var reader = new StreamReader(Properties.Settings.Default.EmuDir + @"\GameIndex.dbf"))
+                                    {
+                                        bool serialFound = false;
+                                        while (!reader.EndOfStream)
+                                        {
+                                            var line = reader.ReadLine();
+                                            if (line.Contains("Serial = " + gameserial))
+                                            {
+                                                serialFound = true;
+                                            }
+                                            else if (serialFound == true)
+                                            {
+                                                _isoname = line.Replace("Name   = ", String.Empty);
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    //Art scrapper run in another thread
+                                    //Pings gamesDB and downloads box art cover
+                                    //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
+                                    Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
+                                    if(artScrapper.IsAlive)
+                                    {
+                                        artScrapper.Join();
+                                    }
+                                    artScrapper.Start();
+                                    
+
+
+                                }
+
                                 addIso(_imgsdir, iso, _isoname);
 
                             }
@@ -592,5 +673,104 @@ namespace PCSX2_Spectabis
         {
             scanDir();
         }
+
+        //Automatic box art scanner
+        private void doArtScrapping(string _isoname, string _imgsdir)
+        {
+            try
+            {
+                string _databaseurl = "http://thegamesdb.net/";
+
+                Debug.WriteLine("Starting ArtScrapping for " + _isoname);
+
+                WebRequest.Create(_databaseurl).GetResponse();
+                string _title;
+                this.Invoke((MethodInvoker)delegate {
+                    currentTask.Text = "Searching box art for " + _isoname + "...";
+                });
+                
+
+                foreach (GameSearchResult game in GamesDB.GetGames(_isoname, "Sony Playstation 2"))
+                {
+
+                    //Gets game's database ID
+                    Game newGame = GamesDB.GetGame(game.ID);
+                    //Trim title
+                    _title = game.Title.Replace(":", "");
+                    _title = game.Title.Replace(@"/", "");
+                    _title = game.Title.Replace(@".", "");
+                    //Sets image
+                    _imgsdir = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
+                    Debug.WriteLine(_isoname + " box art found!");
+                    this.Invoke((MethodInvoker)delegate {
+                        currentTask.Text = "Found box art for " + _isoname + "...";
+                    });
+                    
+                    //Stops at the first game
+                    break;
+                }
+
+                //Downloads the image
+                using (WebClient client = new WebClient())
+                {
+                    try
+                    {
+                        this.Invoke((MethodInvoker)delegate {
+                            currentTask.Text = "Downloading box art for " + _isoname + "...";
+                        });
+
+                        client.DownloadFile(_imgsdir, AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _isoname + @"\art.jpg");
+
+                        this.Invoke((MethodInvoker)delegate {
+                            currentTask.Text = "Box art for " + _isoname + " downloaded!";
+                        });
+                        
+
+
+                        //Updates the game image
+
+                        //Lists all games in isoPanel
+                        List<Control> listGames = isoPanel.Controls.Cast<Control>().ToList();
+
+                        foreach (Control gametile in listGames)
+                        {
+                            if (gametile.Name == _isoname)
+                            {
+                                this.Invoke((MethodInvoker)delegate {
+                                    currentTask.Text = "Setting box art for  " + _isoname;
+                                });
+                                
+                                PictureBox currentPicturebox = (PictureBox)gametile;
+                                currentPicturebox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _isoname + @"\art.jpg";
+                            }
+                        }
+
+                    }
+                    catch
+                    {
+                        Debug.WriteLine("Could not download the image!");
+                        this.Invoke((MethodInvoker)delegate {
+                            currentTask.Text = "Could not download box art for " + _isoname;
+                        });
+                    }
+
+                    this.Invoke((MethodInvoker)delegate {
+                        currentTask.Text = String.Empty;
+                    });
+                    _resetEvent.Set();
+                }
+
+
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+                this.Invoke((MethodInvoker)delegate {
+                    currentTask.Text = "TheGamesDB is unreachable!";
+                });
+                return;
+            }
+        }
+
     }
 }

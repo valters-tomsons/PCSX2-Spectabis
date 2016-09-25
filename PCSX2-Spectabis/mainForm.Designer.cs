@@ -41,6 +41,7 @@
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddDirectoryButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.refreshBtn = new MaterialSkin.Controls.MaterialFlatButton();
+            this.currentTask = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -158,11 +159,24 @@
             this.refreshBtn.UseVisualStyleBackColor = true;
             this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
+            // currentTask
+            // 
+            this.currentTask.AutoSize = true;
+            this.currentTask.Depth = 0;
+            this.currentTask.Font = new System.Drawing.Font("Roboto", 11F);
+            this.currentTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.currentTask.Location = new System.Drawing.Point(6, 603);
+            this.currentTask.MouseState = MaterialSkin.MouseState.HOVER;
+            this.currentTask.Name = "currentTask";
+            this.currentTask.Size = new System.Drawing.Size(0, 19);
+            this.currentTask.TabIndex = 5;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(977, 627);
+            this.Controls.Add(this.currentTask);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.AddDirectoryButton);
             this.Controls.Add(this.addGameButton);
@@ -190,6 +204,7 @@
         private System.Windows.Forms.ToolStripMenuItem emulatorToolStripMenuItem;
         private MaterialSkin.Controls.MaterialRaisedButton AddDirectoryButton;
         private MaterialSkin.Controls.MaterialFlatButton refreshBtn;
+        private MaterialSkin.Controls.MaterialLabel currentTask;
     }
 }
 
