@@ -118,20 +118,39 @@ namespace PCSX2_Spectabis
 
                         if(File.Exists(_isoDir))
                         {
+                            //Creates a group for game tile
+                            FlowLayoutPanel gameGroupBox = new FlowLayoutPanel();
+                            gameGroupBox.FlowDirection = FlowDirection.TopDown;
+                            gameGroupBox.AutoSize = true;
+                            gameGroupBox.WrapContents = true;
+                            gameGroupBox.Name = _name;
                             //Adds file to game file list
                             gamelist.Add(_isoDir);
 
-                            //Creates a game tile
+                            //Creates a game picture
                             PictureBox gameBox = new PictureBox();
 
                             gameBox.Height = 200;
                             gameBox.Width = 150;
                             gameBox.SizeMode = PictureBoxSizeMode.StretchImage;
                             gameBox.ImageLocation = _title + @"\art.jpg";
-                            isoPanel.Controls.Add(gameBox);
+                            //isoPanel.Controls.Add(gameBox);
                             gameBox.MouseDown += gameBox_Click;
                             gameBox.Tag = _isoDir;
                             gameBox.Name = _name;
+                            gameGroupBox.Controls.Add(gameBox);
+
+                            //If showtitle is selected, create a label object
+                            if (Properties.Settings.Default.showtitle == true)
+                            {
+                                MaterialLabel gamelabel = new MaterialLabel();
+                                gamelabel.Text = _name;
+                                gamelabel.Width = 150;
+                                gameGroupBox.Controls.Add(gamelabel);
+                            }
+
+                            isoPanel.Controls.Add(gameGroupBox);
+
                             Debug.WriteLine(_name + " has been added");
                         }  
                     }
@@ -231,15 +250,19 @@ namespace PCSX2_Spectabis
                                         }
                                     }
 
-                                    //Art scrapper run in another thread
-                                    //Pings gamesDB and downloads box art cover
-                                    //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
-                                    Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
-                                    if(artScrapper.IsAlive)
+                                    if(Properties.Settings.Default.autoArt == true)
                                     {
-                                        artScrapper.Join();
+                                        //Art scrapper run in another thread
+                                        //Pings gamesDB and downloads box art cover
+                                        //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
+                                        Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
+                                        if (artScrapper.IsAlive)
+                                        {
+                                            artScrapper.Join();
+                                        }
+                                        artScrapper.Start();
                                     }
-                                    artScrapper.Start();
+                                    
                                     
 
 
@@ -358,7 +381,7 @@ namespace PCSX2_Spectabis
             }
         }
 
-
+        //First Time Setup "OK" button
         private void welcomedirbtn_click (object sender, EventArgs e)
         {
             SelectDir();
@@ -397,6 +420,12 @@ namespace PCSX2_Spectabis
         public void addIso(string _img, string _isoDir, string _title)
         {
             //Item properties
+            FlowLayoutPanel gameGroupBox = new FlowLayoutPanel();
+            gameGroupBox.FlowDirection = FlowDirection.TopDown;
+            gameGroupBox.AutoSize = true;
+            gameGroupBox.WrapContents = true;
+            gameGroupBox.Name = _title;
+
             PictureBox gameBox = new PictureBox();
 
             gameBox.Height = 200;
@@ -464,18 +493,27 @@ namespace PCSX2_Spectabis
                 }
                 
             }
-            
 
             
+
             gameBox.Name = _title;
-            
-            //string _name = dir.Trim(new Char[] { ' ', '*', '.', '\\', '/' });
-
-            //Add gamebox and controls
-            isoPanel.Controls.Add(gameBox);
             gameBox.MouseDown += gameBox_Click;
             gameBox.Tag = _isoDir;
             gamelist.Add(_isoDir);
+            gameGroupBox.Controls.Add(gameBox);
+
+            //If showtitle is selected, create a label object
+            if (Properties.Settings.Default.showtitle == true)
+            {
+                MaterialLabel gamelabel = new MaterialLabel();
+                gamelabel.Text = _title;
+                gamelabel.Width = 150;
+                gameGroupBox.Controls.Add(gamelabel);
+            }
+
+            isoPanel.Controls.Add(gameGroupBox);
+
+
 
 
             Debug.WriteLine("creating a folder at - " + AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
@@ -613,7 +651,15 @@ namespace PCSX2_Spectabis
         {
             //Deletes last picturebox in isoPanel
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name, true);
-            isoPanel.Controls.Remove(lastGame);
+
+            var isoPanelList = isoPanel.Controls.OfType<Control>();
+            foreach(var child in isoPanelList)
+            {
+                if(child.Name == lastGame.Name)
+                {
+                    isoPanel.Controls.Remove(child);
+                }
+            }
 
             //Removes the game front gamelist
             string cfgDir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name;
@@ -688,7 +734,9 @@ namespace PCSX2_Spectabis
                 this.Invoke((MethodInvoker)delegate {
                     currentTask.Text = "Searching box art for " + _isoname + "...";
                 });
-                
+
+
+
 
                 foreach (GameSearchResult game in GamesDB.GetGames(_isoname, "Sony Playstation 2"))
                 {
@@ -701,6 +749,7 @@ namespace PCSX2_Spectabis
                     _title = game.Title.Replace(@".", "");
                     //Sets image
                     _imgsdir = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
+
                     Debug.WriteLine(_isoname + " box art found!");
                     this.Invoke((MethodInvoker)delegate {
                         currentTask.Text = "Found box art for " + _isoname + "...";

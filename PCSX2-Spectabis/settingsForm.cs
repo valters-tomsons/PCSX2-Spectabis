@@ -36,6 +36,16 @@ namespace PCSX2_Spectabis
                 materialCheckBox2.Checked = true;
             }
 
+            if(Properties.Settings.Default.showtitle == true)
+            {
+                showTitle.Checked = true;
+            }
+
+            if(Properties.Settings.Default.autoArt == true)
+            {
+                allowAutoDownload.Checked = true;
+            }
+
         }
 
         //On form closing
@@ -44,6 +54,8 @@ namespace PCSX2_Spectabis
             //Saves Settings
             Properties.Settings.Default.EmuDir = emuDir;
             Properties.Settings.Default.doubleclick = materialCheckBox2.Checked;
+            Properties.Settings.Default.showtitle = showTitle.Checked;
+            Properties.Settings.Default.autoArt = allowAutoDownload.Checked;
             Properties.Settings.Default.Save();
 
             //Show mainForm

@@ -36,7 +36,8 @@
             this.materialCheckBox2 = new MaterialSkin.Controls.MaterialCheckBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.blacklistBtn = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.askBeforeDwnl = new MaterialSkin.Controls.MaterialCheckBox();
+            this.showTitle = new MaterialSkin.Controls.MaterialCheckBox();
+            this.allowAutoDownload = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -143,30 +144,45 @@
             this.blacklistBtn.UseVisualStyleBackColor = true;
             this.blacklistBtn.Click += new System.EventHandler(this.blacklistBtn_Click);
             // 
-            // askBeforeDwnl
+            // showTitle
             // 
-            this.askBeforeDwnl.AutoSize = true;
-            this.askBeforeDwnl.Depth = 0;
-            this.askBeforeDwnl.Enabled = false;
-            this.askBeforeDwnl.Font = new System.Drawing.Font("Roboto", 10F);
-            this.askBeforeDwnl.Location = new System.Drawing.Point(9, 326);
-            this.askBeforeDwnl.Margin = new System.Windows.Forms.Padding(0);
-            this.askBeforeDwnl.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.askBeforeDwnl.MouseState = MaterialSkin.MouseState.HOVER;
-            this.askBeforeDwnl.Name = "askBeforeDwnl";
-            this.askBeforeDwnl.Ripple = true;
-            this.askBeforeDwnl.Size = new System.Drawing.Size(226, 30);
-            this.askBeforeDwnl.TabIndex = 9;
-            this.askBeforeDwnl.Text = "Ask before downloading box-art";
-            this.askBeforeDwnl.UseVisualStyleBackColor = true;
-            this.askBeforeDwnl.CheckedChanged += new System.EventHandler(this.askBeforeDwnl_CheckedChanged);
+            this.showTitle.AutoSize = true;
+            this.showTitle.Depth = 0;
+            this.showTitle.Font = new System.Drawing.Font("Roboto", 10F);
+            this.showTitle.Location = new System.Drawing.Point(9, 326);
+            this.showTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.showTitle.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.showTitle.MouseState = MaterialSkin.MouseState.HOVER;
+            this.showTitle.Name = "showTitle";
+            this.showTitle.Ripple = true;
+            this.showTitle.Size = new System.Drawing.Size(244, 30);
+            this.showTitle.TabIndex = 10;
+            this.showTitle.Text = "Show game title (Restart Required)";
+            this.showTitle.UseVisualStyleBackColor = true;
+            // 
+            // allowAutoDownload
+            // 
+            this.allowAutoDownload.AutoSize = true;
+            this.allowAutoDownload.Depth = 0;
+            this.allowAutoDownload.Font = new System.Drawing.Font("Roboto", 10F);
+            this.allowAutoDownload.Location = new System.Drawing.Point(9, 356);
+            this.allowAutoDownload.Margin = new System.Windows.Forms.Padding(0);
+            this.allowAutoDownload.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.allowAutoDownload.MouseState = MaterialSkin.MouseState.HOVER;
+            this.allowAutoDownload.Name = "allowAutoDownload";
+            this.allowAutoDownload.Ripple = true;
+            this.allowAutoDownload.Size = new System.Drawing.Size(262, 30);
+            this.allowAutoDownload.TabIndex = 11;
+            this.allowAutoDownload.Text = "Download game box art automatically";
+            this.allowAutoDownload.UseVisualStyleBackColor = true;
             // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 605);
-            this.Controls.Add(this.askBeforeDwnl);
+            this.Controls.Add(this.allowAutoDownload);
+            this.Controls.Add(this.showTitle);
             this.Controls.Add(this.blacklistBtn);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialCheckBox2);
@@ -196,6 +212,7 @@
         private MaterialSkin.Controls.MaterialCheckBox materialCheckBox2;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialRaisedButton blacklistBtn;
-        private MaterialSkin.Controls.MaterialCheckBox askBeforeDwnl;
+        private MaterialSkin.Controls.MaterialCheckBox showTitle;
+        private MaterialSkin.Controls.MaterialCheckBox allowAutoDownload;
     }
 }

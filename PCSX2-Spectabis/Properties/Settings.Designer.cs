@@ -82,5 +82,29 @@ namespace PCSX2_Spectabis.Properties {
                 this["doubleclick"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool showtitle {
+            get {
+                return ((bool)(this["showtitle"]));
+            }
+            set {
+                this["showtitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool autoArt {
+            get {
+                return ((bool)(this["autoArt"]));
+            }
+            set {
+                this["autoArt"] = value;
+            }
+        }
     }
 }
