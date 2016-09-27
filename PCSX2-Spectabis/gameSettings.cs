@@ -83,10 +83,16 @@ namespace PCSX2_Spectabis
             //Sets the values from PCSX2_vm ini
             if (_widescreen == "enabled") { widescreen.Checked = true;}
 
+            //GDSX file mipmap hack
+            var gsdxIni = new IniFile(cfgDir + @"\GSdx.ini");
+            var _mipmaphack = gsdxIni.Read("UserHacks_mipmap", "Settings");
+            if (_mipmaphack == "1"){ hwmipmap.Checked = true; } else { hwmipmap.Checked = false; }
+
 
             // Initialize MaterialSkinManager
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
+
         }
 
         //On form closing
@@ -97,6 +103,7 @@ namespace PCSX2_Spectabis
             var gameIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\spectabis.ini");
             var uiIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\PCSX2_ui.ini");
             var vmIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\PCSX2_vm.ini");
+            var gsdxIni = new IniFile(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + currentGame + @"\GSdx.ini");
 
             //Writes zoom level to pcsx2_ui
             uiIni.Write("Zoom", zoom.Text, "GSWindow");
@@ -154,6 +161,7 @@ namespace PCSX2_Spectabis
 
             gameIni.Write("isoDirectory", isoDirBox.Text, "Spectabis");
 
+
             //Widescreen patch - written to pcsx2_vm
             if (widescreen.Checked == true)
             {
@@ -162,6 +170,17 @@ namespace PCSX2_Spectabis
             else
             {
                 vmIni.Write("EnableWideScreenPatches", "disabled", "EmuCore");
+            }
+
+
+            //Mipmap hack - written to gsdx.ini
+            if (hwmipmap.Checked == true)
+            {
+                gsdxIni.Write("UserHacks_mipmap", "1", "Settings");
+            }
+            else
+            {
+                gsdxIni.Write("UserHacks_mipmap", "0", "Settings");
             }
 
             //Show mainForm
@@ -288,6 +307,15 @@ namespace PCSX2_Spectabis
             {
                 //Sets path into textbox
                 isoDirBox.Text = browseIsoDialog.FileName;
+            }
+        }
+
+        //GSDX mipmap hack warning
+        private void hwmipmap_CheckedChanged(object sender, EventArgs e)
+        {
+            if(hwmipmap.Checked == true)
+            {
+                MessageBox.Show("Please be aware this experimental hack is not perfect and may even crash your emulator. Also, this hack is only available to latest PCSX2 development builds.", "USE AT YOUR OWN RISK!");
             }
         }
     }

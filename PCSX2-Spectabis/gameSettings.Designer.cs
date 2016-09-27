@@ -46,6 +46,7 @@
             this.isoDirBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.browseIso = new MaterialSkin.Controls.MaterialRaisedButton();
             this.widescreen = new MaterialSkin.Controls.MaterialCheckBox();
+            this.hwmipmap = new MaterialSkin.Controls.MaterialCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).BeginInit();
             this.SuspendLayout();
             // 
@@ -309,11 +310,31 @@
             this.widescreen.Text = "Widescreen Patches";
             this.widescreen.UseVisualStyleBackColor = true;
             // 
+            // hwmipmap
+            // 
+            this.hwmipmap.AutoSize = true;
+            this.hwmipmap.Checked = true;
+            this.hwmipmap.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hwmipmap.Depth = 0;
+            this.hwmipmap.Font = new System.Drawing.Font("Roboto", 10F);
+            this.hwmipmap.Location = new System.Drawing.Point(175, 228);
+            this.hwmipmap.Margin = new System.Windows.Forms.Padding(0);
+            this.hwmipmap.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.hwmipmap.MouseState = MaterialSkin.MouseState.HOVER;
+            this.hwmipmap.Name = "hwmipmap";
+            this.hwmipmap.Ripple = true;
+            this.hwmipmap.Size = new System.Drawing.Size(185, 30);
+            this.hwmipmap.TabIndex = 17;
+            this.hwmipmap.Text = "Enable HW Mipmap Hack";
+            this.hwmipmap.UseVisualStyleBackColor = true;
+            this.hwmipmap.CheckedChanged += new System.EventHandler(this.hwmipmap_CheckedChanged);
+            // 
             // gameSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 420);
+            this.Controls.Add(this.hwmipmap);
             this.Controls.Add(this.widescreen);
             this.Controls.Add(this.browseIso);
             this.Controls.Add(this.isoDirBox);
@@ -360,5 +381,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField isoDirBox;
         private MaterialSkin.Controls.MaterialRaisedButton browseIso;
         private MaterialSkin.Controls.MaterialCheckBox widescreen;
+        private MaterialSkin.Controls.MaterialCheckBox hwmipmap;
     }
 }
