@@ -97,7 +97,7 @@ namespace PCSX2_Spectabis.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool autoArt {
             get {
                 return ((bool)(this["autoArt"]));
