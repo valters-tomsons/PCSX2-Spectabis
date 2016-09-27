@@ -119,5 +119,39 @@ namespace PCSX2_Spectabis
         {
             //throw new NotImplementedException();
         }
+
+        private void showTitle_Click(object sender, EventArgs e)
+        {
+            if(showTitle.Checked == true)
+            {
+                DialogResult dialogResult = MessageBox.Show("Spectabis needs to be restarted in order to enable this.", "Terminate Now?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    ActiveForm.Close();
+                    Application.Exit();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    showTitle.Checked = false;
+                    return;
+                }
+            }
+
+            if (showTitle.Checked == false)
+            {
+                DialogResult dialogResult = MessageBox.Show("Spectabis needs to be restarted in order to enable this.", "Terminate Now?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    ActiveForm.Close();
+                    Application.Exit();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    showTitle.Checked = true;
+                    return;
+                }
+            }
+
+        }
     }
 }

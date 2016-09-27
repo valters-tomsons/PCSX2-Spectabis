@@ -159,6 +159,7 @@
             this.showTitle.TabIndex = 10;
             this.showTitle.Text = "Show game title (Restart Required)";
             this.showTitle.UseVisualStyleBackColor = true;
+            this.showTitle.Click += new System.EventHandler(this.showTitle_Click);
             // 
             // allowAutoDownload
             // 
