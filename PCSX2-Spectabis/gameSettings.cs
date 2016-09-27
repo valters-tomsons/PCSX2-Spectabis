@@ -177,6 +177,7 @@ namespace PCSX2_Spectabis
             if (hwmipmap.Checked == true)
             {
                 gsdxIni.Write("UserHacks_mipmap", "1", "Settings");
+                gsdxIni.Write("UserHacks", "1", "Settings");
             }
             else
             {
