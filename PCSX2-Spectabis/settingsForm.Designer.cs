@@ -165,7 +165,6 @@
             // 
             this.allowAutoDownload.AutoSize = true;
             this.allowAutoDownload.Depth = 0;
-            this.allowAutoDownload.Enabled = false;
             this.allowAutoDownload.Font = new System.Drawing.Font("Roboto", 10F);
             this.allowAutoDownload.Location = new System.Drawing.Point(9, 356);
             this.allowAutoDownload.Margin = new System.Windows.Forms.Padding(0);

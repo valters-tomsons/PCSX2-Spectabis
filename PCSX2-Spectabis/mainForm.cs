@@ -820,6 +820,5 @@ namespace PCSX2_Spectabis
                 return;
             }
         }
-
     }
 }

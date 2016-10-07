@@ -101,7 +101,7 @@
             this.removeToolStripMenuItem});
             this.contextMenu.MouseState = MaterialSkin.MouseState.HOVER;
             this.contextMenu.Name = "materialContextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(201, 70);
+            this.contextMenu.Size = new System.Drawing.Size(201, 92);
             // 
             // emulatorToolStripMenuItem
             // 
