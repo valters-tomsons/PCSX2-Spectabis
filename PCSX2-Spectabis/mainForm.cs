@@ -67,6 +67,7 @@ namespace PCSX2_Spectabis
             UpdateUiEvent += new UpdateUiDelegate(addIso);
             artScrapper.WorkerSupportsCancellation = true;
 
+
             //Creates required directories
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\");
@@ -326,9 +327,9 @@ namespace PCSX2_Spectabis
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            isoPanel.Width = this.ClientSize.Width;
+            isoPanel.Width = this.ClientSize.Width - 12;
             isoPanel.Height = this.ClientSize.Height;
-            isoPanel.Location = new Point(this.ClientSize.Width / 100, (this.ClientSize.Height / 8 ) + addGameButton.Height);
+            isoPanel.Location = new Point((this.ClientSize.Width / 100 ), (this.ClientSize.Height / 8 ) + addGameButton.Height);
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
