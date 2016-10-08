@@ -106,5 +106,17 @@ namespace PCSX2_Spectabis.Properties {
                 this["autoArt"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
+        public string lastSize {
+            get {
+                return ((string)(this["lastSize"]));
+            }
+            set {
+                this["lastSize"] = value;
+            }
+        }
     }
 }

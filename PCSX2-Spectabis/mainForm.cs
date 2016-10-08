@@ -67,6 +67,14 @@ namespace PCSX2_Spectabis
             UpdateUiEvent += new UpdateUiDelegate(addIso);
             artScrapper.WorkerSupportsCancellation = true;
 
+            //Loads last window size
+            string _size = Properties.Settings.Default.lastSize;
+            _size = _size.Replace("{Width=", String.Empty);
+            _size = _size.Replace("}", String.Empty);
+            _size = _size.Replace(" Height=", String.Empty);
+            this.Width = Convert.ToInt32(_size.Split(',')[0]);
+            this.Height = Convert.ToInt32(_size.Split(',')[1]);
+
 
             //Creates required directories
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\");
@@ -327,7 +335,7 @@ namespace PCSX2_Spectabis
         //Main Timer
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            
+            Properties.Settings.Default.lastSize = Convert.ToString(this.Size);
             emuDir = Properties.Settings.Default.EmuDir;
             saveSettings();
         }
