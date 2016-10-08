@@ -185,6 +185,7 @@
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.isoPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1003, 150);
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Spectabis";
