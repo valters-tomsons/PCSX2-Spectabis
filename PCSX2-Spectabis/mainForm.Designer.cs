@@ -48,11 +48,13 @@
             // 
             // isoPanel
             // 
-            this.isoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.isoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.isoPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.isoPanel.Location = new System.Drawing.Point(12, 114);
             this.isoPanel.Name = "isoPanel";
-            this.isoPanel.Size = new System.Drawing.Size(952, 501);
+            this.isoPanel.Size = new System.Drawing.Size(989, 603);
             this.isoPanel.TabIndex = 0;
             this.isoPanel.TabStop = true;
             // 
@@ -62,7 +64,7 @@
             this.SettingsButton.BackColor = System.Drawing.Color.Transparent;
             this.SettingsButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SettingsButton.BackgroundImage")));
             this.SettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.SettingsButton.Location = new System.Drawing.Point(939, 32);
+            this.SettingsButton.Location = new System.Drawing.Point(965, 32);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(25, 25);
             this.SettingsButton.TabIndex = 1;
@@ -76,7 +78,7 @@
             this.addGameButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addGameButton.Depth = 0;
             this.addGameButton.Icon = null;
-            this.addGameButton.Location = new System.Drawing.Point(874, 72);
+            this.addGameButton.Location = new System.Drawing.Point(900, 72);
             this.addGameButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.addGameButton.Name = "addGameButton";
             this.addGameButton.Primary = true;
@@ -131,7 +133,7 @@
             this.AddDirectoryButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AddDirectoryButton.Depth = 0;
             this.AddDirectoryButton.Icon = null;
-            this.AddDirectoryButton.Location = new System.Drawing.Point(744, 72);
+            this.AddDirectoryButton.Location = new System.Drawing.Point(770, 72);
             this.AddDirectoryButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.AddDirectoryButton.Name = "AddDirectoryButton";
             this.AddDirectoryButton.Primary = true;
@@ -148,7 +150,7 @@
             this.refreshBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.refreshBtn.Depth = 0;
             this.refreshBtn.Icon = null;
-            this.refreshBtn.Location = new System.Drawing.Point(706, 72);
+            this.refreshBtn.Location = new System.Drawing.Point(732, 72);
             this.refreshBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.refreshBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.refreshBtn.Name = "refreshBtn";
@@ -175,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 627);
+            this.ClientSize = new System.Drawing.Size(1003, 720);
             this.Controls.Add(this.currentTask);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.AddDirectoryButton);
