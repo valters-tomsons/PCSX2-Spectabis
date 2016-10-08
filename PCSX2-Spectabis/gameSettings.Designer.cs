@@ -354,6 +354,7 @@
             this.Controls.Add(this.boxArt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "gameSettings";
+            this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "null";
             ((System.ComponentModel.ISupportInitialize)(this.boxArt)).EndInit();
