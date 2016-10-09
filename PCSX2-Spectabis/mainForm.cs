@@ -68,12 +68,16 @@ namespace PCSX2_Spectabis
             artScrapper.WorkerSupportsCancellation = true;
 
             //Loads last window size
-            string _size = Properties.Settings.Default.lastSize;
-            _size = _size.Replace("{Width=", String.Empty);
-            _size = _size.Replace("}", String.Empty);
-            _size = _size.Replace(" Height=", String.Empty);
-            this.Width = Convert.ToInt32(_size.Split(',')[0]);
-            this.Height = Convert.ToInt32(_size.Split(',')[1]);
+            if ((Properties.Settings.Default.lastSize == "null") == false)
+            {
+                string _size = Properties.Settings.Default.lastSize;
+                _size = _size.Replace("{Width=", String.Empty);
+                _size = _size.Replace("}", String.Empty);
+                _size = _size.Replace(" Height=", String.Empty);
+                this.Width = Convert.ToInt32(_size.Split(',')[0]);
+                this.Height = Convert.ToInt32(_size.Split(',')[1]);
+            }
+            
 
 
             //Creates required directories
@@ -441,7 +445,7 @@ namespace PCSX2_Spectabis
 
             _title = _title.Replace(@"/", string.Empty);
             _title = _title.Replace(@"\", string.Empty);
-            _title = _title.Replace(@":", string.Empty);
+            //_title = _title.Replace(@":", string.Empty);
 
             //Path to iso from mainForm
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
@@ -658,11 +662,13 @@ namespace PCSX2_Spectabis
         {
             //Deletes last picturebox in isoPanel
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name, true);
+            
 
             var isoPanelList = isoPanel.Controls.OfType<Control>();
             foreach(var child in isoPanelList)
             {
-                if(child.Name == lastGame.Name)
+                Debug.WriteLine(lastGame.Name + " -- " + child.Name );
+                if (child.Name == lastGame.Name)
                 {
                     isoPanel.Controls.Remove(child);
                 }
@@ -751,7 +757,7 @@ namespace PCSX2_Spectabis
                     //Gets game's database ID
                     Game newGame = GamesDB.GetGame(game.ID);
                     //Trim title
-                    _title = game.Title.Replace(":", "");
+                    //_title = game.Title.Replace(":", "");
                     _title = game.Title.Replace(@"/", "");
                     _title = game.Title.Replace(@".", "");
                     //Sets image
