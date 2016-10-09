@@ -77,7 +77,6 @@ namespace PCSX2_Spectabis
                 this.Width = Convert.ToInt32(_size.Split(',')[0]);
                 this.Height = Convert.ToInt32(_size.Split(',')[1]);
             }
-            
 
 
             //Creates required directories
@@ -85,7 +84,7 @@ namespace PCSX2_Spectabis
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\");
 
             //If blacklist file doesn't exist, create one
-            if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt") == false)
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt") == false)
             {
                 FileStream newblacklist = null;
                 newblacklist = File.Create(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt");
@@ -109,7 +108,7 @@ namespace PCSX2_Spectabis
             if (emuDir == "null")
             {
                 FirstTimeSetup(true);
-            } 
+            }
             else
             {
                 copyDLL();
@@ -129,7 +128,7 @@ namespace PCSX2_Spectabis
                         var gameIni = new IniFile(_title + @"\spectabis.ini");
                         var _isoDir = gameIni.Read("isoDirectory", "Spectabis");
 
-                        if(File.Exists(_isoDir))
+                        if (File.Exists(_isoDir))
                         {
                             //Creates a group for game tile
                             FlowLayoutPanel gameGroupBox = new FlowLayoutPanel();
@@ -165,7 +164,7 @@ namespace PCSX2_Spectabis
                             isoPanel.Controls.Add(gameGroupBox);
 
                             Debug.WriteLine(_name + " has been added");
-                        }  
+                        }
                     }
 
                 }
@@ -176,7 +175,7 @@ namespace PCSX2_Spectabis
             gamelist.Add("null");
 
             //Every startup look for new .iso files
-            if(addgamesDir != "null")
+            if (addgamesDir != "null")
             {
                 scanDir();
             }
@@ -194,7 +193,7 @@ namespace PCSX2_Spectabis
         //scan directory for new isos function
         private void scanDir()
         {
-            if(Directory.Exists(addgamesDir) == false)
+            if (Directory.Exists(addgamesDir) == false)
             {
                 return;
             }
@@ -205,7 +204,7 @@ namespace PCSX2_Spectabis
                 string _isoname = iso.Replace(addgamesDir + @"\", String.Empty);
 
                 //Checks if found file is already in game library
-                if(gamelist.Contains(iso) == false)
+                if (gamelist.Contains(iso) == false)
                 {
                     //Checks if apropriate file
                     if (_isoname.EndsWith(".iso") || _isoname.EndsWith(".gz") || _isoname.EndsWith(".cso"))
@@ -224,7 +223,7 @@ namespace PCSX2_Spectabis
                                 if (iso.EndsWith(".cso") == false)
                                 {
                                     string _filename;
-                                    
+
 
                                     //Gets the game serial number from file
                                     using (ArchiveFile archiveFile = new ArchiveFile(iso))
@@ -232,7 +231,7 @@ namespace PCSX2_Spectabis
                                         foreach (Entry entry in archiveFile.Entries)
                                         {
                                             //If any file in archive starts with a regional number, save it in variable
-                                            
+
                                             _filename = new string(entry.FileName.Take(4).ToArray());
                                             if (regionList.Contains(_filename))
                                             {
@@ -263,7 +262,7 @@ namespace PCSX2_Spectabis
                                         }
                                     }
 
-                                    if(Properties.Settings.Default.autoArt == true)
+                                    if (Properties.Settings.Default.autoArt == true)
                                     {
                                         //Art scrapper run in another thread
                                         //Pings gamesDB and downloads box art cover
@@ -275,8 +274,8 @@ namespace PCSX2_Spectabis
                                         }
                                         artScrapper.Start();
                                     }
-                                    
-                                    
+
+
 
 
                                 }
@@ -293,7 +292,7 @@ namespace PCSX2_Spectabis
                             }
                         }
                     }
-                }                  
+                }
             }
         }
 
@@ -310,7 +309,7 @@ namespace PCSX2_Spectabis
         //Opens emulator directory selection dialog
         public static void SelectDir()
         {
-        SelectDir:
+            SelectDir:
             //Opens Folder Browser Dialog
             using (FolderBrowserDialog fbd = new FolderBrowserDialog() { Description = "Navigate to where PCSX2.exe is located." })
             {
@@ -358,7 +357,7 @@ namespace PCSX2_Spectabis
 
                 welcomeBg.Visible = true;
 
-                if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\bg1.png"))
+                if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\bg1.png"))
                 {
                     welcomeBg.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\bg1.png";
                 }
@@ -366,7 +365,7 @@ namespace PCSX2_Spectabis
                 {
                     MessageBox.Show(@"Cannot find \resources\images\bg1.png");
                 }
-                
+
                 welcomeBg.Height = this.ClientSize.Height;
                 welcomeBg.Width = this.ClientSize.Width;
                 Controls.Add(welcomeBg);
@@ -393,7 +392,7 @@ namespace PCSX2_Spectabis
         }
 
         //First Time Setup "OK" button
-        private void welcomedirbtn_click (object sender, EventArgs e)
+        private void welcomedirbtn_click(object sender, EventArgs e)
         {
             SelectDir();
             FirstTimeSetup(false);
@@ -423,7 +422,7 @@ namespace PCSX2_Spectabis
             addGameForm addgame = new addGameForm();
             addgame.ControlCreator = UpdateUiEvent;
             addgame.Show();
-            
+
         }
 
 
@@ -445,14 +444,14 @@ namespace PCSX2_Spectabis
 
             _title = _title.Replace(@"/", string.Empty);
             _title = _title.Replace(@"\", string.Empty);
-            //_title = _title.Replace(@":", string.Empty);
+            _title = _title.Replace(@":", string.Empty);
 
             //Path to iso from mainForm
             string selfPath = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
 
 
             //If boxart exists in folder, then set it in isoPanel
-            if(File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg"))
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg"))
             {
                 gameBox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title + @"\art.jpg";
             }
@@ -464,9 +463,9 @@ namespace PCSX2_Spectabis
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _title);
 
             //copies pcsx2 inis to added game
-            
+
             //looks for inis in pcsx2 directory
-            if(Directory.Exists(emuDir + @"\inis\"))
+            if (Directory.Exists(emuDir + @"\inis\"))
             {
                 string[] inisDir = Directory.GetFiles(emuDir + @"\inis\");
                 foreach (string inifile in inisDir)
@@ -481,7 +480,7 @@ namespace PCSX2_Spectabis
             }
             else
             {
-                
+
                 //looks for pcsx2 inis in documents folder
                 if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PCSX2\inis"))
                 {
@@ -502,10 +501,10 @@ namespace PCSX2_Spectabis
                     MessageBox.Show("Cannot find default PCSX2 configuration at " + emuDir + @"\inis\");
                     MessageBox.Show("Neither in " + Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\PCSX2\inis");
                 }
-                
+
             }
 
-            
+
 
             gameBox.Name = _title;
             gameBox.MouseDown += gameBox_Click;
@@ -612,26 +611,26 @@ namespace PCSX2_Spectabis
                     var _fullscreen = gameIni.Read("fullscreen", "Spectabis");
                     var _fullboot = gameIni.Read("fullboot", "Spectabis");
                     var _nohacks = gameIni.Read("nohacks", "Spectabis");
-                    
+
 
                     string _launchargs = "";
 
                     if (_nogui == "1")
-                     {
+                    {
                         _launchargs = "--nogui ";
-                     }
+                    }
 
                     if (_fullscreen == "1")
-                     {
+                    {
                         _launchargs = _launchargs + "--fullscreen ";
-                     }
+                    }
 
                     if (_fullboot == "1")
-                     {
+                    {
                         _launchargs = _launchargs + "--fullboot ";
-                     }
+                    }
 
-                    if(_nohacks == "1")
+                    if (_nohacks == "1")
                     {
                         _launchargs = _launchargs + "--nohacks ";
                     }
@@ -662,12 +661,10 @@ namespace PCSX2_Spectabis
         {
             //Deletes last picturebox in isoPanel
             Directory.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + lastGame.Name, true);
-            
 
             var isoPanelList = isoPanel.Controls.OfType<Control>();
-            foreach(var child in isoPanelList)
+            foreach (var child in isoPanelList)
             {
-                Debug.WriteLine(lastGame.Name + " -- " + child.Name );
                 if (child.Name == lastGame.Name)
                 {
                     isoPanel.Controls.Remove(child);
@@ -757,7 +754,7 @@ namespace PCSX2_Spectabis
                     //Gets game's database ID
                     Game newGame = GamesDB.GetGame(game.ID);
                     //Trim title
-                    //_title = game.Title.Replace(":", "");
+                    _title = game.Title.Replace(":", "");
                     _title = game.Title.Replace(@"/", "");
                     _title = game.Title.Replace(@".", "");
                     //Sets image
@@ -767,7 +764,7 @@ namespace PCSX2_Spectabis
                     this.Invoke((MethodInvoker)delegate {
                         currentTask.Text = "Found box art for " + _isoname + "...";
                     });
-                    
+
                     //Stops at the first game
                     break;
                 }
@@ -786,7 +783,7 @@ namespace PCSX2_Spectabis
                         this.Invoke((MethodInvoker)delegate {
                             currentTask.Text = "Box art for " + _isoname + " downloaded!";
                         });
-                        
+
 
 
                         //Updates the game image
@@ -801,7 +798,7 @@ namespace PCSX2_Spectabis
                                 this.Invoke((MethodInvoker)delegate {
                                     currentTask.Text = "Setting box art for  " + _isoname;
                                 });
-                                
+
                                 PictureBox currentPicturebox = (PictureBox)gametile;
                                 currentPicturebox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"\resources\configs\" + _isoname + @"\art.jpg";
                             }
@@ -824,7 +821,7 @@ namespace PCSX2_Spectabis
 
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e);
                 this.Invoke((MethodInvoker)delegate {

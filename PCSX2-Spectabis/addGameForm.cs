@@ -100,6 +100,10 @@ namespace PCSX2_Spectabis
                 return;
             }
 
+            Debug.WriteLine(ImgPath);
+            Debug.WriteLine(isoPath);
+            Debug.WriteLine(realTitle);
+
             ControlCreator.DynamicInvoke(ImgPath, isoPath, realTitle);
 
             this.Close();
