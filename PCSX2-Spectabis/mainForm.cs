@@ -64,6 +64,7 @@ namespace PCSX2_Spectabis
 
             //Initilization
             isoPanel.AutoScroll = true;
+            isoPanel.AllowDrop = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
             artScrapper.WorkerSupportsCancellation = true;
 
@@ -353,7 +354,7 @@ namespace PCSX2_Spectabis
                 //Color bgCol = ColorTranslator.FromHtml("#0277BD");
                 //welcomeBg.BackColor = bgCol;
 
-                //Welcome Screen Background
+                Size = new Size(1122, 720);
 
                 welcomeBg.Visible = true;
 
@@ -386,6 +387,7 @@ namespace PCSX2_Spectabis
             }
             else
             {
+
                 welcomeBg.Visible = false;
                 welcomedirbtn.Visible = false;
             }
