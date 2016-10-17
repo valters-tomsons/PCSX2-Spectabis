@@ -905,6 +905,21 @@ namespace PCSX2_Spectabis
                             }
                         }
                     }
+
+                    //if drag&drop auto art is enabled, search for art
+                    if(Properties.Settings.Default.dropautoart == true)
+                    {
+                        //Art scrapper run in another thread
+                        //Pings gamesDB and downloads box art cover
+                        //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
+                        Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
+                        if (artScrapper.IsAlive)
+                        {
+                            artScrapper.Join();
+                        }
+                        artScrapper.Start();
+                    }
+
                 }
 
                 addIso(_imgsdir, file, _isoname);
