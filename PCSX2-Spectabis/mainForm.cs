@@ -166,7 +166,7 @@ namespace PCSX2_Spectabis
                             {
                                 MaterialLabel gamelabel = new MaterialLabel();
                                 gamelabel.Text = _name;
-                                gamelabel.Width = 150;
+                                gamelabel.Width = 180;
                                 gameGroupBox.Controls.Add(gamelabel);
                             }
 
@@ -527,7 +527,7 @@ namespace PCSX2_Spectabis
             {
                 MaterialLabel gamelabel = new MaterialLabel();
                 gamelabel.Text = _title;
-                gamelabel.Width = 150;
+                gamelabel.Width = 180;
                 gameGroupBox.Controls.Add(gamelabel);
             }
 
