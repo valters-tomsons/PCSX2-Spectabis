@@ -42,6 +42,7 @@
             this.blueGreyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.allowDropBoxArt = new MaterialSkin.Controls.MaterialCheckBox();
             this.colorshemelist.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -218,11 +219,28 @@
             this.materialLabel3.TabIndex = 13;
             this.materialLabel3.Text = "Color Sheme:";
             // 
+            // allowDropBoxArt
+            // 
+            this.allowDropBoxArt.AutoSize = true;
+            this.allowDropBoxArt.Depth = 0;
+            this.allowDropBoxArt.Font = new System.Drawing.Font("Roboto", 10F);
+            this.allowDropBoxArt.Location = new System.Drawing.Point(9, 431);
+            this.allowDropBoxArt.Margin = new System.Windows.Forms.Padding(0);
+            this.allowDropBoxArt.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.allowDropBoxArt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.allowDropBoxArt.Name = "allowDropBoxArt";
+            this.allowDropBoxArt.Ripple = true;
+            this.allowDropBoxArt.Size = new System.Drawing.Size(289, 30);
+            this.allowDropBoxArt.TabIndex = 14;
+            this.allowDropBoxArt.Text = "Allow auto box art when using drag & drop";
+            this.allowDropBoxArt.UseVisualStyleBackColor = true;
+            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 605);
+            this.Controls.Add(this.allowDropBoxArt);
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.allowAutoDownload);
             this.Controls.Add(this.showTitle);
@@ -262,5 +280,6 @@
         private System.Windows.Forms.ToolStripMenuItem blueGreyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pinkToolStripMenuItem;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialCheckBox allowDropBoxArt;
     }
 }

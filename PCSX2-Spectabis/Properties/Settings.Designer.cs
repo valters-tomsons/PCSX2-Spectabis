@@ -130,5 +130,17 @@ namespace PCSX2_Spectabis.Properties {
                 this["colorscheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool dropautoart {
+            get {
+                return ((bool)(this["dropautoart"]));
+            }
+            set {
+                this["dropautoart"] = value;
+            }
+        }
     }
 }

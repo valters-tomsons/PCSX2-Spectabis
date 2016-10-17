@@ -29,5 +29,8 @@
     <Setting Name="colorscheme" Type="System.String" Scope="User">
       <Value Profile="(Default)">bluegrey</Value>
     </Setting>
+    <Setting Name="dropautoart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

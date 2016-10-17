@@ -47,6 +47,11 @@ namespace PCSX2_Spectabis
                 allowAutoDownload.Checked = true;
             }
 
+            if(Properties.Settings.Default.dropautoart == true)
+            {
+                allowDropBoxArt.Checked = true;
+            }
+
         }
 
         //On form closing
@@ -57,6 +62,7 @@ namespace PCSX2_Spectabis
             Properties.Settings.Default.doubleclick = materialCheckBox2.Checked;
             Properties.Settings.Default.showtitle = showTitle.Checked;
             Properties.Settings.Default.autoArt = allowAutoDownload.Checked;
+            Properties.Settings.Default.dropautoart = allowDropBoxArt.Checked;
             Properties.Settings.Default.Save();
 
             //Show mainForm
