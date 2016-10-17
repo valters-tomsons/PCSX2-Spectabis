@@ -864,9 +864,9 @@ namespace PCSX2_Spectabis
                     return;
                 }
 
-                _isoname = file;
+                _isoname = Path.GetFileNameWithoutExtension(file);
 
-                if((file.EndsWith(".bin") == false) && (file.EndsWith(".cso") == false))
+                if ((file.EndsWith(".bin") == false) && (file.EndsWith(".cso") == false))
                 {
                     //Gets the game serial number from file
                     using (ArchiveFile archiveFile = new ArchiveFile(file))
@@ -905,10 +905,10 @@ namespace PCSX2_Spectabis
                             }
                         }
                     }
-
-                    addIso(_imgsdir, file, _isoname);
-
                 }
+
+                addIso(_imgsdir, file, _isoname);
+
             }
         }
     }
