@@ -117,7 +117,7 @@ namespace PCSX2_Spectabis
         {
 
             //File Filter
-            browseIso.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img|Compressed ISO (.cso)|*.cso|gzip archive (.gz)|*.gz|cue file (.cue)|*.cue";
+            browseIso.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img|Compressed ISO (.cso)|*.cso|gzip archive (.gz)|*.gz|BIN file (.bin)|*.bin";
 
             if (browseIso.ShowDialog() == DialogResult.OK)
             {
@@ -126,7 +126,7 @@ namespace PCSX2_Spectabis
 
                 //skips, if unsupported file type file
 
-                if((browseIso.FileName.EndsWith(".cso") == false) && (browseIso.FileName.EndsWith(".cue") == false) && (browseIso.FileName.EndsWith(".bin") == false))
+                if((browseIso.FileName.EndsWith(".cso") == false) && (browseIso.FileName.EndsWith(".bin") == false))
                 {
 
                     //Gets the game serial number from file

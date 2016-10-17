@@ -216,7 +216,7 @@ namespace PCSX2_Spectabis
                 if (gamelist.Contains(iso) == false)
                 {
                     //Checks if apropriate file
-                    if (_isoname.EndsWith(".iso") && _isoname.EndsWith(".gz") && _isoname.EndsWith(".cso") && _isoname.EndsWith(".cue"))
+                    if (_isoname.EndsWith(".iso") || _isoname.EndsWith(".gz") || _isoname.EndsWith(".cso") || _isoname.EndsWith(".bin"))
                     {
                         //if found iso exists in blacklist
                         if (File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + @"\resources\logs\blacklist.txt").Contains(iso) == false)
@@ -229,7 +229,7 @@ namespace PCSX2_Spectabis
                                 string _imgsdir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\defbox.gif";
 
                                 //Automatic Game Name for image files, except .cso and bin/cue
-                                if ((iso.EndsWith(".cso") == false) && (iso.EndsWith(".cue") == false))
+                                if ((iso.EndsWith(".cso") == false) && (iso.EndsWith(".bin") == false))
                                 {
                                     string _filename;
 
@@ -854,55 +854,61 @@ namespace PCSX2_Spectabis
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string _filename;
             string _isoname;
+            string _imgsdir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\defbox.gif";
 
             foreach (string file in files)
             {
-                if((file.EndsWith(".iso") == false) && (file.EndsWith(".cso") == false) && (file.EndsWith(".mdf") == false) && (file.EndsWith(".gz") == false) && (file.EndsWith(".cue") == false))
+                if((file.EndsWith(".iso") == false) && (file.EndsWith(".cso") == false) && (file.EndsWith(".mdf") == false) && (file.EndsWith(".gz") == false) && (file.EndsWith(".bin") == false))
                 {
                     currentTask.Text = file + " is not a valid file!";
                     return;
                 }
 
-                //Gets the game serial number from file
-                using (ArchiveFile archiveFile = new ArchiveFile(file))
+                _isoname = file;
+
+                if((file.EndsWith(".bin") == false) && (file.EndsWith(".cso") == false))
                 {
-                    foreach (Entry entry in archiveFile.Entries)
+                    //Gets the game serial number from file
+                    using (ArchiveFile archiveFile = new ArchiveFile(file))
                     {
-                        //If any file in archive starts with a regional number, save it in variable
-
-                        _filename = new string(entry.FileName.Take(4).ToArray());
-                        if (regionList.Contains(_filename))
+                        foreach (Entry entry in archiveFile.Entries)
                         {
-                            gameserial = entry.FileName.Replace(".", String.Empty);
-                            gameserial = gameserial.Replace("_", "-");
+                            //If any file in archive starts with a regional number, save it in variable
 
-                            Console.WriteLine("Serial = " + gameserial);
+                            _filename = new string(entry.FileName.Take(4).ToArray());
+                            if (regionList.Contains(_filename))
+                            {
+                                gameserial = entry.FileName.Replace(".", String.Empty);
+                                gameserial = gameserial.Replace("_", "-");
+
+                                Console.WriteLine("Serial = " + gameserial);
+                            }
                         }
                     }
-                }
 
-                //Gets game name from pcsx2 game db
-                using (var reader = new StreamReader(Properties.Settings.Default.EmuDir + @"\GameIndex.dbf"))
-                {
-                    bool serialFound = false;
-                    while (!reader.EndOfStream)
+                    //Gets game name from pcsx2 game db
+                    using (var reader = new StreamReader(Properties.Settings.Default.EmuDir + @"\GameIndex.dbf"))
                     {
-                        var line = reader.ReadLine();
-                        if (line.Contains("Serial = " + gameserial))
+                        bool serialFound = false;
+                        while (!reader.EndOfStream)
                         {
-                            serialFound = true;
-                        }
-                        else if (serialFound == true)
-                        {
-                            _isoname = line.Replace("Name   = ", String.Empty);
-                            Debug.WriteLine(_isoname);
-                            break;
+                            var line = reader.ReadLine();
+                            if (line.Contains("Serial = " + gameserial))
+                            {
+                                serialFound = true;
+                            }
+                            else if (serialFound == true)
+                            {
+                                _isoname = line.Replace("Name   = ", String.Empty);
+                                Debug.WriteLine(_isoname);
+                                break;
+                            }
                         }
                     }
+
+                    addIso(_imgsdir, file, _isoname);
+
                 }
-
-
-
             }
         }
     }
