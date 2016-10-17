@@ -117,16 +117,16 @@ namespace PCSX2_Spectabis
         {
 
             //File Filter
-            browseIso.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img|Compressed ISO (.cso)|*.cso|gzip archive (.gz)|*.gz";
+            browseIso.Filter = "ISO image (.iso)|*.iso|Media Descriptor File (.mdf)|*.mdf|Image File (.img)|*.img|Compressed ISO (.cso)|*.cso|gzip archive (.gz)|*.gz|cue file (.cue)|*.cue";
 
             if (browseIso.ShowDialog() == DialogResult.OK)
             {
                 //Sets path into textbox
                 gamePath.Text = browseIso.FileName;
 
-                //skips, if cso file
+                //skips, if unsupported file type file
 
-                if(browseIso.FileName.EndsWith(".cso") == false)
+                if((browseIso.FileName.EndsWith(".cso") == false) && (browseIso.FileName.EndsWith(".cue") == false) && (browseIso.FileName.EndsWith(".bin") == false))
                 {
 
                     //Gets the game serial number from file

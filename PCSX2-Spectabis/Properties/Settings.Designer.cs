@@ -118,5 +118,17 @@ namespace PCSX2_Spectabis.Properties {
                 this["lastSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("bluegrey")]
+        public string colorscheme {
+            get {
+                return ((string)(this["colorscheme"]));
+            }
+            set {
+                this["colorscheme"] = value;
+            }
+        }
     }
 }

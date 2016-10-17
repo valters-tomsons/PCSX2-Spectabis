@@ -26,6 +26,7 @@ namespace PCSX2_Spectabis
             materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
 
+
             if (Properties.Settings.Default.nightMode == true)
             {
                 materialCheckBox1.Checked = true;
@@ -120,6 +121,8 @@ namespace PCSX2_Spectabis
             //throw new NotImplementedException();
         }
 
+
+        //Show title checkbox, restart if checked
         private void showTitle_Click(object sender, EventArgs e)
         {
             if(showTitle.Checked == true)

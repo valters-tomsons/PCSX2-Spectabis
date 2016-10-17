@@ -48,6 +48,7 @@
             // 
             // isoPanel
             // 
+            this.isoPanel.AllowDrop = true;
             this.isoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -57,6 +58,8 @@
             this.isoPanel.Size = new System.Drawing.Size(989, 603);
             this.isoPanel.TabIndex = 0;
             this.isoPanel.TabStop = true;
+            this.isoPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.isoPanel_DragDrop);
+            this.isoPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.isoPanel_DragEnter);
             // 
             // SettingsButton
             // 
@@ -163,11 +166,12 @@
             // 
             // currentTask
             // 
+            this.currentTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.currentTask.AutoSize = true;
             this.currentTask.Depth = 0;
             this.currentTask.Font = new System.Drawing.Font("Roboto", 11F);
             this.currentTask.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.currentTask.Location = new System.Drawing.Point(6, 603);
+            this.currentTask.Location = new System.Drawing.Point(6, 695);
             this.currentTask.MouseState = MaterialSkin.MouseState.HOVER;
             this.currentTask.Name = "currentTask";
             this.currentTask.Size = new System.Drawing.Size(0, 19);

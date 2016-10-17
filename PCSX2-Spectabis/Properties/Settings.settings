@@ -26,5 +26,8 @@
     <Setting Name="lastSize" Type="System.String" Scope="User">
       <Value Profile="(Default)">null</Value>
     </Setting>
+    <Setting Name="colorscheme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">bluegrey</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
