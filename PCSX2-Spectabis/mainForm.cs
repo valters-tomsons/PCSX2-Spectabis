@@ -12,6 +12,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Threading;
 using TheGamesDBAPI;
+using System.Threading.Tasks;
 
 namespace PCSX2_Spectabis
 {
@@ -194,9 +195,22 @@ namespace PCSX2_Spectabis
         private static void copyDLL()
         {
             Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\plugins\");
-            File.Copy(emuDir + @"\plugins\LilyPad.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\LilyPad.dll", true);
-            File.Copy(emuDir + @"\plugins\GSdx32-SSE2.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\GSdx32-SSE2.dll", true);
-            File.Copy(emuDir + @"\plugins\Spu2-X.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\Spu2-X.dll", true);
+            //Checks and copies needed plugin files from emulator directory, if they exist
+
+            if(File.Exists(emuDir + @"\plugins\LilyPad.dll"))
+            {
+                File.Copy(emuDir + @"\plugins\LilyPad.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\LilyPad.dll", true);
+            }
+            
+            if(File.Exists(emuDir + @"\plugins\GSdx32-SSE2.dll"))
+            {
+                File.Copy(emuDir + @"\plugins\GSdx32-SSE2.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\GSdx32-SSE2.dll", true);
+            }
+
+            if(File.Exists(emuDir + @"\plugins\Spu2-X.dll"))
+            {
+                File.Copy(emuDir + @"\plugins\Spu2-X.dll", AppDomain.CurrentDomain.BaseDirectory + @"\plugins\Spu2-X.dll", true);
+            }
         }
 
         //scan directory for new isos function
@@ -912,12 +926,21 @@ namespace PCSX2_Spectabis
                         //Art scrapper run in another thread
                         //Pings gamesDB and downloads box art cover
                         //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
-                        Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
-                        if (artScrapper.IsAlive)
-                        {
-                            artScrapper.Join();
-                        }
-                        artScrapper.Start();
+
+                        //Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
+                        //if (artScrapper.IsAlive)
+                        //{
+                        //    artScrapper.Join();
+                        //}
+                        //artScrapper.Start();
+
+                        Task DRAGartscrapper = new Task(() => doArtScrapping(_isoname, _imgsdir));
+                        DRAGartscrapper.Start();
+                        
+
+                        //DRAGartscrapper.Start();
+
+
                     }
 
                 }
