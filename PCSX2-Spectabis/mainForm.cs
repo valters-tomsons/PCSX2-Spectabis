@@ -949,5 +949,26 @@ namespace PCSX2_Spectabis
 
             }
         }
+
+        //Refreshes box art
+        private void refreshArt_Tick(object sender, EventArgs e)
+        {
+            //loops all controls in isopanel
+            foreach (Control child in isoPanel.Controls)
+            {
+                //loops through the items in found control
+                foreach (var art in child.Controls)
+                {
+                    //if found item is an image
+                    if (Convert.ToString(art.GetType()) == "System.Windows.Forms.PictureBox")
+                    {               
+                        //set the image     
+                        PictureBox artbox = (PictureBox)art;
+                        artbox.ImageLocation = AppDomain.CurrentDomain.BaseDirectory + @"resources\configs\" + child.Name + @"\art.jpg";
+                    }
+                    
+                }
+            }
+        }
     }
 }

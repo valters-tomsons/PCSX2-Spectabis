@@ -42,6 +42,7 @@
             this.AddDirectoryButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.refreshBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.currentTask = new MaterialSkin.Controls.MaterialLabel();
+            this.refreshArt = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -177,6 +178,12 @@
             this.currentTask.Size = new System.Drawing.Size(0, 19);
             this.currentTask.TabIndex = 5;
             // 
+            // refreshArt
+            // 
+            this.refreshArt.Enabled = true;
+            this.refreshArt.Interval = 300;
+            this.refreshArt.Tick += new System.EventHandler(this.refreshArt_Tick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +219,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton AddDirectoryButton;
         private MaterialSkin.Controls.MaterialFlatButton refreshBtn;
         private MaterialSkin.Controls.MaterialLabel currentTask;
+        private System.Windows.Forms.Timer refreshArt;
     }
 }
 
