@@ -43,6 +43,7 @@
             this.refreshBtn = new MaterialSkin.Controls.MaterialFlatButton();
             this.currentTask = new MaterialSkin.Controls.MaterialLabel();
             this.refreshArt = new System.Windows.Forms.Timer(this.components);
+            this.taskList = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
@@ -184,6 +185,12 @@
             this.refreshArt.Interval = 300;
             this.refreshArt.Tick += new System.EventHandler(this.refreshArt_Tick);
             // 
+            // taskList
+            // 
+            this.taskList.Enabled = true;
+            this.taskList.Interval = 2000;
+            this.taskList.Tick += new System.EventHandler(this.taskList_Tick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +227,7 @@
         private MaterialSkin.Controls.MaterialFlatButton refreshBtn;
         private MaterialSkin.Controls.MaterialLabel currentTask;
         private System.Windows.Forms.Timer refreshArt;
+        private System.Windows.Forms.Timer taskList;
     }
 }
 

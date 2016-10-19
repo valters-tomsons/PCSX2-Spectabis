@@ -27,6 +27,10 @@ namespace PCSX2_Spectabis
         public BackgroundWorker artScrapper = new BackgroundWorker();
         private AutoResetEvent _resetEvent = new AutoResetEvent(false);
 
+        //Async game art scrapping variables
+        List<Tuple<String, String>> taskQueue = new List<Tuple<String, String>>();
+        public BackgroundWorker QueueThread = new BackgroundWorker();
+        
 
         //Delegate setup for addGameForm
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
@@ -37,6 +41,8 @@ namespace PCSX2_Spectabis
         //First Time Setup
         public PictureBox welcomeBg = new PictureBox();
         public MaterialFlatButton welcomedirbtn = new MaterialFlatButton();
+
+        
 
 
         public MainWindow()
@@ -76,6 +82,11 @@ namespace PCSX2_Spectabis
             isoPanel.AllowDrop = true;
             UpdateUiEvent += new UpdateUiDelegate(addIso);
             artScrapper.WorkerSupportsCancellation = true;
+
+            QueueThread.WorkerSupportsCancellation = true;
+            QueueThread.WorkerReportsProgress = true;
+            QueueThread.DoWork += QueueThread_DoWork;
+            //QueueThread.RunWorkerCompleted += QueueThread_DoWork;
 
             //Loads last window size
             if ((Properties.Settings.Default.lastSize == "null") == false)
@@ -287,15 +298,8 @@ namespace PCSX2_Spectabis
 
                                     if (Properties.Settings.Default.autoArt == true)
                                     {
-                                        //Art scrapper run in another thread
-                                        //Pings gamesDB and downloads box art cover
-                                        //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
-                                        Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
-                                        if (artScrapper.IsAlive)
-                                        {
-                                            artScrapper.Join();
-                                        }
-                                        artScrapper.Start();
+                                        Debug.WriteLine("Adding " + _isoname + " to taskQueue!");
+                                        taskQueue.Add(new Tuple<String, String>(_isoname, _imgsdir));
                                     }
 
 
@@ -754,7 +758,7 @@ namespace PCSX2_Spectabis
             scanDir();
         }
 
-        //Automatic box art scanner
+        //Automatic box art scanner method
         private void doArtScrapping(string _isoname, string _imgsdir)
         {
             try
@@ -763,9 +767,10 @@ namespace PCSX2_Spectabis
 
                 Debug.WriteLine("Starting ArtScrapping for " + _isoname);
 
-                WebRequest.Create(_databaseurl).GetResponse();
+                //WebRequest.Create(_databaseurl).GetResponse();
                 string _title;
-                this.Invoke((MethodInvoker)delegate {
+                this.Invoke((MethodInvoker)delegate 
+                {
                     currentTask.Text = "Searching box art for " + _isoname + "...";
                 });
 
@@ -807,10 +812,6 @@ namespace PCSX2_Spectabis
                         this.Invoke((MethodInvoker)delegate {
                             currentTask.Text = "Box art for " + _isoname + " downloaded!";
                         });
-
-
-
-                        //Updates the game image
 
                         //Lists all games in isoPanel
                         List<Control> listGames = isoPanel.Controls.Cast<Control>().ToList();
@@ -854,7 +855,6 @@ namespace PCSX2_Spectabis
                 return;
             }
         }
-
 
         //file drag effect
         private void isoPanel_DragEnter(object sender, DragEventArgs e)
@@ -900,6 +900,8 @@ namespace PCSX2_Spectabis
                         }
                     }
 
+                    Debug.WriteLine("Getting gamename from PCSX2DB");
+
                     //Gets game name from pcsx2 game db
                     using (var reader = new StreamReader(Properties.Settings.Default.EmuDir + @"\GameIndex.dbf"))
                     {
@@ -920,27 +922,20 @@ namespace PCSX2_Spectabis
                         }
                     }
 
+                    Debug.WriteLine("Preparing to add " + _isoname + " to taskQueue");
+
                     //if drag&drop auto art is enabled, search for art
                     if(Properties.Settings.Default.dropautoart == true)
                     {
                         //Art scrapper run in another thread
                         //Pings gamesDB and downloads box art cover
-                        //Thread artScrapper = new Thread(() => doArtScrapping(_isoname, _imgsdir));
 
-                        //Thread artScrapper = new Thread(delegate () { doArtScrapping(_isoname, _imgsdir); });
-                        //if (artScrapper.IsAlive)
-                        //{
-                        //    artScrapper.Join();
-                        //}
-                        //artScrapper.Start();
-
-                        Task DRAGartscrapper = new Task(() => doArtScrapping(_isoname, _imgsdir));
-                        DRAGartscrapper.Start();
-                        
-
+                        //Task DRAGartscrapper = new Task(() => doArtScrapping(_isoname, _imgsdir));
                         //DRAGartscrapper.Start();
 
-
+                        //Adds the game to taskQueue list
+                        Debug.WriteLine("Adding " + _isoname + " to taskQueue!");
+                        taskQueue.Add(new Tuple<String, String>(_isoname, _imgsdir));
                     }
 
                 }
@@ -950,7 +945,7 @@ namespace PCSX2_Spectabis
             }
         }
 
-        //Refreshes box art
+        //Refreshes box art timer
         private void refreshArt_Tick(object sender, EventArgs e)
         {
             //loops all controls in isopanel
@@ -970,5 +965,55 @@ namespace PCSX2_Spectabis
                 }
             }
         }
+
+        //async task list tick function
+        private void doTaskQueue()
+        {
+            //loop all values in taskQueue list
+            foreach (var task in taskQueue)
+            {
+                string _isoname = task.Item1;
+                string _imgsdir = task.Item2;
+
+                //Removes the game from taskQueue list
+                taskQueue.Remove(task);
+
+                //does artscrapping on another thread with values
+                doArtScrapping(_isoname, _imgsdir);
+
+                Thread.Sleep(3000);
+
+                //stops at first value
+                break;
+            }
+        }
+
+        //timer for async task list
+        private void taskList_Tick(object sender, EventArgs e)
+        {
+            //Checks if taskQueue isn't empty
+            Debug.WriteLine("Checking, if taskList has any values");
+            if(taskQueue.Any())
+            {
+                //Checks, if QueueThread is already busy
+                Debug.WriteLine("Checking if QueueThread is busy.");
+                if (QueueThread.IsBusy == false)
+                {
+                    //If not busy, run the QueueThread
+                    Debug.WriteLine("QueueThread is not busy, starting it");
+                    QueueThread.RunWorkerAsync();
+                    //Thread artScrapper = new Thread(() => doTaskQueue());
+                }
+            }
+        }
+
+        //QueueThread Work
+        private void QueueThread_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //When QueueThread is started, continue to doTaskQueue and dispose of thread, so it reports when it's stopped
+            QueueThread.Dispose();
+            doTaskQueue();
+        }
+
     }
 }
