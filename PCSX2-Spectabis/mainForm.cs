@@ -966,28 +966,6 @@ namespace PCSX2_Spectabis
             }
         }
 
-        //async task list tick function
-        private void doTaskQueue()
-        {
-            //loop all values in taskQueue list
-            foreach (var task in taskQueue)
-            {
-                string _isoname = task.Item1;
-                string _imgsdir = task.Item2;
-
-                //Removes the game from taskQueue list
-                taskQueue.Remove(task);
-
-                //does artscrapping on another thread with values
-                doArtScrapping(_isoname, _imgsdir);
-
-                Thread.Sleep(3000);
-
-                //stops at first value
-                break;
-            }
-        }
-
         //timer for async task list
         private void taskList_Tick(object sender, EventArgs e)
         {
@@ -1007,12 +985,26 @@ namespace PCSX2_Spectabis
             }
         }
 
-        //QueueThread Work
+        //QueueThread Work //async task list tick function
         private void QueueThread_DoWork(object sender, DoWorkEventArgs e)
         {
-            //When QueueThread is started, continue to doTaskQueue and dispose of thread, so it reports when it's stopped
-            QueueThread.Dispose();
-            doTaskQueue();
+            //loop all values in taskQueue list
+            foreach (var task in taskQueue)
+            {
+                string _isoname = task.Item1;
+                string _imgsdir = task.Item2;
+
+                //Removes the game from taskQueue list
+                taskQueue.Remove(task);
+
+                //does artscrapping on another thread with values
+                doArtScrapping(_isoname, _imgsdir);
+
+                Thread.Sleep(3000);
+
+                //stops at first value
+                break;
+            }
         }
 
     }
