@@ -1000,8 +1000,6 @@ namespace PCSX2_Spectabis
                 //does artscrapping on another thread with values
                 doArtScrapping(_isoname, _imgsdir);
 
-                Thread.Sleep(3000);
-
                 //stops at first value
                 break;
             }
