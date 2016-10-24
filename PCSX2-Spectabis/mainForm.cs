@@ -790,9 +790,21 @@ namespace PCSX2_Spectabis
                     _imgsdir = "http://thegamesdb.net/banners/" + newGame.Images.BoxartFront.Path;
 
                     Debug.WriteLine(_isoname + " box art found!");
-                    this.Invoke((MethodInvoker)delegate {
-                        currentTask.Text = "Found box art for " + _isoname + "...";
-                    });
+
+                    if(_isoname.Contains(_title))
+                    {
+                        this.Invoke((MethodInvoker)delegate {
+                            currentTask.Text = "Found box art for " + _isoname + "...";
+                        });
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate {
+                            currentTask.Text = "TheGamesDB screwed up again and didn't return the proper art...";
+                        });
+                        Thread.Sleep(1000);
+                    }
+                   
 
                     //Stops at the first game
                     break;
@@ -1005,5 +1017,14 @@ namespace PCSX2_Spectabis
             }
         }
 
+        //Menu Button
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PictureBox menuBackground = new PictureBox();
+            menuBackground.BackColor = Color.White;
+            menuBackground.Location = new Point(this.Height, 0);
+            menuBackground.Width = 200;
+            menuBackground.Height = this.Height;
+        }
     }
 }
