@@ -44,10 +44,8 @@
             this.currentTask = new MaterialSkin.Controls.MaterialLabel();
             this.refreshArt = new System.Windows.Forms.Timer(this.components);
             this.taskList = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).BeginInit();
             this.contextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // isoPanel
@@ -193,24 +191,11 @@
             this.taskList.Interval = 2000;
             this.taskList.Tick += new System.EventHandler(this.taskList_Tick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 72);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 720);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.currentTask);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.AddDirectoryButton);
@@ -224,7 +209,6 @@
             this.Text = "Spectabis";
             ((System.ComponentModel.ISupportInitialize)(this.SettingsButton)).EndInit();
             this.contextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +228,6 @@
         private MaterialSkin.Controls.MaterialLabel currentTask;
         private System.Windows.Forms.Timer refreshArt;
         private System.Windows.Forms.Timer taskList;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

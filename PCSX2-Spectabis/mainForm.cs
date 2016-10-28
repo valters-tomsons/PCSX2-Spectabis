@@ -19,11 +19,16 @@ namespace PCSX2_Spectabis
     public partial class MainWindow : MaterialForm
     {
 
+        //Basic Variables
         private static string emuDir;
         private static string addgamesDir;
         private static string gameserial;
+
+        //Lists
         public static List<string> gamelist = new List<string>();
         public List<string> regionList = new List<string>();
+
+        //Scrapping Threads
         public BackgroundWorker artScrapper = new BackgroundWorker();
         private AutoResetEvent _resetEvent = new AutoResetEvent(false);
 
@@ -36,6 +41,7 @@ namespace PCSX2_Spectabis
         public delegate void UpdateUiDelegate(string _img, string _isoDir, string _title);
         public event UpdateUiDelegate UpdateUiEvent;
 
+        //Last clicked game
         public PictureBox lastGame;
 
         //First Time Setup
@@ -773,9 +779,6 @@ namespace PCSX2_Spectabis
                 {
                     currentTask.Text = "Searching box art for " + _isoname + "...";
                 });
-
-
-
 
                 foreach (GameSearchResult game in GamesDB.GetGames(_isoname, "Sony Playstation 2"))
                 {
