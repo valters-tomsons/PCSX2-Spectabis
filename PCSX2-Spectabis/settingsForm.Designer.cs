@@ -41,7 +41,6 @@
             this.colorschemelist = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.blueGreyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.allowDropBoxArt = new MaterialSkin.Controls.MaterialCheckBox();
             this.colorschemelist.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +92,7 @@
             this.materialCheckBox1.AutoSize = true;
             this.materialCheckBox1.Depth = 0;
             this.materialCheckBox1.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox1.Location = new System.Drawing.Point(9, 311);
+            this.materialCheckBox1.Location = new System.Drawing.Point(17, 252);
             this.materialCheckBox1.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -110,7 +109,7 @@
             this.materialCheckBox2.AutoSize = true;
             this.materialCheckBox2.Depth = 0;
             this.materialCheckBox2.Font = new System.Drawing.Font("Roboto", 10F);
-            this.materialCheckBox2.Location = new System.Drawing.Point(9, 341);
+            this.materialCheckBox2.Location = new System.Drawing.Point(17, 282);
             this.materialCheckBox2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCheckBox2.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialCheckBox2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -155,7 +154,7 @@
             this.showTitle.AutoSize = true;
             this.showTitle.Depth = 0;
             this.showTitle.Font = new System.Drawing.Font("Roboto", 10F);
-            this.showTitle.Location = new System.Drawing.Point(9, 371);
+            this.showTitle.Location = new System.Drawing.Point(17, 312);
             this.showTitle.Margin = new System.Windows.Forms.Padding(0);
             this.showTitle.MouseLocation = new System.Drawing.Point(-1, -1);
             this.showTitle.MouseState = MaterialSkin.MouseState.HOVER;
@@ -172,7 +171,7 @@
             this.allowAutoDownload.AutoSize = true;
             this.allowAutoDownload.Depth = 0;
             this.allowAutoDownload.Font = new System.Drawing.Font("Roboto", 10F);
-            this.allowAutoDownload.Location = new System.Drawing.Point(9, 401);
+            this.allowAutoDownload.Location = new System.Drawing.Point(17, 342);
             this.allowAutoDownload.Margin = new System.Windows.Forms.Padding(0);
             this.allowAutoDownload.MouseLocation = new System.Drawing.Point(-1, -1);
             this.allowAutoDownload.MouseState = MaterialSkin.MouseState.HOVER;
@@ -206,25 +205,12 @@
             this.pinkToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.pinkToolStripMenuItem.Text = "Pink";
             // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(12, 245);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(100, 19);
-            this.materialLabel3.TabIndex = 13;
-            this.materialLabel3.Text = "Color Sheme:";
-            // 
             // allowDropBoxArt
             // 
             this.allowDropBoxArt.AutoSize = true;
             this.allowDropBoxArt.Depth = 0;
             this.allowDropBoxArt.Font = new System.Drawing.Font("Roboto", 10F);
-            this.allowDropBoxArt.Location = new System.Drawing.Point(9, 431);
+            this.allowDropBoxArt.Location = new System.Drawing.Point(17, 372);
             this.allowDropBoxArt.Margin = new System.Windows.Forms.Padding(0);
             this.allowDropBoxArt.MouseLocation = new System.Drawing.Point(-1, -1);
             this.allowDropBoxArt.MouseState = MaterialSkin.MouseState.HOVER;
@@ -241,7 +227,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 605);
             this.Controls.Add(this.allowDropBoxArt);
-            this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.allowAutoDownload);
             this.Controls.Add(this.showTitle);
             this.Controls.Add(this.blacklistBtn);
@@ -279,7 +264,6 @@
         private MaterialSkin.Controls.MaterialContextMenuStrip colorschemelist;
         private System.Windows.Forms.ToolStripMenuItem blueGreyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pinkToolStripMenuItem;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialCheckBox allowDropBoxArt;
     }
 }
