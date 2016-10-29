@@ -5,6 +5,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System.IO;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace PCSX2_Spectabis
 {
@@ -161,6 +162,12 @@ namespace PCSX2_Spectabis
                 }
             }
 
+        }
+
+        //Click on colorscheme
+        private void colorschemeBox_Click(object sender, EventArgs e)
+        {
+            colorschemelist.Show(Cursor.Position.X, Cursor.Position.Y);
         }
     }
 }

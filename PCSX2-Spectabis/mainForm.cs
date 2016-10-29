@@ -260,7 +260,7 @@ namespace PCSX2_Spectabis
                                 string _imgsdir = AppDomain.CurrentDomain.BaseDirectory + @"\resources\images\defbox.gif";
 
                                 //Automatic Game Name for image files, except .cso and bin/cue
-                                if ((iso.EndsWith(".cso") == false) && (iso.EndsWith(".bin") == false))
+                                if ((iso.EndsWith(".cso") == false) && (iso.EndsWith(".bin") == false) && (iso.EndsWith(".gz") == false))
                                 {
                                     string _filename;
 
@@ -895,7 +895,7 @@ namespace PCSX2_Spectabis
 
                 _isoname = Path.GetFileNameWithoutExtension(file);
 
-                if ((file.EndsWith(".bin") == false) && (file.EndsWith(".cso") == false))
+                if ((file.EndsWith(".bin") == false) && (file.EndsWith(".cso") == false) && (file.EndsWith(".gz") == false))
                 {
                     //Gets the game serial number from file
                     using (ArchiveFile archiveFile = new ArchiveFile(file))

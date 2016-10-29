@@ -126,7 +126,7 @@ namespace PCSX2_Spectabis
 
                 //skips, if unsupported file type file
 
-                if((browseIso.FileName.EndsWith(".cso") == false) && (browseIso.FileName.EndsWith(".bin") == false))
+                if((browseIso.FileName.EndsWith(".cso") == false) && (browseIso.FileName.EndsWith(".bin") == false) && (browseIso.FileName.EndsWith(".gz") == false))
                 {
 
                     //Gets the game serial number from file

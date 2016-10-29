@@ -38,12 +38,12 @@
             this.blacklistBtn = new MaterialSkin.Controls.MaterialRaisedButton();
             this.showTitle = new MaterialSkin.Controls.MaterialCheckBox();
             this.allowAutoDownload = new MaterialSkin.Controls.MaterialCheckBox();
-            this.colorshemelist = new MaterialSkin.Controls.MaterialContextMenuStrip();
+            this.colorschemelist = new MaterialSkin.Controls.MaterialContextMenuStrip();
             this.blueGreyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.allowDropBoxArt = new MaterialSkin.Controls.MaterialCheckBox();
-            this.colorshemelist.SuspendLayout();
+            this.colorschemelist.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -183,16 +183,16 @@
             this.allowAutoDownload.Text = "Download game box art automatically";
             this.allowAutoDownload.UseVisualStyleBackColor = true;
             // 
-            // colorshemelist
+            // colorschemelist
             // 
-            this.colorshemelist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.colorshemelist.Depth = 0;
-            this.colorshemelist.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.colorschemelist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.colorschemelist.Depth = 0;
+            this.colorschemelist.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.blueGreyToolStripMenuItem,
             this.pinkToolStripMenuItem});
-            this.colorshemelist.MouseState = MaterialSkin.MouseState.HOVER;
-            this.colorshemelist.Name = "colorshemelist";
-            this.colorshemelist.Size = new System.Drawing.Size(125, 48);
+            this.colorschemelist.MouseState = MaterialSkin.MouseState.HOVER;
+            this.colorschemelist.Name = "colorshemelist";
+            this.colorschemelist.Size = new System.Drawing.Size(125, 48);
             // 
             // blueGreyToolStripMenuItem
             // 
@@ -259,7 +259,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.settingsForm_Load);
-            this.colorshemelist.ResumeLayout(false);
+            this.colorschemelist.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,7 +276,7 @@
         private MaterialSkin.Controls.MaterialRaisedButton blacklistBtn;
         private MaterialSkin.Controls.MaterialCheckBox showTitle;
         private MaterialSkin.Controls.MaterialCheckBox allowAutoDownload;
-        private MaterialSkin.Controls.MaterialContextMenuStrip colorshemelist;
+        private MaterialSkin.Controls.MaterialContextMenuStrip colorschemelist;
         private System.Windows.Forms.ToolStripMenuItem blueGreyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pinkToolStripMenuItem;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
