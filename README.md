@@ -20,6 +20,3 @@ The Games DB - http://thegamesdb.net/ & http://wiki.thegamesdb.net/index.php/API
 adoconnection - https://github.com/adoconnection/SevenZipExtractor
 
 The awesome community at StackOverflow
-
-
-<a href='https://pledgie.com/campaigns/32496'><img alt='Click here to lend your support to: Spectabis | Custom frontend for PCSX2 and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/32496.png?skin_name=chrome' border='0' ></a>
