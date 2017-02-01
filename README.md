@@ -1,3 +1,10 @@
+# This project is no longer maintained. New and better version is now found at : https://github.com/Spectabis/WPF_Spectabis
+# Thanks!
+
+
+
+
+
 # PCSX2-Spectabis
 
 Spectabis is a free custom frontend for PlayStation®2 emulator PCSX2. Without tinkering for hours with settings for each game or creating complicated setups for each game, Spectabis takes it all from your hands so you enjoy what matters - your games.
