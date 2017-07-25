@@ -1,4 +1,4 @@
-# This project is no longer maintained. New and better version is now found at : https://github.com/Spectabis/WPF_Spectabis
+# This project is no longer maintained. New and better version is now found at : https://github.com/FaithLV/WPF_Spectabis/releases
 # Thanks!
 
 
